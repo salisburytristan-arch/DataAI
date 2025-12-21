@@ -1,0 +1,8 @@
+{
+  "buildCommand": "cd arctic-site && npm run build",
+  "outputDirectory": "arctic-site/.next",
+  "installCommand": "cd arctic-site && npm install",
+  "env": {
+    "NEXT_PUBLIC_SITE_URL": "https://arcticcodex.com"
+  }
+}
