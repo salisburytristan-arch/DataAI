@@ -68,12 +68,11 @@ postgres = [
 ]
 
 [project.urls]
-Homepage = "https://vaultai.io"
-Documentation = "https://docs.vaultai.io"
-Repository = "https://vaultai.io/repos/agent-vault"
-Issues = "https://vaultai.io/support"
- Changelog = "https://vaultai.io/changelog/agent-vault"
-
+Homepage = "https://salisburytristan-arch.github.io/ArcticCodex"
+Documentation = "https://github.com/salisburytristan-arch/ArcticCodex/wiki"
+Repository = "https://github.com/salisburytristan-arch/ArcticCodex"
+Issues = "https://github.com/salisburytristan-arch/ArcticCodex/issues"
+Changelog = "https://github.com/salisburytristan-arch/ArcticCodex/releases"
 [project.scripts]
 agent-vault = "agent_vault.cli:main"
 
