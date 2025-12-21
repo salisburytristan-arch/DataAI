@@ -1,4 +1,4 @@
-# Agent Vault: Executive Summary for Stakeholders
+# ArcticCodex: Executive Summary for Stakeholders
 
 **Date**: December 21, 2025  
 **Status**: PRODUCT PIVOT COMPLETE | Ready for Beta Launch  
@@ -8,7 +8,7 @@
 
 ## The Shift (One Paragraph)
 
-We began with ArcticCodex—a 40-phase AGI research project. After extensive engineering, we realized the tech solves a real enterprise problem: **compliance teams block autonomous AI because of cloud LLM risks.** We pivoted Agent Vault to be the **first local-first, policy-driven agent platform**. Same core technology (40 phases, ForgeNumerics frames), but repositioned as enterprise software with RBAC, audit logs, and compliance narratives (HIPAA, SOC2, ISO 27001). Target: $1.5k ARR by end Q1 2026, growing to $600k+ ARR by EOY 2026, and $1M+ by 2027.
+We began with ArcticCodex—a 40-phase AGI research project. After extensive engineering, we realized the tech solves a real enterprise problem: **compliance teams block autonomous AI because of cloud LLM risks.** We pivoted to focus on the **first local-first, policy-driven agent platform**. Same core technology (40 phases, ForgeNumerics frames), but repositioned as enterprise software with RBAC, audit logs, and compliance narratives (HIPAA, SOC2, ISO 27001). Target: $1.5k ARR by end Q1 2026, growing to $600k+ ARR by EOY 2026, and $1M+ by 2027.
 
 ---
 
@@ -21,7 +21,7 @@ We began with ArcticCodex—a 40-phase AGI research project. After extensive eng
 - **Market size**: $1.2B+ annual compliance spending; growing 20%+ YoY
 
 ### The Solution
-**Agent Vault**: Local-first agent runtime with policy engine + audit logs.
+**ArcticCodex**: Local-first agent runtime with policy engine + audit logs.
 
 - All inference on-premise (no cloud vendor risk)
 - RBAC prevents unauthorized agent actions before execution
@@ -39,7 +39,7 @@ We began with ArcticCodex—a 40-phase AGI research project. After extensive eng
 
 ## Product Differentiation
 
-| Dimension | Agent Vault | Cloud LLMs | DIY Builders |
+| Dimension | ArcticCodex | Cloud LLMs | DIY Builders |
 |-----------|------------|-----------|-------------|
 | **On-Premise** | ✅ | ❌ | ✅ |
 | **Audit Trail** | ✅ Forensic | ❌ | ❌ Usually |
@@ -179,7 +179,7 @@ We began with ArcticCodex—a 40-phase AGI research project. After extensive eng
    - JSONL export for compliance
 
 5. **Docker deployment** (production-ready)
-   - Agent Vault API on :8000
+   - ArcticCodex API on :8000
    - PostgreSQL for audit
    - UI on :3000
    - MinIO for S3-compatible archival
@@ -289,7 +289,7 @@ We began with ArcticCodex—a 40-phase AGI research project. After extensive eng
 
 ## Conclusion
 
-**Agent Vault is a real product with a real market.**
+**ArcticCodex is a real product with a real market.**
 
 We've built the technology (40 phases, audit engine, compliance narratives). We've proven the market exists (compliance is $1.2B/year; cloud LLMs are blocked). We've articulated the GTM (6 weeks to first customer, clear playbook for Q2+ growth).
 
@@ -316,4 +316,4 @@ We've built the technology (40 phases, audit engine, compliance narratives). We'
 
 ---
 
-**For questions or demo requests**: sales@vaultai.io
+**For questions or demo requests**: acrticasters@gmail.com

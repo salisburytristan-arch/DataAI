@@ -1,4 +1,4 @@
-# 🚀 Agent Vault: Product Pivot Complete – Session Summary
+# 🚀 ArcticCodex: Product Pivot Complete – Session Summary
 
 **Date**: December 21, 2025  
 **Status**: PRODUCT PIVOT COMPLETE | Ready for Beta Launch (Jan 2026)  
@@ -8,7 +8,7 @@
 
 ## What Just Happened
 
-We transformed **ArcticCodex** (an AGI research artifact with 40 phases) into **Agent Vault** (a revenue-generating, compliance-first enterprise product).
+We transformed **ArcticCodex** (an AGI research artifact with 40 phases) into a **revenue-generating, compliance-first enterprise product**.
 
 ### The Shift in 3 Sentences
 
@@ -142,7 +142,7 @@ We transformed **ArcticCodex** (an AGI research artifact with 40 phases) into **
 - [ ] Write INSTALL.md (5-minute setup guide)
 - [ ] Record 3-minute compliance demo video
 
-**Goal**: Docker-based Agent Vault deployable in <5 minutes
+**Goal**: Docker-based ArcticCodex deployable in <5 minutes
 
 ### Week 3 (Jan 6–10): Sales Outreach
 - [ ] Identify 10 target contacts (fintech, healthcare, legal)
@@ -153,7 +153,7 @@ We transformed **ArcticCodex** (an AGI research artifact with 40 phases) into **
 **Goal**: 3 pilots committed for deployment
 
 ### Week 4 (Jan 13–17): Pilot Deployment
-- [ ] Deploy Agent Vault to 3 pilot customers
+- [ ] Deploy ArcticCodex to 3 pilot customers
 - [ ] Custom policies per use case
 - [ ] Kickoff meetings + success metric alignment
 - [ ] All pilots executing agent decisions
@@ -222,7 +222,7 @@ We transformed **ArcticCodex** (an AGI research artifact with 40 phases) into **
 
 ## The Competitive Edge
 
-### Why Agent Vault Wins
+### Why ArcticCodex Wins
 
 1. **On-premise-first** — No cloud vendor lock-in (fintech, healthcare love this)
 2. **Policy-driven** — RBAC prevents unauthorized actions before execution (compliance teams love this)
@@ -265,7 +265,7 @@ We transformed **ArcticCodex** (an AGI research artifact with 40 phases) into **
 
 ## What Success Looks Like (Jan 31, 2026)
 
-✅ Docker-based Agent Vault deployable in <5 minutes  
+✅ Docker-based ArcticCodex deployable in <5 minutes  
 ✅ 3 pilot customers live, executing agent decisions  
 ✅ 2–3 customers paying ($500–$2,000/month)  
 ✅ $1.5k ARR ($18k annualized)  
@@ -310,7 +310,7 @@ The 6-week roadmap is aggressive but achievable. The market is real. The differe
 
 ---
 
-**Agent Vault: 6 weeks from research artifact to revenue-generating product.**
+**ArcticCodex: 6 weeks from research artifact to revenue-generating product.**
 
 *Let's ship it.*
 

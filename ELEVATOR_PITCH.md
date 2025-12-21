@@ -1,8 +1,8 @@
-# Agent Vault: Elevator Pitch
+# ArcticCodex: Elevator Pitch
 
 ## 15-Second Version
 
-**Agent Vault** is a local-first AI agent runtime for regulated industries. Unlike cloud-based solutions, all inference runs on-premise with deterministic audit trails. Built for compliance officers and DevOps teams that can't use closed-source AI.
+**ArcticCodex** is a local-first AI agent runtime for regulated industries. Unlike cloud-based solutions, all inference runs on-premise with deterministic audit trails. Built for compliance officers and DevOps teams that can't use closed-source AI.
 
 ---
 
@@ -14,7 +14,7 @@
 - Can't control what tools agents can access
 - Black-box decision-making fails audits
 
-**Solution**: Agent Vault replaces cloud LLMs with a **local, deterministic, auditable agent runtime**.
+**Solution**: ArcticCodex replaces cloud LLMs with a **local, deterministic, auditable agent runtime**.
 
 **Why it matters**:
 - **All compute stays on-premise** — no data leaves your network
@@ -144,6 +144,6 @@ Autonomous AI is here. But regulation moves slower than technology.
 
 ---
 
-**Agent Vault: Where autonomous intelligence meets enterprise discipline.**
+**ArcticCodex: Where autonomous intelligence meets enterprise discipline.**
 
-*Questions? sales@vaultai.io*
+*Questions? sales@acrticasters.gmail.com*

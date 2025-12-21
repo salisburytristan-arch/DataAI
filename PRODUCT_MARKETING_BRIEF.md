@@ -315,4 +315,4 @@ The market is ready. Compliance is the #1 blocker to AI adoption. We're the only
 
 **Agent Vault: The agent platform that compliance teams actually approve.**
 
-*Questions? sales@vaultai.io*
+*Questions? acrticasters@gmail.com*

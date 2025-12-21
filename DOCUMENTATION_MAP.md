@@ -228,10 +228,10 @@ Product/Technical Layer:
 
 | Role | Contact | Message |
 |------|---------|---------|
-| **Sales Inquiries** | sales@arcticcodex.io | "Can we demo ArcticCodex?" |
-| **Support** | support@arcticcodex.io | "How do I deploy?" |
-| **Partnerships** | partners@arcticcodex.io | "Co-selling opportunity" |
-| **Press** | press@arcticcodex.io | "Feature request for media" |
+| **Sales Inquiries** | acrticasters@gmail.com | "Can we demo ArcticCodex?" |
+| **Support** | acrticasters@gmail.com | "How do I deploy?" |
+| **Partnerships** | acrticasters@gmail.com | "Co-selling opportunity" |
+| **Press** | acrticasters@gmail.com | "Feature request for media" |
 
 ---
 

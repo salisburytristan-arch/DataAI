@@ -1,16 +1,16 @@
-# Agent Vault: Quick Reference (One-Sheet)
+# ArcticCodex: Quick Reference (One-Sheet)
 
-**Product**: Agent Vault  
+**Product**: ArcticCodex  
 **Tagline**: "Enterprise AI that compliance teams actually approve"  
 **Status**: BETA | Jan 2026 Launch | $1.5k ARR Target (Q1)  
 **Website**: (Coming Jan 1, 2026)  
-**Contact**: sales@vaultai.io
+**Contact**: sales@acrticasters.gmail.com
 
 ---
 
 ## What Is It?
 
-**Agent Vault** is a **local-first AI agent runtime** for regulated industries.
+**ArcticCodex** is a **local-first AI agent runtime** for regulated industries.
 
 - **All inference runs on-premise** (no cloud LLMs, no data leaving your network)
 - **Policy-driven tool access** (RBAC prevents unauthorized agent actions)
@@ -28,7 +28,7 @@
 - LangChain: Framework, not product; no policy engine
 - DIY builders: 6+ months to build; compliance missing
 
-**Agent Vault** solves this: Agents + Compliance + On-Premise + Speed.
+**ArcticCodex** solves this: Agents + Compliance + On-Premise + Speed.
 
 ---
 
@@ -72,7 +72,7 @@ DevOps agents that remediate infrastructure. "All actions approved by policy; au
 
 ## Key Differentiators
 
-| Dimension | Agent Vault | Cloud LLMs | DIY |
+| Dimension | ArcticCodex | Cloud LLMs | DIY |
 |-----------|------------|-----------|-----|
 | **On-Premise** | ✅ | ❌ | ✅ |
 | **Audit Trail** | ✅ Built-in | ❌ | ❌ Usually |
@@ -120,7 +120,7 @@ docker-compose exec agent-vault python -m agent_vault.cli phase --num 30
 # 5. Access UI
 open http://localhost:3000
 
-# Done. Agent Vault is running.
+# Done. ArcticCodex is running.
 ```
 
 ---
@@ -174,7 +174,7 @@ open http://localhost:3000
 ## Sales Conversation Flow
 
 1. **Problem discovery**: "Are you blocked from using AI agents due to compliance?"
-2. **Solution fit**: "Agent Vault runs on-premise with forensic audit trails."
+2. **Solution fit**: "ArcticCodex runs on-premise with forensic audit trails."
 3. **Proof**: "Here's how Company X uses it for [use case]."
 4. **Pilot**: "90-day free trial; document the use case for a case study."
 5. **Close**: "Based on pilots, Enterprise tier at $5k/month for unlimited users."
@@ -248,7 +248,7 @@ open http://localhost:3000
 ## FAQs
 
 **Q: Why not just use OpenAI?**  
-A: Because your compliance team says "no." OpenAI logs data externally; no audit trail. Agent Vault runs on-premise.
+A: Because your compliance team says "no." OpenAI logs data externally; no audit trail. ArcticCodex runs on-premise.
 
 **Q: Is this a feature or a product?**  
 A: Product. It's pricing ($299–$5k/mo), compliance narratives (HIPAA/SOC2), deployment (Docker), and sales story (enterprise agents).
@@ -266,13 +266,13 @@ A: 40-phase pipeline (hard to replicate), compliance narratives (regulatory expe
 
 ## Contact
 
-**Email**: sales@vaultai.io  
-**Website**: vaultai.io (coming Jan 1, 2026)  
+**Email**: sales@acrticasters.gmail.com  
+**Website**: arcticcodex.io (coming Jan 1, 2026)  
 **LinkedIn**: [Agent Vault Company Page]  
 **Demo**: [Schedule 30-min walkthrough](https://calendly.com/sales/agent-vault-demo)
 
 ---
 
-**Agent Vault: The only agent platform that compliance teams actually approve.**
+**ArcticCodex: The only agent platform that compliance teams actually approve.**
 
 *Let's build the future of enterprise AI—safely.*

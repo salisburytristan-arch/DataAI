@@ -249,9 +249,9 @@ See [SECURITY.md](SECURITY.md) for full threat model, incident response, and com
 
 ## Support
 
-- **Docs**: https://docs.vaultai.io
-- **Support**: https://vaultai.io/support
-- **Email**: support@vaultai.io
+- **Docs**: https://github.com/salisburytristan-arch/ArcticCodex/wiki
+- **Support**: https://github.com/salisburytristan-arch/ArcticCodex/issues
+- **Email**: acrticasters@gmail.com
 - **Community**: Slack (contact support for invite)
 
 ---
@@ -282,8 +282,8 @@ Commercial licenses, source code escrow, and custom deployments available upon r
 ## Contributing
 
 ArcticCodex is proprietary. For partnership or feature requests:
-- **Sales**: sales@vaultai.io
-- **Partnerships**: partners@vaultai.io
+- **Sales**: acrticasters@gmail.com
+- **Partnerships**: acrticasters@gmail.com
 
 ---
 

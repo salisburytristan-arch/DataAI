@@ -177,7 +177,7 @@
   - Upload to YouTube
   - Embed on landing page
 
-- [ ] **Launch website** (vaultai.io)
+- [ ] **Launch website** (arcticcodex.io)
   - Landing page + product overview
   - Pricing calculator
   - Case study showcase (coming after pilots)
