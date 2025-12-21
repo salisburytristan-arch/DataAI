@@ -3,14 +3,14 @@ requires = ["setuptools>=65.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "agent-vault"
+name = "arcticcodex"
 version = "1.0.0"
-description = "Local-first AI agent runtime with enterprise policy, audit, and governance"
+description = "Enterprise AI agent runtime with policy, audit, and governance"
 readme = "README_PRODUCT.md"
 requires-python = ">=3.10"
 license = {text = "Proprietary"}
 authors = [
-    {name = "Vault AI", email = "team@vaultai.io"}
+    {name = "ArcticCodex Team", email = "team@arcticcodex.io"}
 ]
 keywords = [
     "ai-agents",
@@ -74,13 +74,13 @@ Repository = "https://github.com/salisburytristan-arch/ArcticCodex"
 Issues = "https://github.com/salisburytristan-arch/ArcticCodex/issues"
 Changelog = "https://github.com/salisburytristan-arch/ArcticCodex/releases"
 [project.scripts]
-agent-vault = "agent_vault.cli:main"
+arcticcodex = "arcticcodex.cli:main"
 
 [tool.setuptools]
-packages = ["agent_vault", "agent_vault.core", "agent_vault.platform"]
+packages = ["arcticcodex", "arcticcodex.core", "arcticcodex.platform"]
 
 [tool.setuptools.package-data]
-agent_vault = ["py.typed"]
+arcticcodex = ["py.typed"]
 
 [tool.black]
 line-length = 100
@@ -129,11 +129,11 @@ ignore_missing_imports = true
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 asyncio_mode = "auto"
-addopts = "--cov=agent_vault --cov-report=html --cov-report=term-missing"
+addopts = "--cov=arcticcodex --cov-report=html --cov-report=term-missing"
 
 [tool.coverage.run]
 branch = true
-source = ["agent_vault"]
+source = ["arcticcodex"]
 
 [tool.coverage.report]
 exclude_lines = [

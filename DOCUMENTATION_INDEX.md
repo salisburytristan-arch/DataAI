@@ -1,9 +1,9 @@
-# Agent Vault Documentation Index
+# ArcticCodex Documentation Index
 
 **Last Updated**: December 21, 2025  
 **Status**: PRODUCT PIVOT COMPLETE | Beta Launch (Jan 2026)
 
-Welcome! This file indexes all Agent Vault documentation. Use this to navigate the product.
+Welcome! This file indexes all ArcticCodex documentation. Use this to navigate the product.
 
 ---
 

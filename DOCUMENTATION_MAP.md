@@ -1,4 +1,4 @@
-# 📚 Agent Vault: Complete Documentation Map
+# 📚 ArcticCodex: Complete Documentation Map
 
 **Status**: Product Pivot Complete (Dec 21, 2025)  
 **Last Updated**: December 21, 2025  
@@ -50,7 +50,7 @@
 ### Strategic Planning (Pivot + Vision)
 | Document | Purpose | Audience | Length |
 |----------|---------|----------|--------|
-| **[PRODUCT_PIVOT_SUMMARY.md](PRODUCT_PIVOT_SUMMARY.md)** | Why/how we pivoted ArcticCodex → Agent Vault | Team, partners | 8 min |
+| **[PRODUCT_PIVOT_SUMMARY.md](PRODUCT_PIVOT_SUMMARY.md)** | Why/how we pivoted to a product | Team, partners | 8 min |
 | **[PRODUCT_PIVOT_CHECKLIST.md](PRODUCT_PIVOT_CHECKLIST.md)** | What's complete, what's next | Team, PM | 5 min |
 | **[SESSION_PRODUCT_PIVOT_SUMMARY.md](SESSION_PRODUCT_PIVOT_SUMMARY.md)** | Session work summary + next actions | Team | 10 min |
 
@@ -99,12 +99,12 @@
 ## 🎯 Key Messaging (By Audience)
 
 ### For VCs
-> "ArcticCodex is a 40-phase AGI system. We're pivoting it to **Agent Vault**—an enterprise platform for regulated industries. Compliance is the #1 blocker to AI; we solve that. TAM: $1.2B+. Path: $1.5k ARR (Q1) → $600k+ ARR (Q4) → $1M+ (2027)."
+> "ArcticCodex is a 40-phase AGI system with a production-ready product focused on enterprise compliance. Agents + Policy + Audit Trail + On-Premise. TAM: $1.2B+. Path: $1.5k ARR (Q1) → $600k+ ARR (Q4) → $1M+ (2027)."
 
 → **Read**: [EXECUTIVE_SUMMARY_PRODUCT_PIVOT.md](EXECUTIVE_SUMMARY_PRODUCT_PIVOT.md)
 
 ### For Customers
-> "Are compliance requirements blocking your use of autonomous agents? Agent Vault runs agents on-premise with forensic audit trails. HIPAA-ready, SOC2-compliant. Deploy in <5 minutes."
+> "Compliance requirements blocking your use of autonomous agents? ArcticCodex runs agents on-premise with forensic audit trails. HIPAA-ready, SOC2-compliant. Deploy in <5 minutes."
 
 → **Read**: [README_PRODUCT.md](README_PRODUCT.md)
 
@@ -228,10 +228,10 @@ Product/Technical Layer:
 
 | Role | Contact | Message |
 |------|---------|---------|
-| **Sales Inquiries** | sales@vaultai.io | "Can we demo Agent Vault?" |
-| **Support** | support@vaultai.io | "How do I deploy?" |
-| **Partnerships** | partners@vaultai.io | "Co-selling opportunity" |
-| **Press** | press@vaultai.io | "Feature request for media" |
+| **Sales Inquiries** | sales@arcticcodex.io | "Can we demo ArcticCodex?" |
+| **Support** | support@arcticcodex.io | "How do I deploy?" |
+| **Partnerships** | partners@arcticcodex.io | "Co-selling opportunity" |
+| **Press** | press@arcticcodex.io | "Feature request for media" |
 
 ---
 
@@ -298,7 +298,7 @@ Product/Technical Layer:
 
 ---
 
-**Agent Vault: Enterprise AI that compliance teams actually approve.**
+**ArcticCodex: Enterprise AI that compliance teams actually approve.**
 
 *Last updated: December 21, 2025*
 

@@ -1,12 +1,12 @@
-# Agent Vault: Enterprise AI Agents for Regulated Industries
+# ArcticCodex: Enterprise AI Agents for Regulated Industries
 
 **Status**: PRODUCT PIVOT LIVE (Dec 21, 2025) | Beta Launch (Jan 2026) | Target: $1.5k ARR (Q1)
 
 ---
 
-## What Is Agent Vault?
+## What Is ArcticCodex?
 
-**Agent Vault** is a **local-first AI agent runtime** with enterprise policy, audit, and governance.
+**ArcticCodex** is a **local-first AI agent runtime** with enterprise policy, audit, and governance.
 
 - ✅ **All inference runs on-premise** — no cloud vendor, no data leaving your network
 - ✅ **Policy-driven tool access** — RBAC prevents unauthorized agent actions
@@ -14,7 +14,7 @@
 - ✅ **Compliance-ready** — HIPAA, SOC2, ISO 27001 narratives built in
 - ✅ **Production-ready** — Docker-based, deployable in <5 minutes
 
-## Why Agent Vault?
+## Why ArcticCodex?
 
 **Market reality**: 80% of enterprises want AI agents, but compliance blocks them.
 
@@ -22,7 +22,7 @@
 - Custom agents take 6+ months to build and lack compliance narratives
 - Frameworks (LangChain) are flexible but not production-ready
 
-**Agent Vault** solves this: Agents + Compliance + On-Premise + Speed.
+**ArcticCodex** solves this: Agents + Compliance + On-Premise + Speed.
 
 ---
 
@@ -57,7 +57,7 @@ For full setup: [INSTALL.md](docs/INSTALL.md)
 
 ```
 ┌────────────────────────────────────────────┐
-│         Agent Vault Platform               │
+│      ArcticCodex Platform                  │
 ├────────────┬──────────────┬────────────────┤
 │   Agent    │   Policy     │   Audit &      │
 │  Runtime   │   Engine     │   Vault        │
@@ -82,7 +82,7 @@ For full setup: [INSTALL.md](docs/INSTALL.md)
 
 ## The 40-Phase Pipeline
 
-Agent Vault includes a complete, deterministic reasoning pipeline:
+ArcticCodex includes a complete, deterministic reasoning pipeline:
 
 - **Phases I–X**: Core (search, planning, execution, reflection)
 - **Phases XI–XXV**: Specialized (code, language, vision, temporal)
@@ -258,7 +258,7 @@ See [SECURITY.md](SECURITY.md) for full threat model, incident response, and com
 
 ## License
 
-Agent Vault is proprietary software. See [LICENSE](LICENSE) for terms.
+ArcticCodex is proprietary software. See [LICENSE](LICENSE) for terms.
 
 Commercial licenses, source code escrow, and custom deployments available upon request.
 
@@ -281,13 +281,13 @@ Commercial licenses, source code escrow, and custom deployments available upon r
 
 ## Contributing
 
-Agent Vault is proprietary. For partnership or feature requests:
+ArcticCodex is proprietary. For partnership or feature requests:
 - **Sales**: sales@vaultai.io
 - **Partnerships**: partners@vaultai.io
 
 ---
 
-## Who Uses Agent Vault?
+## Who Uses ArcticCodex?
 
 We're building this for:
 - **Compliance officers** who need audit trails
@@ -297,6 +297,6 @@ We're building this for:
 
 ---
 
-**Agent Vault: Where autonomous intelligence meets enterprise discipline.**
+**ArcticCodex: Where autonomous intelligence meets enterprise discipline.**
 
 *Questions?* [Schedule a demo](https://calendly.com/sales/agent-vault-demo) or email sales@vaultai.io
