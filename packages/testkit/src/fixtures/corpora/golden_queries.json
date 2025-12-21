@@ -1,0 +1,10 @@
+{
+  "docs": [
+    {"title": "Physics", "path": "/tmp/physics.txt", "text": "gravity inertia mass energy momentum"},
+    {"title": "Biology", "path": "/tmp/biology.txt", "text": "cell organelle dna protein"}
+  ],
+  "queries": [
+    {"query": "gravity", "expect_top_title": "Physics"},
+    {"query": "dna", "expect_top_title": "Biology"}
+  ]
+}

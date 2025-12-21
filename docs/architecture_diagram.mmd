@@ -1,0 +1,31 @@
+flowchart TB
+  subgraph Vault
+    INGEST[Ingest: md/txt]
+    CHUNK[Chunk + Index (BM25)]
+    EMBED[Embeddings Sidecar (model or hash)]
+  end
+
+  subgraph Retrieval
+    SEARCH[search(query,k, alpha)]
+    EVIDENCE[Evidence + metadata]
+  end
+
+  subgraph Orchestrator
+    CONTEXT[Context Builder]
+    STUDENT[Student Draft]
+    TEACHERS[Teacher Critique/Verify]
+    COMPOSE[Compose ANSWER/TRAIN/REPAIR + citations]
+  end
+
+  subgraph Outputs
+    JSONL[JSONL: train_pairs, repair_pairs]
+    FRAMES[Forge Frames]
+    META[evidence_meta, answer_frame, memory_proposals]
+  end
+
+  INGEST --> CHUNK --> SEARCH
+  EMBED --> SEARCH
+  SEARCH --> EVIDENCE --> CONTEXT --> STUDENT --> TEACHERS --> COMPOSE
+  COMPOSE --> JSONL
+  COMPOSE --> FRAMES
+  COMPOSE --> META

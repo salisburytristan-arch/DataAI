@@ -1,0 +1,51 @@
+﻿packages/vault/tests/test_chunk_by_paragraphs.py::test_chunk_by_paragraphs_respects_bounds_and_is_repeatable
+packages/vault/tests/test_chunker_determinism.py::test_chunk_by_size_is_deterministic_and_respects_overlap
+packages/vault/tests/test_citation_integrity.py::test_citation_includes_object_hash_and_verifies
+packages/vault/tests/test_citation_integrity.py::test_citation_flags_corrupted_object
+packages/vault/tests/test_embedding_config.py::TestEmbeddingConfig::test_disable_embeddings_via_config
+packages/vault/tests/test_embedding_config.py::TestEmbeddingConfig::test_env_override_disable
+packages/vault/tests/test_embedding_index.py::TestEmbeddingIndex::test_embeddings_graceful_unavailable
+packages/vault/tests/test_embedding_index.py::TestEmbeddingIndex::test_hybrid_fallback_without_embeddings
+packages/vault/tests/test_embedding_index_disabled.py::test_embedding_index_disabled_by_env
+packages/vault/tests/test_hybrid_search.py::TestHybridSearch::test_hybrid_search_returns_results
+packages/vault/tests/test_metadata_index_list_docs.py::test_list_docs_excludes_deleted
+packages/vault/tests/test_metadata_index_persistence.py::test_metadata_index_persists_and_restores_tombstones
+packages/vault/tests/test_object_store_integrity.py::test_put_deduplicates_and_integrity_detects_corruption
+packages/vault/tests/test_object_store_stats.py::test_object_store_stats_and_list
+packages/vault/tests/test_retriever_evidence_pack.py::test_evidence_pack_includes_citations_and_offsets
+packages/vault/tests/test_retriever_golden_queries.py::test_golden_queries_top_chunk_stable
+packages/vault/tests/test_retriever_hybrid_determinism.py::test_hybrid_search_is_stable
+packages/vault/tests/test_retriever_hybrid_fallback.py::test_hybrid_search_falls_back_to_vector
+packages/vault/tests/test_retriever_keyword_order.py::test_keyword_search_orders_by_score_doc_and_sequence
+packages/vault/tests/test_vault.py::TestVaultLegacy::test_vault_facts
+packages/vault/tests/test_vault.py::TestVaultLegacy::test_vault_forget
+packages/vault/tests/test_vault.py::TestVaultLegacy::test_vault_import_and_retrieve
+packages/vault/tests/test_vault.py::TestVaultLegacy::test_vault_search
+packages/vault/tests/test_vault.py::TestVaultLegacy::test_vault_stats
+packages/vault/tests/test_vault_bitrot_detection.py::test_bitrot_corruption_detected
+packages/vault/tests/test_vault_chunk_hash_determinism.py::test_chunk_hash_matches_content_sha256
+packages/vault/tests/test_vault_forget_fact.py::test_forget_fact_marks_deleted
+packages/vault/tests/test_vault_integrity_scan.py::test_vault_verify_integrity_flags_corruption
+packages/vault/tests/test_vault_snapshot_restore.py::test_snapshot_restore_preserves_search_results
+packages/vault/tests/test_vault_snapshot_restore_consistency.py::test_snapshot_restore_consistency_when_source_changes
+packages/vault/tests/test_vault_snapshot_restore_stats.py::test_snapshot_restore_preserves_stats
+packages/vault/tests/test_vault_tombstones.py::test_forget_cascades_doc_and_chunks_and_persists
+packages/vault/tests/test_vault_tombstones.py::test_forget_chunk_only_removes_that_chunk
+packages/vault/tests/test_vault_tombstones.py::test_forget_unknown_returns_none_and_writes_no_tombstone
+packages/vault/tests/test_vault_verify_integrity_clean.py::test_verify_integrity_clean
+packages/vault/tests/test_vector_index_persistence.py::test_vector_index_persists_and_ranks_by_score
+
+=================================== ERRORS ====================================
+______ ERROR collecting packages/vault/tests/test_frame_verification.py _______
+ImportError while importing test module 'D:\ArcticCodex - AGI\packages\vault\tests\test_frame_verification.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\salzy\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+packages\vault\tests\test_frame_verification.py:19: in <module>
+    from src.fn_bridge import to_fn_summary, to_fn_fact
+E   ModuleNotFoundError: No module named 'src.fn_bridge'
+=========================== short test summary info ===========================
+ERROR packages/vault/tests/test_frame_verification.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+36 tests collected, 1 error in 0.30s

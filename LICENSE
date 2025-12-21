@@ -1,0 +1,25 @@
+Proprietary License — ArcticCodex
+
+Copyright (c) 2025 ArcticCodex Authors. All rights reserved.
+
+TRANSFER OF OWNERSHIP:
+
+Upon receipt of full payment and execution of the Asset Purchase Agreement, all copyright and intellectual property rights in the Software are transferred to the Buyer. The Buyer receives full ownership rights to use, modify, deploy, and sublicense the Software as they see fit.
+
+SELLER RETAINS NO RIGHTS post-transfer except:
+- The right to display the transaction in business context (with Buyer permission)
+- Historical attribution (e.g., "Originally authored by ArcticCodex Authors")
+
+AS-IS STATUS:
+
+The Software is provided "AS IS" without warranty. See AS_IS_TERMS.md for full liability limitations.
+
+THIRD-PARTY COMPONENTS:
+
+This Software includes dependencies listed in requirements.lock and package.json. These dependencies are licensed under their respective licenses (see SBOM in documentation). The Buyer is responsible for compliance with third-party license terms.
+
+---
+
+This license is subject to the Asset Purchase Agreement. In the event of conflict between this file and the APA, the APA prevails.
+
+Effective Date: 2025-12-21

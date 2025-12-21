@@ -1,0 +1,147 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-vault"
+version = "1.0.0"
+description = "Local-first AI agent runtime with enterprise policy, audit, and governance"
+readme = "README_PRODUCT.md"
+requires-python = ">=3.10"
+license = {text = "Proprietary"}
+authors = [
+    {name = "Vault AI", email = "team@vaultai.io"}
+]
+keywords = [
+    "ai-agents",
+    "autonomous-systems",
+    "policy-engine",
+    "audit-trail",
+    "compliance",
+    "deterministic"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: System :: Monitoring",
+    "License :: Other/Proprietary License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "click>=8.0",
+    "pydantic>=2.0",
+    "pydantic-settings>=2.0",
+    "psycopg2-binary>=2.9",
+    "sqlalchemy>=2.0",
+    "aiohttp>=3.8",
+    "uvicorn>=0.20",
+    "fastapi>=0.95",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+    "pytest-cov>=4.0",
+    "black>=23.0",
+    "ruff>=0.1",
+    "mypy>=1.0",
+    "pre-commit>=3.0",
+]
+docs = [
+    "sphinx>=5.0",
+    "sphinx-rtd-theme>=1.2",
+    "myst-parser>=0.18",
+]
+docker = [
+    "docker>=6.0",
+]
+postgres = [
+    "psycopg2-binary>=2.9",
+    "alembic>=1.12",
+]
+
+[project.urls]
+Homepage = "https://vaultai.io"
+Documentation = "https://docs.vaultai.io"
+Repository = "https://vaultai.io/repos/agent-vault"
+Issues = "https://vaultai.io/support"
+ Changelog = "https://vaultai.io/changelog/agent-vault"
+
+[project.scripts]
+agent-vault = "agent_vault.cli:main"
+
+[tool.setuptools]
+packages = ["agent_vault", "agent_vault.core", "agent_vault.platform"]
+
+[tool.setuptools.package-data]
+agent_vault = ["py.typed"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311", "py312"]
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "C",    # flake8-comprehensions
+    "B",    # flake8-bugbear
+]
+ignore = [
+    "E501",  # line too long
+    "C901",  # complex function
+]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+check_untyped_defs = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "--cov=agent_vault --cov-report=html --cov-report=term-missing"
+
+[tool.coverage.run]
+branch = true
+source = ["agent_vault"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]

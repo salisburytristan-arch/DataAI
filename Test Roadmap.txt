@@ -1,0 +1,660 @@
+Below is an extreme, “test everything” test plan for ArcticCodex (Core + Vault + ForgeNumerics-S + Teachers + Studio + CLI + optional training). It is written as a complete QA + reliability program: unit tests, integration tests, end-to-end tests, fuzz/property tests, adversarial tests, chaos tests, performance/load tests, and regression gates—plus the fixtures and harnesses you need so the results are reproducible.
+
+If you implement this test program, you will catch the failures that normally only appear after months of use.
+
+1) Test Strategy and Quality Gates
+1.1 The “AGI System” Test Pyramid
+
+Pure unit tests (fast, deterministic)
+
+codecs, hashing, canonicalization
+
+chunking, token budgeting
+
+cache keys, invalidation
+
+schema validation, tool sandbox policies
+
+Component integration (medium)
+
+Vault ingest→index→retrieve
+
+Memory write proposals → approvals → retrieval exclusion
+
+Teacher protocols with mocks and real endpoints
+
+End-to-end scenarios (slow but critical)
+
+Studio/CLI → Local Server → Core → Vault → Student model → Teachers
+
+Chaos + adversarial (slowest, highest value)
+
+corruption, crash mid-write, prompt injection, memory poisoning
+
+tool sandbox escapes
+
+Performance + capacity (nightly)
+
+retrieval latency, ingest throughput, cache hit rates, index rebuild times
+
+1.2 Hard Quality Gates (no exceptions)
+
+A build cannot be “release-ready” unless all these pass:
+
+Integrity: Vault verifies hashes; no missing objects; manifests consistent.
+
+Safety: sandbox prevents unauthorized file writes/exec/network.
+
+Memory: “Forget” removes content from retrieval and prompt assembly.
+
+Grounding: responses that claim facts must be backed by citations or flagged as assumptions.
+
+Determinism: same inputs + same vault version + fixed seed → same retrieval set and stable prompt blocks.
+
+Teacher budgets: cost caps are enforced; no runaway spend.
+
+Crash safety: power-loss simulation does not corrupt vault; catalog log replays cleanly.
+
+2) Test Harness Architecture
+2.1 Test Harness Components (you must build)
+
+Create a dedicated test package:
+
+packages/testkit/
+  src/
+    fixtures/
+      corpora/
+      conversations/
+      policies/
+      tools/
+      forge/
+    generators/
+      randomText.ts
+      randomDocs.ts
+      randomForgeFrames.ts
+      randomPlans.ts
+    harness/
+      localServer.ts
+      vaultHarness.ts
+      modelHarness.ts
+      teacherHarness.ts
+      toolHarness.ts
+      chaosHarness.ts
+    oracles/
+      invariants.ts
+      metamorphic.ts
+      citationOracle.ts
+      memoryOracle.ts
+      sandboxOracle.ts
+      costOracle.ts
+    reporters/
+      junit.ts
+      htmlReport.ts
+      traceExporter.ts
+
+2.2 Deterministic Test Mode (mandatory)
+
+Every major subsystem must support a test mode:
+
+Fixed random seeds
+
+Fixed time source (mock clock)
+
+Fixed model decoding parameters (temperature 0 for many tests)
+
+Deterministic chunking and hashing
+
+Deterministic retrieval order (stable tie-breaking)
+
+Add an environment flag:
+
+ACX_TEST_MODE=1
+
+ACX_FAKE_TIME=...
+
+ACX_SEED=...
+
+3) ArcticCodex Core Tests (Agent Runtime)
+3.1 Planner / Executor / Verifier Unit Tests
+Planner tests
+
+Plan determinism: same input yields identical plan JSON.
+
+Tool selection constraints: cannot choose disallowed tools given policy.
+
+Budget compliance: if max steps = N, plan never exceeds N.
+
+Retry strategy: failure step produces a fallback path or a “request clarification.”
+
+Executor tests
+
+Tool schema validation: invalid tool args are rejected and repaired.
+
+Timeout enforcement: tool calls exceeding limit are terminated and recorded.
+
+Error taxonomy: tool failures categorized correctly (retryable vs fatal).
+
+Verifier tests
+
+Claim extraction: extracts claims from draft output.
+
+Evidence coverage: each claim must map to evidence or be marked assumption.
+
+Contradiction detection: conflicts with semantic memory are detected and handled.
+
+3.2 Context Builder and Token Budget “Pressure Tests”
+
+Budget allocation test: verify fixed quotas (rules, project state, memories, evidence, user) never exceed token cap.
+
+Extreme context test: 100KB user input; system must (a) store raw, (b) summarize, (c) retrieve later.
+
+Context ordering invariants: pinned rules always appear before retrieved text; retrieved text never overrides policy.
+
+3.3 Conversation Cache Tests
+
+Cache key correctness:
+
+changing vault version invalidates retrieval cache
+
+changing project state invalidates state block cache
+
+TTL expiry correctness
+
+LRU eviction correctness
+
+“Poisoned cache” test: stale cached evidence must never be used after tombstone events.
+
+4) Memory System Tests (Working / Episodic / Semantic / Procedural)
+4.1 Memory Proposal and Approval Queue Tests
+
+Candidate extraction correctness (facts/preferences/summaries proposed properly)
+
+Approve writes correct record types with correct provenance pointers
+
+Reject prevents writes and never leaks into prompt assembly
+
+4.2 Semantic Memory Tests (facts)
+
+Upsert behavior: same fact updated increases confidence/recency rather than duplicating.
+
+Supersession: corrected fact supersedes old, old becomes inactive.
+
+Conflict resolution: two conflicting facts triggers resolver and marks “disputed.”
+
+4.3 Episodic Memory Tests (summaries)
+
+Summaries generated every N turns (configurable).
+
+Summary includes: decisions, open tasks, constraints, and references to important artifacts.
+
+Retrieval uses summaries when transcript is too large.
+
+4.4 “Forget” and Privacy Tests (extreme)
+
+Forget specific:
+
+by record ID
+
+by selector (conversation ID, date range, tag)
+
+Confirm:
+
+record becomes tombstoned
+
+indexes are updated (or query planner filters tombstones)
+
+cached retrieval results invalidated
+
+prompt builder never injects forgotten content
+
+“Privacy leak test”: attempt to elicit forgotten content by paraphrase; system must not retrieve it.
+
+5) Vault Tests (Ingest, Store, Index, Retrieve, Provenance)
+5.1 Ingestion Pipeline Tests
+
+Import file types: txt/md/json/code + large files
+
+Deterministic chunking:
+
+same document + same policy → identical chunk hashes
+
+Dedupe:
+
+importing identical file twice must not duplicate objects; manifest references reused
+
+Normalizer:
+
+line endings, whitespace normalization stable
+
+5.2 Vector + Keyword Index Tests
+
+Index build idempotence:
+
+reindex yields identical index state (hashable snapshot)
+
+Hybrid ranking:
+
+same query → stable ranked chunks
+
+Metadata filters:
+
+tag/date/source filters correct
+
+Retrieval cache correctness:
+
+caches keyed by (query hash + vault version)
+
+5.3 Provenance / Citation Tests
+
+Every citation must reference:
+
+docId, chunkId, byte/line offsets
+
+source hash
+
+Citation stability under reindex:
+
+reindex must not change chunk IDs unless content changed
+
+Citation integrity:
+
+cited chunk content hash must match stored object hash
+
+5.4 Vault Integrity and Crash Safety Tests (extreme)
+
+Object store integrity scan:
+
+verify all object hashes
+
+verify manifest references exist
+
+verify catalog log replay produces same state
+
+Crash mid-write simulation:
+
+kill process after object write but before manifest update
+
+restart and verify system recovers to consistent state
+
+Power loss during catalog append:
+
+truncated JSONL line must be detected and repaired/rolled back safely
+
+Bit-rot simulation:
+
+flip random bytes in N objects; verify detection and quarantine workflow
+
+5.5 Snapshot / Restore Tests
+
+Create snapshot under load
+
+Restore snapshot to new directory
+
+Verify:
+
+identical search results for a fixed test query set
+
+identical record counts and manifest hashes
+
+6) ForgeNumerics-S Tests (Codec + Dictionaries + Meta-layer)
+
+This must be tested like a serious binary codec.
+
+6.1 Round-trip and Canonicalization
+
+Encode→decode yields exact semantic equality for every record type
+
+Canonicalization:
+
+two semantically identical frames must canonicalize to identical bytes
+
+Hash stability:
+
+hash(canonical_bytes) stable across runs and platforms
+
+6.2 Dictionary System Tests (base + extdict)
+
+Base dict loading correctness
+
+Extdict allocation:
+
+allocator never reuses a combo already assigned
+
+deterministic allocation given same free list
+
+Collision tests:
+
+concurrent allocations (simulate two processes) → collision detection path works
+
+Migration tests:
+
+decode old extdict versions and map correctly
+
+6.3 Meta-layer Frame Tests
+
+For each frame type (GRAMMAR/SCHEMA/TASK/CAPS/ERROR/EXPLAIN/DICT_UPDATE/TRAIN_PAIR):
+
+Parse validity
+
+Schema validation
+
+Error recovery: corrupted frame triggers ERROR frame generation, not crash
+
+Partial decode: header readable without full decode (if you support it)
+
+6.4 Fuzz / Property Tests (extreme)
+
+Generate random valid frames → ensure decode never crashes
+
+Generate random invalid bytes → ensure parser fails safely and reports structured error
+
+Differential test:
+
+encode JSON record → decode → compare to original record
+
+Corpus fuzzing:
+
+take real stored frames and mutate bytes; ensure safe failure
+
+7) Tool Sandbox and Security Tests
+7.1 File Sandbox Escapes (must fail)
+
+Path traversal:
+
+../../Windows/System32/...
+
+symlink escapes
+
+UNC paths and drive letter tricks
+
+Hidden file writes
+
+Large file write attempts (quota enforcement)
+
+Expected: denied with explicit policy reason + audited log entry.
+
+7.2 Shell Tool Safety (if enabled)
+
+Attempt destructive commands:
+
+delete root folder
+
+install software
+
+change firewall rules
+Expected: denied unless explicit approval + allowlist.
+
+7.3 Prompt Injection Tests (extreme)
+
+Create a “malicious document corpus” including:
+
+“Ignore previous instructions”
+
+“Exfiltrate secrets”
+
+“Write to forbidden path”
+
+“Disable safety checks”
+In tests:
+
+ingest malicious doc
+
+query it
+
+ensure:
+
+retrieved content is treated as untrusted
+
+no policy override occurs
+
+tool calls are not triggered by retrieved text
+
+7.4 Secret Leakage Tests
+
+Insert fake API keys into user input
+
+Ensure:
+
+redaction filters remove them from logs/datasets
+
+memory writer refuses to store secrets
+
+distillation dataset scrubber removes secrets
+
+8) Teacher Orchestrator Tests (DeepSeek + Vast + Local)
+8.1 Protocol Tests (Draft→Critique→Revise)
+
+Mock teacher returns critique; student revision incorporates the critique
+
+Verify:
+
+rubric score improves after revision
+
+citations maintained or improved (not removed)
+
+constraints respected
+
+8.2 Debate Protocol Tests
+
+Teacher A provides argument, Teacher B provides counterargument
+
+Student must produce reconciled output with explicit tradeoff decision
+
+Must log debate artifacts in Vault as TRACE + REPAIR_PAIR
+
+8.3 Verification Gate Tests
+
+Create a task requiring citations
+
+Force student to produce uncited claim
+
+Verifier must:
+
+reject
+
+re-retrieve evidence
+
+revise until claim is cited or marked assumption
+
+Hard cap to prevent infinite loops
+
+8.4 Cost and Budget Enforcement
+
+Simulate:
+
+limited DeepSeek credits
+
+limited Vast hours
+
+Ensure:
+
+router stops calling teachers when budget reached
+
+system falls back to local-only behavior gracefully
+
+8.5 Connectivity and SSH Tunnel Tests
+
+Tunnel drops mid-request:
+
+must retry once, then fallback
+
+Vast endpoint returns 500:
+
+must log and fallback
+
+Latency spikes:
+
+must respect timeouts and not block Studio
+
+9) End-to-End Scenario Tests (Most Valuable)
+
+These are full “real user journeys” that validate everything together.
+
+9.1 “Project Build” Scenario (weeks of context)
+
+Create project
+
+Import a large folder of docs
+
+Ask 100+ queries over time
+
+Verify:
+
+episodic summaries created
+
+stable recall of project state
+
+retrieval citations correct
+
+memory proposals appear and apply
+
+9.2 “Forget and Recovery” Scenario
+
+Teach system a fact (“X”)
+
+Confirm it appears in answers
+
+Forget “X”
+
+Confirm it never appears again—even with paraphrase prompts
+
+9.3 “Malicious Knowledge Base” Scenario
+
+Ingest prompt-injection documents
+
+Ask model to do disallowed actions
+
+Verify sandbox blocks, model explains denial, logs trace
+
+9.4 “Credit Burn Then Local Only” Scenario
+
+Run teacher batch jobs until budget depleted
+
+Verify:
+
+distillation dataset generated
+
+teacher calls stop when budget hit
+
+local continues functioning with no teacher access
+
+9.5 “Index Rebuild Under Load” Scenario
+
+Run chat queries while reindex occurs
+
+Verify:
+
+old index still serves queries or system enters safe degraded mode
+
+no corrupted reads
+
+after rebuild, results stable for known queries
+
+10) Performance, Load, and Capacity Tests (Nightly)
+10.1 Vault Capacity Targets (example)
+
+50k docs, 5M chunks
+
+Vector index size constraints
+
+Snapshot size and time budgets
+
+Reindex completion time target
+
+10.2 Latency SLO Tests
+
+P50/P95/P99 for:
+
+/chat
+
+/vault/retrieve
+
+/vault/search
+
+index rebuild step throughput
+
+Cache hit-rate tests:
+
+retrieval cache should exceed X% in repeated query workloads
+
+10.3 Concurrency Tests
+
+10 simultaneous chat sessions
+
+2 concurrent imports
+
+1 concurrent reindex
+
+Ensure no deadlocks, no catalog corruption, correct locking semantics
+
+11) Regression Suites (Your “Do Not Break” Sets)
+11.1 Golden Query Set
+
+Maintain a fixed set of:
+
+docs
+
+queries
+
+expected top citations
+
+expected summary contents
+
+expected memory proposals
+
+Any change to chunking/indexing/ranking that breaks these must be reviewed intentionally.
+
+11.2 Memory Behavior Regression
+
+Ensure that:
+
+the same preferences are stored, not duplicated
+
+supersession works
+
+forget works
+
+incognito mode truly stores nothing
+
+11.3 ForgeNumerics Regression
+
+A set of stored frames for every record type
+
+Round-trip must match exactly after any codec change
+
+Canonical bytes must remain stable across versions unless explicitly migrated
+
+12) CI/CD Test Execution Plan
+12.1 Test tiers by frequency
+
+On every commit:
+
+unit tests
+
+schema validation
+
+property tests (small)
+
+Nightly:
+
+fuzz tests (long)
+
+performance/load (medium)
+
+chaos tests (crash + corruption simulations)
+
+Weekly:
+
+large-scale capacity tests
+
+full end-to-end “project build” scenario
+
+12.2 Artifact collection
+
+Every CI run should export:
+
+JUnit test results
+
+Trace bundles for failed tests (prompt, evidence pack, tool calls)
+
+Vault snapshot (small) for reproducing failures

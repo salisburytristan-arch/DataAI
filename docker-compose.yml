@@ -1,0 +1,198 @@
+version: '3.8'
+
+services:
+  # Agent Vault Runtime (Core Service)
+  agent-vault:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: agent-vault-runtime
+    ports:
+      - "8000:8000"
+    environment:
+      # API Configuration
+      API_HOST: "0.0.0.0"
+      API_PORT: "8000"
+      
+      # Database Configuration
+      DATABASE_URL: "postgresql://vault:vault_secure_password_change_me@postgres:5432/agent_vault"
+      
+      # RBAC & Policy
+      RBAC_MODE: "strict"
+      DEFAULT_ORG_ID: "demo_org"
+      
+      # Audit Configuration
+      AUDIT_LOG_PATH: "/vault/audit.jsonl"
+      AUDIT_EXPORT_INTERVAL: "3600"
+      
+      # Security
+      TLS_ENABLED: "false"  # Set to true in production
+      API_KEY_REQUIRED: "true"
+      
+      # Phase Configuration
+      PHASE_EXPORT_PATH: "/vault/frames"
+      DETERMINISTIC_MODE: "true"
+      
+    volumes:
+      # Persistent audit logs and frame exports
+      - vault-data:/vault
+      # Optional: bind mount for policy files
+      - ./config/policies:/etc/agent-vault/policies
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - vault-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
+  # PostgreSQL Database (Audit + Compliance)
+  postgres:
+    image: postgres:15-alpine
+    container_name: agent-vault-postgres
+    environment:
+      POSTGRES_DB: agent_vault
+      POSTGRES_USER: vault
+      POSTGRES_PASSWORD: vault_secure_password_change_me  # Change in production!
+      POSTGRES_INITDB_ARGS: "-c log_statement=all -c log_min_duration_statement=0"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      # Initialize audit tables
+      - ./docker/init-audit-schema.sql:/docker-entrypoint-initdb.d/01-audit-schema.sql
+    networks:
+      - vault-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vault"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # Audit Vault UI (Optional)
+  vault-ui:
+    image: vault-ui:latest  # Build from frontend/ if needed
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: agent-vault-ui
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: "http://localhost:8000"
+      NEXT_PUBLIC_AUDIT_RETENTION_DAYS: "365"
+    depends_on:
+      - agent-vault
+    networks:
+      - vault-net
+    restart: unless-stopped
+
+  # MinIO S3-compatible Audit Export (Optional, for compliance)
+  minio:
+    image: minio/minio:latest
+    container_name: agent-vault-minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin_change_me  # Change in production!
+    volumes:
+      - minio-data:/data
+    command: server /data --console-address ":9001"
+    networks:
+      - vault-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    profiles:
+      - compliance  # Optional: docker-compose -p production --profile compliance up
+
+  # Redis Cache (Optional, for HA)
+  redis:
+    image: redis:7-alpine
+    container_name: agent-vault-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - vault-net
+    restart: unless-stopped
+    profiles:
+      - production  # Optional: docker-compose -p production --profile production up
+
+volumes:
+  postgres-data:
+    driver: local
+  vault-data:
+    driver: local
+  minio-data:
+    driver: local
+  redis-data:
+    driver: local
+
+networks:
+  vault-net:
+    driver: bridge
+
+# =============================================================================
+# DEPLOYMENT PROFILES
+# =============================================================================
+#
+# Development (default):
+#   docker-compose up
+#   - Agent Runtime, PostgreSQL, UI only
+#   - Minimal security; suitable for testing
+#
+# Compliance:
+#   docker-compose -p production --profile compliance up
+#   - Adds MinIO for S3-compatible audit export (Object Lock ready)
+#   - Enables audit log archival to immutable storage
+#
+# Production:
+#   docker-compose -p production --profile production up
+#   - Adds Redis for caching + HA
+#   - Sets TLS_ENABLED=true in secrets
+#   - Uses external PostgreSQL RDS instance (configure via .env.production)
+#
+# =============================================================================
+# QUICK START
+# =============================================================================
+#
+# 1. Copy environment template:
+#    cp .env.example .env
+#
+# 2. Update secrets in .env:
+#    - POSTGRES_PASSWORD
+#    - MINIO_ROOT_PASSWORD
+#    - API_KEYS (comma-separated)
+#
+# 3. Start services:
+#    docker-compose up -d
+#
+# 4. Initialize database:
+#    docker-compose exec agent-vault python -m agent_vault.cli init-db
+#
+# 5. Create first user:
+#    docker-compose exec agent-vault python -m agent_vault.cli create-user \
+#      --email admin@example.com --role admin --org-id demo_org
+#
+# 6. Run a phase:
+#    docker-compose exec agent-vault python -m agent_vault.cli phase --num 30
+#
+# 7. Export audit log:
+#    docker-compose exec agent-vault python -m agent_vault.cli audit export \
+#      --org-id demo_org --start 2025-12-01 --end 2025-12-31 > audit_report.jsonl
+#
+# 8. Access UI:
+#    Open http://localhost:3000 in browser
+#
+# =============================================================================

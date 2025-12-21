@@ -1,0 +1,314 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.4",
+  "serialNumber": "urn:uuid:vault-agent-1-0-0-sbom",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2025-12-21T00:00:00Z",
+    "tools": [
+      {
+        "vendor": "Vault AI",
+        "name": "agent-vault",
+        "version": "1.0.0"
+      }
+    ],
+    "component": {
+      "bom-ref": "agent-vault",
+      "type": "application",
+      "name": "Agent Vault",
+      "version": "1.0.0",
+      "description": "Local-first AI agent runtime with enterprise policy, audit, and governance",
+      "homepage": "https://vaultai.io",
+      "scope": "required",
+      "licenses": [
+        {
+          "license": {
+            "name": "Proprietary"
+          }
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "bom-ref": "click@8.1.3",
+      "type": "library",
+      "name": "click",
+      "version": "8.1.3",
+      "purl": "pkg:pypi/click@8.1.3",
+      "description": "Python package for creating beautiful command line interfaces in a composable way",
+      "homepage": "https://click.palletsprojects.com/",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "security-advisory",
+          "url": "https://pypi.org/project/click/"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pydantic@2.5.0",
+      "type": "library",
+      "name": "pydantic",
+      "version": "2.5.0",
+      "purl": "pkg:pypi/pydantic@2.5.0",
+      "description": "Data validation and settings management using Python type annotations",
+      "homepage": "https://docs.pydantic.dev/",
+      "licenses": [
+        {
+          "license": {
+            "name": "MIT"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "security-advisory",
+          "url": "https://pypi.org/project/pydantic/"
+        }
+      ]
+    },
+    {
+      "bom-ref": "fastapi@0.104.1",
+      "type": "library",
+      "name": "fastapi",
+      "version": "0.104.1",
+      "purl": "pkg:pypi/fastapi@0.104.1",
+      "description": "Modern, fast (high-performance) web framework for building APIs with Python",
+      "homepage": "https://fastapi.tiangolo.com/",
+      "licenses": [
+        {
+          "license": {
+            "name": "MIT"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "security-advisory",
+          "url": "https://pypi.org/project/fastapi/"
+        }
+      ]
+    },
+    {
+      "bom-ref": "sqlalchemy@2.0.23",
+      "type": "library",
+      "name": "sqlalchemy",
+      "version": "2.0.23",
+      "purl": "pkg:pypi/sqlalchemy@2.0.23",
+      "description": "The Python SQL toolkit and Object Relational Mapper",
+      "homepage": "https://www.sqlalchemy.org/",
+      "licenses": [
+        {
+          "license": {
+            "name": "MIT"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "security-advisory",
+          "url": "https://pypi.org/project/sqlalchemy/"
+        }
+      ]
+    },
+    {
+      "bom-ref": "psycopg2-binary@2.9.9",
+      "type": "library",
+      "name": "psycopg2-binary",
+      "version": "2.9.9",
+      "purl": "pkg:pypi/psycopg2-binary@2.9.9",
+      "description": "PostgreSQL adapter for the Python programming language",
+      "homepage": "https://www.psycopg.org/",
+      "licenses": [
+        {
+          "license": {
+            "name": "LGPL-3.0-or-later"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "security-advisory",
+          "url": "https://pypi.org/project/psycopg2-binary/"
+        }
+      ]
+    },
+    {
+      "bom-ref": "uvicorn@0.24.0",
+      "type": "library",
+      "name": "uvicorn",
+      "version": "0.24.0",
+      "purl": "pkg:pypi/uvicorn@0.24.0",
+      "description": "The lightning-fast ASGI server",
+      "homepage": "https://www.uvicorn.org/",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-3-Clause"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "security-advisory",
+          "url": "https://pypi.org/project/uvicorn/"
+        }
+      ]
+    },
+    {
+      "bom-ref": "aiohttp@3.9.1",
+      "type": "library",
+      "name": "aiohttp",
+      "version": "3.9.1",
+      "purl": "pkg:pypi/aiohttp@3.9.1",
+      "description": "Async HTTP client/server framework (asyncio)",
+      "homepage": "https://docs.aiohttp.org/",
+      "licenses": [
+        {
+          "license": {
+            "name": "Apache-2.0"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "security-advisory",
+          "url": "https://pypi.org/project/aiohttp/"
+        }
+      ]
+    },
+    {
+      "bom-ref": "python@3.10",
+      "type": "application",
+      "name": "Python",
+      "version": "3.10+",
+      "purl": "pkg:generic/python@3.10",
+      "description": "The Python programming language runtime",
+      "homepage": "https://www.python.org/",
+      "licenses": [
+        {
+          "license": {
+            "name": "PSF"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "postgres@15",
+      "type": "application",
+      "name": "PostgreSQL",
+      "version": "15-alpine",
+      "purl": "pkg:docker/postgres@15-alpine",
+      "description": "Object-relational database system",
+      "homepage": "https://www.postgresql.org/",
+      "licenses": [
+        {
+          "license": {
+            "name": "PostgreSQL"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "alpine@latest",
+      "type": "operating-system",
+      "name": "Alpine Linux",
+      "version": "latest",
+      "purl": "pkg:docker/alpine@latest",
+      "description": "Small Linux distribution used as base for containers",
+      "homepage": "https://www.alpinelinux.org/",
+      "licenses": [
+        {
+          "license": {
+            "name": "GPL-2.0"
+          }
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "agent-vault",
+      "dependsOn": [
+        "click@8.1.3",
+        "pydantic@2.5.0",
+        "fastapi@0.104.1",
+        "sqlalchemy@2.0.23",
+        "psycopg2-binary@2.9.9",
+        "uvicorn@0.24.0",
+        "aiohttp@3.9.1",
+        "python@3.10"
+      ]
+    },
+    {
+      "ref": "fastapi@0.104.1",
+      "dependsOn": ["pydantic@2.5.0"]
+    }
+  ],
+  "vulnerabilities": [],
+  "services": [
+    {
+      "bom-ref": "agent-vault-api",
+      "provider": {
+        "name": "Vault AI",
+        "url": ["https://vaultai.io"]
+      },
+      "group": "agent-vault",
+      "name": "Agent Vault API",
+      "version": "1.0.0",
+      "description": "RESTful API for agent invocation and policy management",
+      "endpoints": [
+        "http://localhost:8000"
+      ],
+      "authenticated": true,
+      "x-trust-boundary": false,
+      "data": [
+        {
+          "name": "Audit Logs",
+          "description": "Agent execution and policy decisions",
+          "classification": "Confidential"
+        },
+        {
+          "name": "RBAC Policies",
+          "description": "Role-based access control rules",
+          "classification": "Confidential"
+        }
+      ]
+    },
+    {
+      "bom-ref": "agent-vault-postgres",
+      "provider": {
+        "name": "PostgreSQL",
+        "url": ["https://www.postgresql.org/"]
+      },
+      "group": "agent-vault",
+      "name": "Agent Vault Database",
+      "version": "15",
+      "description": "Audit logs, policies, and user data",
+      "endpoints": [
+        "postgres://vault@postgres:5432/agent_vault"
+      ],
+      "authenticated": true,
+      "x-trust-boundary": true,
+      "data": [
+        {
+          "name": "Audit Logs",
+          "description": "Immutable record of agent decisions",
+          "classification": "Confidential"
+        },
+        {
+          "name": "User Credentials",
+          "description": "Hashed API keys and role assignments",
+          "classification": "Secret"
+        }
+      ]
+    }
+  ]
+}

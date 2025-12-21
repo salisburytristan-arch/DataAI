@@ -1,0 +1,182 @@
+(* ForgeNumerics-S v2.0 — Canonical EBNF Grammar *)
+(* This grammar describes the complete syntax of ForgeNumerics-S *)
+
+(* ===== PRIMITIVE SYMBOLS ===== *)
+
+TRIT_ZERO = "⊙" ;
+TRIT_ONE = "⊗" ;
+TRIT_TWO = "Φ" ;
+TRIT = TRIT_ZERO | TRIT_ONE | TRIT_TWO ;
+
+MODE_WORD = "≛" ;
+MODE_NUMBER = "≗" ;
+
+FRAME_START = "⧆" ;
+FRAME_END = "⧈" ;
+HEADER_PAYLOAD_SEP = "∷" ;
+FIELD_SEP = "∴" ;
+TOKEN_SEP = "⦙" ;
+CONTROL_START = "◦" ;
+CONTROL_END = "◽" ;
+
+LITERAL_START = "⟦" ;
+LITERAL_END = "⟧" ;
+
+(* Reserved symbol for BLOB-T extension *)
+TRIT_RESERVED = "⊛" ;
+
+(* ===== BASIC CONSTRUCTS ===== *)
+
+(* Any non-reserved symbol for word mode dictionary combos *)
+SYMBOL_COMBO = ? any sequence of non-reserved symbols ? ;
+
+(* Word token: mode marker + symbol combo or literal *)
+WORD_TOKEN = MODE_WORD, ( SYMBOL_COMBO | LITERAL ) ;
+
+LITERAL = LITERAL_START, ? UTF-8 string ?, LITERAL_END ;
+
+(* Trit sequence for numeric values *)
+TRIT_SEQUENCE = TRIT, { TRIT } ;
+
+(* Extended trit sequence including reserved symbol for BLOB-T *)
+EXTENDED_TRIT = TRIT | TRIT_RESERVED ;
+EXTENDED_TRIT_SEQUENCE = EXTENDED_TRIT, { EXTENDED_TRIT } ;
+
+(* ===== NUMERIC PROFILES ===== *)
+
+(* Profile codes (2 trits after ≗) *)
+PROFILE_INT_U3 = TRIT_ZERO, TRIT_ZERO ;
+PROFILE_INT_S3 = TRIT_ZERO, TRIT_ONE ;
+PROFILE_FLOAT_T = TRIT_ONE, TRIT_ZERO ;
+PROFILE_DECIMAL_T = TRIT_ONE, TRIT_ONE ;
+PROFILE_BLOB_T = TRIT_TWO, TRIT_ZERO ;
+
+(* INT-U3: unsigned integer *)
+INT_U3_SIMPLE = MODE_NUMBER, PROFILE_INT_U3, TRIT_SEQUENCE ;
+
+INT_U3_LENGTH_PREFIXED = MODE_NUMBER, PROFILE_INT_U3, 
+                         CONTROL_START, TRIT_SEQUENCE, CONTROL_END,
+                         TRIT_SEQUENCE ;
+
+INT_U3 = INT_U3_SIMPLE | INT_U3_LENGTH_PREFIXED ;
+
+(* INT-S3: signed integer *)
+SIGN_TRIT = TRIT_ZERO | TRIT_ONE ;  (* ⊙=positive, ⊗=negative *)
+
+INT_S3 = MODE_NUMBER, PROFILE_INT_S3,
+         CONTROL_START, SIGN_TRIT, CONTROL_END,
+         TRIT_SEQUENCE ;
+
+(* FLOAT-T: trinary floating point *)
+FLOAT_T = MODE_NUMBER, PROFILE_FLOAT_T,
+          SIGN_TRIT,
+          CONTROL_START, TRIT_SEQUENCE, CONTROL_END,  (* exp_len *)
+          TRIT_SEQUENCE,                               (* exp_value *)
+          HEADER_PAYLOAD_SEP,
+          TRIT_SEQUENCE ;                              (* mantissa *)
+
+(* DECIMAL-T: exact decimal *)
+DECIMAL_T = MODE_NUMBER, PROFILE_DECIMAL_T,
+            SIGN_TRIT,
+            CONTROL_START, TRIT_SEQUENCE, CONTROL_END,  (* scale *)
+            TRIT_SEQUENCE ;                              (* integer *)
+
+(* BLOB-T: raw binary/ciphertext *)
+BLOB_T = MODE_NUMBER, PROFILE_BLOB_T, EXTENDED_TRIT_SEQUENCE ;
+
+(* Generic numeric token *)
+NUMERIC_TOKEN = INT_U3 | INT_S3 | FLOAT_T | DECIMAL_T | BLOB_T ;
+
+(* ===== TOKENS ===== *)
+
+TOKEN = WORD_TOKEN | NUMERIC_TOKEN ;
+
+TOKEN_LIST = TOKEN, { TOKEN_SEP, TOKEN } ;
+
+(* ===== FRAMES ===== *)
+
+(* Header field: key⦙value *)
+HEADER_FIELD = WORD_TOKEN, TOKEN_SEP, ( WORD_TOKEN | NUMERIC_TOKEN ) ;
+
+(* Header: multiple fields separated by ∴ *)
+HEADER = HEADER_FIELD, { FIELD_SEP, HEADER_FIELD } ;
+
+(* Payload: list of tokens *)
+PAYLOAD = [ TOKEN_LIST ] ;
+
+(* Complete frame *)
+FRAME = FRAME_START, HEADER, HEADER_PAYLOAD_SEP, PAYLOAD, FRAME_END ;
+
+(* ===== SCHEMA-SPECIFIC FRAMES ===== *)
+
+(* VECTOR frame structure *)
+VECTOR_HEADER = 
+    "≛TYPE⦙≛VECTOR",
+    FIELD_SEP, "≛DICT⦙", WORD_TOKEN,
+    FIELD_SEP, "≛LEN⦙", INT_U3 ;
+
+VECTOR_PAYLOAD = NUMERIC_TOKEN, { TOKEN_SEP, NUMERIC_TOKEN } ;
+
+VECTOR_FRAME = FRAME_START, VECTOR_HEADER, HEADER_PAYLOAD_SEP, VECTOR_PAYLOAD, FRAME_END ;
+
+(* MATRIX frame structure *)
+MATRIX_HEADER =
+    "≛TYPE⦙≛MATRIX",
+    FIELD_SEP, "≛DICT⦙", WORD_TOKEN,
+    FIELD_SEP, "≛ROWS⦙", INT_U3,
+    FIELD_SEP, "≛COLS⦙", INT_U3 ;
+
+MATRIX_PAYLOAD = NUMERIC_TOKEN, { TOKEN_SEP, NUMERIC_TOKEN } ;
+
+MATRIX_FRAME = FRAME_START, MATRIX_HEADER, HEADER_PAYLOAD_SEP, MATRIX_PAYLOAD, FRAME_END ;
+
+(* LOG frame structure *)
+LOG_HEADER =
+    "≛TYPE⦙≛LOG",
+    FIELD_SEP, "≛DICT⦙", WORD_TOKEN,
+    FIELD_SEP, "≛SEVERITY⦙", WORD_TOKEN,
+    [ FIELD_SEP, "≛TIME⦙", NUMERIC_TOKEN ] ;
+
+LOG_PAYLOAD = 
+    "≛MSG⦙", WORD_TOKEN,
+    [ TOKEN_SEP, "≛DETAIL⦙", WORD_TOKEN ] ;
+
+LOG_FRAME = FRAME_START, LOG_HEADER, HEADER_PAYLOAD_SEP, LOG_PAYLOAD, FRAME_END ;
+
+(* FACT frame structure *)
+FACT_HEADER =
+    "≛TYPE⦙≛FACT",
+    FIELD_SEP, "≛DICT⦙", WORD_TOKEN,
+    [ FIELD_SEP, "≛CONFIDENCE⦙", NUMERIC_TOKEN ],
+    [ FIELD_SEP, "≛SOURCE⦙", WORD_TOKEN ] ;
+
+FACT_PAYLOAD =
+    "≛SUBJ⦙", WORD_TOKEN,
+    TOKEN_SEP, "≛PRED⦙", WORD_TOKEN,
+    TOKEN_SEP, "≛OBJ⦙", WORD_TOKEN ;
+
+FACT_FRAME = FRAME_START, FACT_HEADER, HEADER_PAYLOAD_SEP, FACT_PAYLOAD, FRAME_END ;
+
+(* MEASUREMENT frame structure *)
+MEASUREMENT_HEADER =
+    "≛TYPE⦙≛MEASUREMENT",
+    FIELD_SEP, "≛DICT⦙", WORD_TOKEN,
+    FIELD_SEP, "≛UNIT⦙", WORD_TOKEN ;
+
+MEASUREMENT_PAYLOAD =
+    "≛VALUE⦙", NUMERIC_TOKEN,
+    [ TOKEN_SEP, "≛ERROR⦙", NUMERIC_TOKEN ],
+    [ TOKEN_SEP, "≛TIME⦙", NUMERIC_TOKEN ] ;
+
+MEASUREMENT_FRAME = FRAME_START, MEASUREMENT_HEADER, HEADER_PAYLOAD_SEP, MEASUREMENT_PAYLOAD, FRAME_END ;
+
+(* ===== DOCUMENT ===== *)
+
+(* A ForgeNumerics-S document is one or more frames *)
+DOCUMENT = FRAME, { FRAME } ;
+
+(* ===== COMMENTS ===== *)
+
+(* This grammar itself can be represented as a ForgeNumerics-S frame:
+   ⧆≛TYPE⦙≛GRAMMAR∴≛VERSION⦙≛2.0∷≛CONTENT⦙≛⟦...this EBNF...⟧⧈
+*)

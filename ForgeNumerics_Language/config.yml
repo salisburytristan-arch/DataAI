@@ -1,0 +1,16 @@
+# Minimal config for ForgeNumerics-S Learning Tool
+# Paths can be overridden if files stored elsewhere
+paths:
+  symbols: symbols.txt
+  words: Words.txt
+  combos: symbol_combinations_len1-4.txt
+  mapping: word_to_symbol_combos_mapping.txt
+
+defaults:
+  dict: DICT_v2025_11
+  unit: meter
+
+numeric:
+  float_t:
+    exponent_trits: 10
+    mantissa_trits: 20

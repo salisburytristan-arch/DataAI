@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArcticCodex Studio</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div id="app" class="studio-app">
+        <!-- Header -->
+        <header class="studio-header">
+            <div class="header-content">
+                <h1 class="logo">⧈ ArcticCodex Studio</h1>
+                <div class="header-info">
+                    <span id="convo-id" class="convo-id">Session: default</span>
+                    <span id="server-status" class="server-status">● Connecting...</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Layout -->
+        <div class="studio-layout">
+            <!-- Sidebar: Vault Explorer -->
+            <aside class="sidebar">
+                <nav class="vault-explorer">
+                    <h2>Vault Explorer</h2>
+                    
+                    <!-- Tabs -->
+                    <div class="explorer-tabs">
+                        <button class="tab-btn active" data-tab="documents">
+                            📄 Documents
+                        </button>
+                        <button class="tab-btn" data-tab="facts">
+                            🔗 Facts
+                        </button>
+                        <button class="tab-btn" data-tab="memory">
+                            💾 Memory
+                        </button>
+                    </div>
+                    
+                    <!-- Documents Tab -->
+                    <div id="documents-tab" class="explorer-tab active">
+                        <div class="search-box">
+                            <input 
+                                type="text" 
+                                id="doc-search" 
+                                placeholder="Search documents..."
+                                class="input-search"
+                            >
+                        </div>
+                        <div id="documents-list" class="item-list">
+                            <p class="empty-state">No documents loaded</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Facts Tab -->
+                    <div id="facts-tab" class="explorer-tab">
+                        <div id="facts-list" class="item-list">
+                            <p class="empty-state">No facts extracted</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Memory Tab -->
+                    <div id="memory-tab" class="explorer-tab">
+                        <div id="memory-list" class="item-list">
+                            <p class="empty-state">No pending memories</p>
+                        </div>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="main-content">
+                <!-- Chat Area -->
+                <div class="chat-container">
+                    <div id="chat-messages" class="chat-messages">
+                        <div class="welcome-message">
+                            <h2>Welcome to ArcticCodex Studio</h2>
+                            <p>Ask questions about your documents. The system will search, retrieve evidence, and provide cited answers.</p>
+                        </div>
+                    </div>
+
+                    <!-- Chat Input -->
+                    <div class="chat-input-area">
+                        <div class="input-controls">
+                            <textarea 
+                                id="message-input" 
+                                class="message-input"
+                                placeholder="Ask a question..."
+                                rows="3"
+                            ></textarea>
+                            <button id="send-btn" class="send-btn">
+                                Send (Ctrl+Enter)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Panel: Search & Embeddings -->
+                <aside class="right-panel">
+                    <div class="search-panel">
+                        <h3>Search</h3>
+                        <div class="search-controls">
+                            <input 
+                                type="text" 
+                                id="search-input" 
+                                placeholder="Search vault..."
+                                class="input-search"
+                            >
+                            <button id="search-btn" class="btn-secondary">Search</button>
+                        </div>
+                        <div id="search-results" class="search-results">
+                            <p class="empty-state">Enter a search query</p>
+                        </div>
+                    </div>
+                </aside>
+            </main>
+        </div>
+
+        <!-- Modal: Document Details -->
+        <div id="doc-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="doc-modal-title">Document</h2>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div id="doc-modal-body" class="modal-body">
+                    <!-- Content loaded dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal: Citation Details -->
+        <div id="citation-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Citation Details</h2>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div id="citation-modal-body" class="modal-body">
+                    <!-- Content loaded dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/static/app.js"></script>
+</body>
+</html>

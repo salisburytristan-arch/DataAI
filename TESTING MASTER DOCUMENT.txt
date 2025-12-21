@@ -1,0 +1,737 @@
+TESTING MASTER DOCUMENT
+
+Project Omega / ArcticCodex – Function-by-Function & File-by-File Test Plan
+
+0) Purpose
+
+This document defines how to test each module and each function in the Project Omega codebase so that:
+
+regressions are caught immediately,
+
+safety constraints remain enforceable,
+
+the CLI and orchestration pipeline remain deterministic and auditable,
+
+“self-improvement” operations only land when tests prove no breakage,
+
+tests scale as you add Phases XI–XL.
+
+This plan assumes the core paradigm: strict structured frames + validation gates + deterministic execution. 
+
+ArcticCodexRoadMap
+
+1) Immediate sanity check (important)
+
+You showed PowerShell reporting 31 .py files under packages/core/src, but Measure-Object -Line printed 0 lines per file. That usually means (a) files are genuinely empty placeholders, (b) you’re measuring wrong objects, or (c) encoding/permissions issues.
+
+Run these to ground truth:
+
+1.1 Confirm actual bytes (not lines)
+Get-ChildItem packages/core/src -Filter *.py -Recurse |
+  Select-Object FullName, Length |
+  Sort-Object Length
+
+1.2 Spot-check a “0 line” file
+Get-Content packages/core/src/trinary_gates.py -TotalCount 20
+
+1.3 Correct ways to count lines on Windows
+
+PowerShell doesn’t have wc by default, and Measure-Object -Line on FileInfo objects does not do what you want.
+
+Use:
+
+Get-ChildItem packages/core/src -Filter *.py -Recurse | ForEach-Object {
+  [pscustomobject]@{
+    Name  = $_.FullName
+    Lines = (Get-Content $_.FullName | Measure-Object -Line).Lines
+    Bytes = $_.Length
+  }
+} | Sort-Object Lines -Descending
+
+
+If files truly are empty, this testing doc still stands—your first milestone is to make tests fail until real implementations exist.
+
+2) Testing standards (non-negotiable gates)
+2.1 Required test layers
+
+Unit tests (per function): pure logic, deterministic, fast
+
+Contract tests (per module boundary): inputs/outputs, schema invariants
+
+Integration tests (multi-module): orchestrator loop, CLI commands, pipeline flows
+
+Safety tests (policy & capability): forbidden schemas, tool permissioning, “glass-box” logs
+
+Performance/limits (non-flaky): big inputs, worst-case parsing, memory pressure
+
+Negative tests (abuse/corruption): invalid frames, poisoned payloads, malformed configs
+
+2.2 Determinism rules
+
+All tests must be reproducible.
+
+Randomness must be seeded (random.seed, numpy.random.seed).
+
+Time must be mocked for logic that depends on timestamps (ledger, logs, TTLs).
+
+Network calls must be fully mocked (teacher client, fetch tools).
+
+2.3 “Golden Spike” gates for merges
+
+A change is allowed only if:
+
+pytest -q passes
+
+coverage does not decrease for core logic modules
+
+safety suite passes (forbidden schemas cannot be bypassed)
+
+integration suite passes (CLI + orchestrator paths)
+
+This mirrors the roadmap’s “self-modification sandbox + tests must pass before merge.” 
+
+ArcticCodexRoadMap
+
+3) Tooling and repo conventions
+3.1 Recommended test stack
+
+pytest
+
+pytest-cov
+
+hypothesis (optional but strongly recommended for frame parsing / numeric invariants)
+
+freezegun (optional for time-bound modules)
+
+ruff (style) + mypy (optional typing hardening)
+
+3.2 Canonical commands
+# unit + contract
+pytest -q
+
+# full suite
+pytest -q -m "not slow"
+
+# include slow/integration
+pytest -q -m "slow"
+
+# coverage
+pytest --cov=packages/core/src --cov-report=term-missing
+
+3.3 Test folder structure
+packages/core/tests/
+  unit/
+  contract/
+  integration/
+  safety/
+  perf/
+  fixtures/
+
+3.4 Markers
+
+@pytest.mark.integration
+
+@pytest.mark.safety
+
+@pytest.mark.slow
+
+@pytest.mark.perf
+
+4) Function-by-function testing template (use for every function)
+
+For each function, write tests in this exact pattern:
+
+Happy path: typical valid input → expected output
+
+Boundary cases: min/max sizes, empty payloads, singletons, extremes
+
+Type/shape validation: wrong types, wrong shapes, missing keys
+
+Invariant checks: properties that must always hold
+
+Error semantics: correct exception type + message + no side effects
+
+Idempotence (where relevant): running twice doesn’t change output
+
+Determinism: same input yields same output (seeded randomness)
+
+Security/safety (where relevant): cannot produce forbidden schema; cannot call forbidden tool; cannot bypass validator.
+
+Required documentation per function:
+
+Inputs (types + constraints)
+
+Output shape
+
+Invariants
+
+Failure modes
+
+5) Core invariants to test globally
+
+These are system-wide invariants implied by the roadmap (frames, grammar validation, safety gating). 
+
+ArcticCodexRoadMap
+
+5.1 Frame invariants
+
+Every produced frame must be parseable by the validator.
+
+Serialization → parse → serialization is stable (round-trip).
+
+Frame headers must contain required keys (TYPE, version, etc.).
+
+Payload must not contain unknown schema keys unless explicitly allowed.
+
+5.2 Numeric / trinary invariants
+
+Transcoding is lossless where defined (binary↔trinary mapping).
+
+Trit arithmetic obeys truth tables.
+
+Encoders/decoders are inverses for supported ranges.
+
+Out-of-range behavior is explicit and tested.
+
+5.3 Safety invariants
+
+Forbidden schema patterns are rejected before execution.
+
+Capability negotiation (CAPS) cannot be silently escalated.
+
+All tool use is audited in logs (“glass box”). 
+
+ArcticCodexRoadMap
+
+5.4 Orchestration invariants
+
+Perceive → Propose → Critique → Refine loop terminates (max iterations).
+
+Critique rejects contradictions against stored facts (if you have a fact store).
+
+Refinement cannot bypass schema validation.
+
+6) File-by-file test plan (packages/core/src)
+
+Below is the minimum test suite required per file. Where function names differ, use the function-by-function template in §4 and apply these module-level requirements.
+
+6.1 trinary_gates.py (Phase I)
+
+Unit
+
+Truth tables for T-NAND, T-AND, T-OR, T-XOR, T-NOT
+
+Associativity/commutativity where applicable
+
+De Morgan–like properties (if defined in your trinary logic)
+
+Contract
+
+Gate outputs always in allowed trit set {0,1,2} (or {⊙,⊗,Φ})
+
+Invalid inputs raise deterministic exceptions
+
+Perf
+
+Vectorized bulk evaluation (if supported) handles large arrays
+
+6.2 transcoder.py (Phase I)
+
+Unit
+
+encode→decode round-trip for:
+
+empty input
+
+small inputs
+
+random inputs (seeded)
+
+large inputs (slow/perf marker)
+
+Contract
+
+Lossless mapping for supported formats
+
+Canonical encoding (no multiple encodings for same input unless intended)
+
+Negative
+
+corrupted stream → specific error (not silent truncation)
+
+6.3 frame_verifier.py
+
+Unit
+
+Valid frames accepted
+
+Invalid grammar rejected with actionable error structure
+
+Contract
+
+Verifier returns structured diagnostics (location/rule) if you support it
+
+No partial acceptance (either valid or rejected)
+
+This corresponds to the “validator gate” described in the roadmap. 
+
+ArcticCodexRoadMap
+
+6.4 neural_cortex.py (Phase II)
+
+Unit
+
+Embedding lookup shapes and deterministic init (seeded)
+
+Attention output shape: batch x seq x dim
+
+Masking correctness (no attending to masked tokens)
+
+Proposal generation is deterministic under fixed seed
+
+Contract
+
+Model accepts trinary token sequences only (or explicitly supports others)
+
+Outputs are in allowed token alphabet
+
+Integration
+
+Works in the orchestrator loop with critique/refine stubs
+
+6.5 curriculum.py (Phase III)
+
+Unit
+
+Task selection is deterministic given a seed and state
+
+Task difficulty progression adheres to defined levels
+
+Self-modification sandbox runner:
+
+rejects failing changes
+
+accepts passing changes
+
+Integration
+
+Curriculum can drive a “training episode” producing logs and metrics
+
+This directly reflects the staged curriculum and sandbox gating. 
+
+ArcticCodexRoadMap
+
+6.6 safety.py (Phase IV)
+
+Unit
+
+Forbidden schema detection (each forbidden category has explicit tests)
+
+Capability negotiation:
+
+default-deny for unknown capability
+
+explicit allowlist behavior
+
+Policy weighting (if present) is deterministic and explainable
+
+Contract
+
+Safety layer is called before tool execution
+
+Safety decisions generate audit logs
+
+Negative
+
+attempts to bypass safety via alternate schema aliases fail
+
+This maps to the roadmap’s “grammatical constraints + CAPS + glass-box.” 
+
+ArcticCodexRoadMap
+
+6.7 deployment.py (Phase V)
+
+Unit
+
+Config parsing/normalization
+
+Auto-tuning logic bounded and deterministic
+
+Knowledge fetching functions are mocked and validated
+
+Integration
+
+End-to-end run without external network (mock tools)
+
+Handles missing config keys with defaults (tested)
+
+6.8 cli.py (Phase V)
+
+Contract
+
+Every command:
+
+accepts --help
+
+validates args
+
+returns correct exit code
+
+produces deterministic output for fixed inputs
+
+Integration
+
+“golden output” tests per command (snapshot style)
+
+Error-path tests (missing file, invalid yaml, etc.)
+
+6.9 config.py
+
+Unit
+
+YAML load/save round-trip
+
+Schema validation (required keys, types)
+
+Default injection and override precedence
+
+6.10 context.py
+
+Unit
+
+Context window assembly (ordering + truncation rules)
+
+Summarization triggers (if present) deterministic and tested
+
+Redaction rules (if present) correct
+
+6.11 persistence.py
+
+Unit
+
+Save/load round-trip for:
+
+empty state
+
+populated state
+
+versioned migrations (if supported)
+
+Negative
+
+corrupted file → clear error
+
+backward compatibility tests (fixtures)
+
+6.12 tools.py and builtin_tools.py
+
+Unit
+
+Tool registry add/remove/list
+
+Tool schema validation
+
+Permissions integration: tools cannot run without allowed CAPS
+
+Integration
+
+Tool call from agent/orchestrator triggers safety gate + audit log
+
+6.13 agent.py
+
+Unit
+
+Agent state machine:
+
+transitions correct
+
+halting conditions enforced
+
+Retry logic bounded (no infinite loops)
+
+Integration
+
+Agent executes a mocked tool plan and records logs
+
+6.14 fact_extraction.py
+
+Unit
+
+Deterministic extraction on fixed input
+
+Deduping/canonicalization rules
+
+Confidence scoring stable and bounded [0..1] if used
+
+Negative
+
+Garbage input doesn’t crash; produces empty/diagnostic output
+
+6.15 distillation_writer.py
+
+Unit
+
+Distillation format validity
+
+Deterministic output order
+
+Output contains mandatory metadata fields
+
+6.16 teacher_client.py
+
+Contract
+
+Network calls fully mocked in tests
+
+Timeout handling
+
+Retries bounded
+
+Response validation (schema)
+
+6.17 export.py
+
+Unit
+
+Export formats round-trip (where possible)
+
+Deterministic ordering
+
+Handles missing/optional fields correctly
+
+6.18 fn_bridge.py
+
+(Assuming “ForgeNumerics bridge”)
+Unit
+
+Encode/decode invariants
+
+Rejects invalid symbols
+
+Version negotiation (if present)
+
+6.19 phases_6to10.py
+
+Integration
+
+Pipeline “design → manufacture → power → govern → transcend” as a mocked flow:
+
+Phase VI output feeds VII
+
+VII feeds VIII
+
+VIII feeds IX
+
+IX feeds X
+
+Each boundary checks: schema valid + safety ok + logs generated
+
+6.20 Phase VI–X modules
+
+These often contain domain-heavy functionality. Tests must focus on software correctness, not real-world efficacy claims.
+
+matter_compiler.py (Phase VI)
+
+Unit
+
+Sequence validators (alphabet checks, length bounds)
+
+Codon table correctness (64 codons mapping stable)
+
+Deterministic “design” function outputs for fixed seed
+
+Contract
+
+No external side-effects
+
+Outputs are schemas/blueprints only, and parse as valid frames
+
+nanofabricator.py (Phase VII)
+
+Unit
+
+Planner outputs bounded steps
+
+Precision quantization rules consistent
+
+QC/repair rules deterministic
+
+dyson_swarm.py (Phase VIII)
+
+Unit
+
+Orbit/collector config validation
+
+Schedule generation deterministic
+
+Resource accounting balances (no negative energy/compute)
+
+resource_ledger.py (Phase IX)
+
+Unit
+
+Append-only ledger integrity
+
+Hash chain verification (tamper detection)
+
+Vote tally correctness and edge cases (ties, quorum)
+
+Integration
+
+Ledger used by orchestrator/tooling without race conditions (single-thread tests first)
+
+mind_upload.py (Phase X)
+
+Unit
+
+Graph/connectome data structure validation
+
+Fork/merge semantics (identity rules) deterministic
+
+Continuity scoring bounded and monotonic per your definition
+
+6.21 vast_provisioner.py
+
+Unit
+
+Pure config rendering tests (no real provisioning in unit tests)
+
+API calls mocked (if present)
+
+Secret handling: never logs secrets (test by capturing logs)
+
+6.22 __init__.py
+
+Unit
+
+Import hygiene: python -c "import ..." succeeds
+
+Version string/metadata present if expected
+
+7) Integration test scenarios (end-to-end)
+
+Create named scenarios with fixtures and deterministic outputs:
+
+Boot & self-validate
+
+imports
+
+runs module self-tests
+
+writes logs
+
+CLI smoke suite
+
+each command runs in a temp dir with mocked dependencies
+
+Orchestrator loop (perceive→propose→critique→refine)
+
+critique rejects invalid frame
+
+refine fixes it
+
+stops within max iterations
+
+Safety hard-stop
+
+crafted “forbidden schema” input is rejected before any action
+
+Persistence cycle
+
+run → save → load → continue, with exact state equality
+
+Ledger tamper test
+
+modify one block → verify fails
+
+Phase VI–X pipeline
+
+Phase VI blueprint → VII plan → VIII schedule → IX ledger → X mapping
+
+verify all outputs parse and log.
+
+8) Performance and scale tests (controlled)
+
+Mark as slow or perf. Do not run by default in CI.
+
+Transcoding 10MB payload round-trip under threshold
+
+Frame verification: 10,000 frames parse under threshold
+
+Ledger verification: 100,000 blocks verify under threshold
+
+Orchestrator: max-iteration behavior under adversarial inputs
+
+9) Security testing (software-level)
+
+Input fuzzing on frame parser/verifier (Hypothesis or simple fuzz harness)
+
+Config fuzzing on YAML loader (invalid types, huge recursion)
+
+Tool invocation abuse: ensure no tool runs without explicit permission
+
+Log redaction: secrets never appear in logs (unit test captures log output)
+
+10) Automation: generate a “function inventory” so nothing is missed
+
+Once your modules contain real code, run this script to dump every function/class so you can confirm test coverage.
+
+Create scripts/inventory.py:
+
+import pkgutil, importlib, inspect, json
+from pathlib import Path
+
+SRC_PKG = "packages.core.src"
+
+def iter_modules():
+    pkg = importlib.import_module(SRC_PKG)
+    base = Path(pkg.__file__).parent
+    for m in pkgutil.iter_modules([str(base)]):
+        yield f"{SRC_PKG}.{m.name}"
+
+def public_members(mod):
+    out = {"module": mod.__name__, "functions": [], "classes": []}
+    for name, obj in inspect.getmembers(mod):
+        if name.startswith("_"):
+            continue
+        if inspect.isfunction(obj) and obj.__module__ == mod.__name__:
+            out["functions"].append(name)
+        if inspect.isclass(obj) and obj.__module__ == mod.__name__:
+            out["classes"].append(name)
+    out["functions"].sort()
+    out["classes"].sort()
+    return out
+
+def main():
+    inventory = []
+    for mod_name in iter_modules():
+        mod = importlib.import_module(mod_name)
+        inventory.append(public_members(mod))
+    print(json.dumps(inventory, indent=2))
+
+if __name__ == "__main__":
+    main()
+
+
+Then:
+
+python scripts/inventory.py > docs/FUNCTION_INVENTORY.json
+
+
+Use that output as a checklist: every function listed must have tests (or an explicit reason why it’s excluded).
+
+11) Deliverables checklist (what you should end up with)
+
+docs/TESTING_MASTER.md (this file)
+
+docs/FUNCTION_INVENTORY.json (auto-generated)
+
+packages/core/tests/unit/test_<module>.py for each module
+
+packages/core/tests/integration/test_pipeline.py
+
+packages/core/tests/safety/test_forbidden_schemas.py
+
+packages/core/tests/contract/test_frame_roundtrip.py
+
+packages/core/tests/perf/test_perf_transcoder.py (marked slow)
