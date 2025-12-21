@@ -77,7 +77,7 @@ Agent Vault is a **local-first, deterministic AI agent runtime** designed from t
 | **164.312(b)** – Encryption | TLS 1.3 for transport; AES-256-GCM for data at-rest (docker-compose.yml) |
 | **164.312(c)(1)** – Integrity controls | Frame hash + audit entry hash prevent tampering |
 
-**BAA Requirement**: Available upon execution. Contact sales@vaultai.io.
+**BAA Requirement**: Available upon execution. Contact acrticasters@gmail.com.
 
 **Minimum Deployment for HIPAA**:
 - PostgreSQL with encryption at-rest (docker-compose includes this)
@@ -284,7 +284,7 @@ A: Yes. See [SECURITY.md#Reporting](SECURITY.md#Reporting).
 
 ### Responsible Disclosure
 
-Email: **security@vaultai.io**
+Email: **acrticasters@gmail.com**
 
 Include:
 - Description of vulnerability

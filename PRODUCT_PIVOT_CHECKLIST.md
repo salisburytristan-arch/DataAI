@@ -177,7 +177,7 @@
   - Upload to YouTube
   - Embed on landing page
 
-- [ ] **Launch website** (arcticcodex.io)
+- [x] **Launch website** (arcticcodex.com)
   - Landing page + product overview
   - Pricing calculator
   - Case study showcase (coming after pilots)

@@ -143,7 +143,7 @@ See [DEPLOYMENT.md](docs/DEPLOYMENT.md) for Helm charts and production configs.
 | **Professional** | $299/mo | 5 users, RBAC, audit export, email support |
 | **Enterprise** | $5,000/mo | Unlimited users, custom policies, dedicated audit, phone support, SLA |
 
-[Request Demo](mailto:sales@vaultai.io) | [Docs](https://docs.vaultai.io) | [FAQ](docs/FAQ.md)
+[Request Demo](mailto:acrticasters@gmail.com) | [Website](https://arcticcodex.com) | [FAQ](docs/FAQ.md)
 
 ## Compliance & Security
 
@@ -156,9 +156,10 @@ See [SECURITY.md](SECURITY.md) for threat model and compliance narrative.
 
 ## Support
 
-- **Docs**: https://docs.vaultai.io
-- **Issues**: [GitHub Issues](https://github.com/vaultai/agent-vault/issues)
-- **Email**: support@vaultai.io
+- **Website**: https://arcticcodex.com
+- **Docs**: https://github.com/salisburytristan-arch/ArcticCodex/wiki
+- **Issues**: [GitHub Issues](https://github.com/salisburytristan-arch/ArcticCodex/issues)
+- **Email**: acrticasters@gmail.com
 - **Community**: [Slack](https://join.slack.com/t/vaultai/shared_invite/...)
 
 ## License

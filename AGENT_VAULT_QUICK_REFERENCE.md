@@ -3,7 +3,7 @@
 **Product**: ArcticCodex  
 **Tagline**: "Enterprise AI that compliance teams actually approve"  
 **Status**: BETA | Jan 2026 Launch | $1.5k ARR Target (Q1)  
-**Website**: (Coming Jan 1, 2026)  
+**Website**: arcticcodex.com  
 **Contact**: sales@acrticasters.gmail.com
 
 ---
@@ -104,7 +104,7 @@ DevOps agents that remediate infrastructure. "All actions approved by policy; au
 
 ```bash
 # 1. Clone repo
-git clone https://github.com/vaultai/agent-vault.git
+git clone https://github.com/salisburytristan-arch/ArcticCodex.git
 cd agent-vault
 
 # 2. Start services
@@ -267,7 +267,7 @@ A: 40-phase pipeline (hard to replicate), compliance narratives (regulatory expe
 ## Contact
 
 **Email**: sales@acrticasters.gmail.com  
-**Website**: arcticcodex.io (coming Jan 1, 2026)  
+**Website**: arcticcodex.com  
 **LinkedIn**: [Agent Vault Company Page]  
 **Demo**: [Schedule 30-min walkthrough](https://calendly.com/sales/agent-vault-demo)
 

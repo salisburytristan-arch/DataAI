@@ -249,6 +249,7 @@ See [SECURITY.md](SECURITY.md) for full threat model, incident response, and com
 
 ## Support
 
+- **Website**: https://arcticcodex.com
 - **Docs**: https://github.com/salisburytristan-arch/ArcticCodex/wiki
 - **Support**: https://github.com/salisburytristan-arch/ArcticCodex/issues
 - **Email**: acrticasters@gmail.com
@@ -299,4 +300,4 @@ We're building this for:
 
 **ArcticCodex: Where autonomous intelligence meets enterprise discipline.**
 
-*Questions?* [Schedule a demo](https://calendly.com/sales/agent-vault-demo) or email sales@vaultai.io
+*Questions?* [Schedule a demo](https://arcticcodex.com/demo) or email acrticasters@gmail.com

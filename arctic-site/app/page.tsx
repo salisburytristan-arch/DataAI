@@ -45,9 +45,9 @@ export default function Home() {
         <div className="flex items-center gap-3">
           <div className="text-xl font-mono font-bold tracking-tighter text-white">
             ARCTIC<span className="text-cyan-400">CODEX</span>
-            <span className="text-xs ml-2 text-gray-500 border border-gray-700 px-2 py-1 rounded">V.0.9.1</span>
+            <span className="text-xs ml-2 text-gray-500 border border-gray-700 px-2 py-1 rounded">V.1.0</span>
           </div>
-          <span className="text-[11px] text-gray-500 font-mono border border-gray-800 px-2 py-1 rounded uppercase">Agent Vault</span>
+          <span className="text-[11px] text-gray-500 font-mono border border-gray-800 px-2 py-1 rounded uppercase">Enterprise AI</span>
         </div>
 
         <div className="flex items-center gap-6 text-sm font-mono text-gray-400">
@@ -60,8 +60,8 @@ export default function Home() {
           <Link href="/agent" className="bg-cyan-500 hover:bg-cyan-400 text-black font-bold px-5 py-2 rounded-sm transition-all duration-300 text-sm">
             Launch Console
           </Link>
-          <a href="mailto:ArctiCasters@gmail.com" className="bg-white/5 hover:bg-cyan-500/10 border border-white/10 hover:border-cyan-400 text-sm font-mono px-4 py-2 transition-all duration-300">
-            INQUIRE_FOR_ACQUISITION
+          <a href="mailto:acrticasters@gmail.com" className="bg-white/5 hover:bg-cyan-500/10 border border-white/10 hover:border-cyan-400 text-sm font-mono px-4 py-2 transition-all duration-300">
+            CONTACT_SALES
           </a>
         </div>
       </nav>
@@ -78,7 +78,7 @@ export default function Home() {
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/30 border border-cyan-800/50 text-cyan-400 text-xs font-mono tracking-widest uppercase"
           >
             <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-            Asset Sale: Tier-0 Complete
+            Enterprise AI Platform | Live
           </motion.div>
           
           <motion.h1 
@@ -99,10 +99,10 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-lg text-gray-400 max-w-lg leading-relaxed"
           >
-            The first air-gapped, self-distilling "Knowledge OS." 
-            Engineered for defense. 100% Python. Zero external dependencies.
+            Local-first enterprise AI agents with policy-driven governance. 
+            40-phase reasoning pipeline. HIPAA/SOC2-ready. On-premise deployment.
             <br/><br/>
-            <strong className="text-white">Asking Price: $4.85M (USD)</strong>
+            <strong className="text-white">Compliance teams actually approve it.</strong>
           </motion.p>
 
           <motion.div 
@@ -114,8 +114,8 @@ export default function Home() {
             <Link href="/agent" className="bg-cyan-500 hover:bg-cyan-400 text-black font-bold px-8 py-4 rounded-sm transition-all duration-300 flex items-center gap-2 hover:shadow-lg hover:shadow-cyan-500/30">
               <Terminal size={18} /> Launch Console
             </Link>
-            <a href="mailto:ArctiCasters@gmail.com?subject=Acquisition Inquiry: ArcticCodex" className="px-8 py-4 border border-white/10 hover:border-white/30 text-white/70 hover:text-white transition-all duration-300 font-mono text-sm flex items-center gap-2">
-              <Lock size={18} /> Request Data Room
+            <a href="mailto:acrticasters@gmail.com?subject=ArcticCodex Demo Request" className="px-8 py-4 border border-white/10 hover:border-white/30 text-white/70 hover:text-white transition-all duration-300 font-mono text-sm flex items-center gap-2">
+              <Lock size={18} /> Schedule Demo
             </a>
             <a href="#specs" className="px-8 py-4 border border-white/10 hover:border-white/30 text-white/70 hover:text-white transition-all duration-300 font-mono text-sm">
               VIEW_SPECS
