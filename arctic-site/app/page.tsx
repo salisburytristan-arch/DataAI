@@ -3,7 +3,11 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Shield, Cpu, Database, Terminal, Lock, CheckCircle } from 'lucide-react';
+import { Shield, Cpu, Database, Terminal, Lock, CheckCircle, Zap, GitBranch } from 'lucide-react';
+import LogoTrinity from '../components/LogoTrinity';
+import TrinaryDemo from '../components/TrinaryDemo';
+import TeacherSystemDemo from '../components/TeacherSystemDemo';
+import VaultIntegrationDemo from '../components/VaultIntegrationDemo';
 
 export default function Home() {
   const [terminalLines, setTerminalLines] = useState<string[]>([]);
@@ -40,32 +44,6 @@ export default function Home() {
       <div className="absolute inset-0 bg-grid z-0 pointer-events-none" />
       <div className="scanlines fixed inset-0 z-50 pointer-events-none opacity-20"></div>
 
-      {/* Navbar */}
-      <nav className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 px-8 py-6 border-b border-white/5 bg-black/50 backdrop-blur-md sticky top-0">
-        <div className="flex items-center gap-3">
-          <div className="text-xl font-mono font-bold tracking-tighter text-white">
-            ARCTIC<span className="text-cyan-400">CODEX</span>
-            <span className="text-xs ml-2 text-gray-500 border border-gray-700 px-2 py-1 rounded">V.1.0</span>
-          </div>
-          <span className="text-[11px] text-gray-500 font-mono border border-gray-800 px-2 py-1 rounded uppercase">Enterprise AI</span>
-        </div>
-
-        <div className="flex items-center gap-6 text-sm font-mono text-gray-400">
-          <Link href="#top" className="hover:text-white transition">HOME</Link>
-          <a href="#specs" className="hover:text-white transition">SPECS</a>
-          <Link href="/agent" className="hover:text-white transition">CONSOLE</Link>
-        </div>
-
-        <div className="flex items-center gap-3">
-          <Link href="/agent" className="bg-cyan-500 hover:bg-cyan-400 text-black font-bold px-5 py-2 rounded-sm transition-all duration-300 text-sm">
-            Launch Console
-          </Link>
-          <a href="mailto:acrticasters@gmail.com" className="bg-white/5 hover:bg-cyan-500/10 border border-white/10 hover:border-cyan-400 text-sm font-mono px-4 py-2 transition-all duration-300">
-            CONTACT_SALES
-          </a>
-        </div>
-      </nav>
-
       {/* Hero Section */}
       <section className="relative z-10 flex flex-col lg:flex-row items-center justify-between max-w-7xl mx-auto px-6 pt-20 pb-32 gap-12">
         
@@ -87,7 +65,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1]"
           >
-            Sovereign <br />
+            Audit-Ready <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 text-glow">
               Intelligence.
             </span>
@@ -99,10 +77,11 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-lg text-gray-400 max-w-lg leading-relaxed"
           >
-            Local-first enterprise AI agents with policy-driven governance. 
-            40-phase reasoning pipeline. HIPAA/SOC2-ready. On-premise deployment.
+            Enterprise AI with <strong className="text-white">forensic audit trails</strong> and cryptographic integrity. 
+            Handle uncertainty with <strong className="text-cyan-400">Φ-state reasoning</strong>. 
+            HIPAA/SOC2-ready. Multi-teacher verification. Zero hallucination compliance.
             <br/><br/>
-            <strong className="text-white">Compliance teams actually approve it.</strong>
+            <strong className="text-white">AI you can trust in regulated industries.</strong>
           </motion.p>
 
           <motion.div 
@@ -111,14 +90,14 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="flex flex-wrap gap-4 pt-4"
           >
-            <Link href="/agent" className="bg-cyan-500 hover:bg-cyan-400 text-black font-bold px-8 py-4 rounded-sm transition-all duration-300 flex items-center gap-2 hover:shadow-lg hover:shadow-cyan-500/30">
-              <Terminal size={18} /> Launch Console
+            <Link href="/console" className="bg-cyan-500 hover:bg-cyan-400 text-black font-bold px-8 py-4 rounded-sm transition-all duration-300 flex items-center gap-2 hover:shadow-lg hover:shadow-cyan-500/30">
+              <Terminal size={18} /> Try Now
             </Link>
             <a href="mailto:acrticasters@gmail.com?subject=ArcticCodex Demo Request" className="px-8 py-4 border border-white/10 hover:border-white/30 text-white/70 hover:text-white transition-all duration-300 font-mono text-sm flex items-center gap-2">
               <Lock size={18} /> Schedule Demo
             </a>
-            <a href="#specs" className="px-8 py-4 border border-white/10 hover:border-white/30 text-white/70 hover:text-white transition-all duration-300 font-mono text-sm">
-              VIEW_SPECS
+            <a href="/docs" className="px-8 py-4 border border-white/10 hover:border-white/30 text-white/70 hover:text-white transition-all duration-300 font-mono text-sm">
+              Read Docs
             </a>
           </motion.div>
         </div>
@@ -163,10 +142,10 @@ export default function Home() {
       <section className="border-y border-white/5 bg-white/[0.02]">
         <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
-            { label: "Unit Tests", val: "41", icon: CheckCircle },
-            { label: "Security", val: "HMAC", icon: Shield },
+            { label: "Unit Tests", val: "79", icon: CheckCircle },
+            { label: "Logic States", val: "⊙⊗Φ", icon: Zap },
             { label: "Architecture", val: "Tier-0", icon: Cpu },
-            { label: "Dependencies", val: "Minimal", icon: Database }
+            { label: "Teachers", val: "Multi", icon: GitBranch }
           ].map((stat, i) => (
             <motion.div 
               key={i}
@@ -181,6 +160,81 @@ export default function Home() {
               <span className="text-xs text-gray-500 uppercase tracking-widest mt-1">{stat.label}</span>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      {/* Logo Trinity Section */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 py-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-4xl font-bold mb-4">The Logic Trinity</h2>
+          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+            Three states. One intelligence. The symbolic foundation of ForgeNumerics.
+          </p>
+        </motion.div>
+
+        <div className="flex justify-center mb-12">
+          <LogoTrinity size={200} showLabel={true} animated={true} />
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          {[
+            {
+              symbol: '⊙',
+              title: 'State 0',
+              desc: 'Ground state. Absence. The foundation of all logical operations.',
+              color: 'text-[#00FF41]'
+            },
+            {
+              symbol: '⊗',
+              title: 'State 1',
+              desc: 'Power state. Presence. Truth verified and stored.',
+              color: 'text-[#00FF41]'
+            },
+            {
+              symbol: 'Φ',
+              title: 'State Φ',
+              desc: 'Paradox state. Uncertainty. The key to handling unknown truths.',
+              color: 'text-white'
+            }
+          ].map((state, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+              viewport={{ once: true }}
+              className="border border-white/10 p-6 rounded-lg bg-white/[0.02] text-center hover:border-cyan-500/30 transition-all"
+            >
+              <div className={`text-5xl mb-4 ${state.color}`}>{state.symbol}</div>
+              <h3 className="text-lg font-bold mb-2 text-cyan-400">{state.title}</h3>
+              <p className="text-gray-400 text-sm">{state.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Trinary Demo Section */}
+      <section id="trinary" className="relative z-10 bg-white/[0.01] border-y border-white/5 py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl font-bold mb-4">Interactive Trinary Logic</h2>
+            <p className="text-gray-500 text-lg">
+              See how three-state reasoning handles uncertainty that binary logic cannot.
+            </p>
+          </motion.div>
+          <TrinaryDemo />
         </div>
       </section>
 
@@ -201,20 +255,20 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-8">
             {[
               {
-                title: "Vault",
-                desc: "Air-gapped memory system with cryptographic chunk verification and tombstone-based soft deletes."
+                title: "ForgeNumerics Language",
+                desc: "Trinary-based symbolic codec with canonical frame format, deterministic serialization, and lossless compression. State Φ enables epistemic uncertainty."
               },
               {
-                title: "ForgeNumerics",
-                desc: "Self-describing canonical frame format with deterministic serialization and lossless compression."
+                title: "Agent Vault",
+                desc: "Air-gapped memory system with 5-tier architecture: working, episodic, semantic, procedural, and long-term KB storage."
               },
               {
-                title: "Integrity Detection",
-                desc: "Real-time bit-rot scanning, HMAC validation gates, and corruption flagging at retrieval time."
+                title: "Multi-Teacher System",
+                desc: "Draft-Critique-Revise protocol with DeepSeek R1 integration. Quality scores averaging 0.917. Automated training pair generation."
               },
               {
-                title: "Zero Dependencies",
-                desc: "Pure Python implementation. No external ML frameworks, no API calls, no licensing entropy."
+                title: "Cryptographic Integrity",
+                desc: "Real-time bit-rot scanning, HMAC validation gates, and corruption flagging at retrieval time. Every frame is signed."
               }
             ].map((item, i) => (
               <motion.div
@@ -233,10 +287,96 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* Teacher System Demo Section */}
+      <section id="teacher" className="relative z-10 bg-white/[0.01] border-y border-white/5 py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl font-bold mb-4">Multi-Teacher Orchestration</h2>
+            <p className="text-gray-500 text-lg">
+              Draft → Critique → Revise. Automated quality improvement through teacher feedback loops.
+            </p>
+          </motion.div>
+          <TeacherSystemDemo />
+        </div>
+      </section>
+
+      {/* Technology Stack Section */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 py-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="space-y-8"
+        >
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-2">Complete System Architecture</h2>
+            <p className="text-gray-500 text-lg">79 passing tests. Production-ready. Local-first.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                title: "Core Runtime",
+                items: ["Python 3.10+", "FastAPI + uvicorn", "Click CLI", "Pydantic validation"]
+              },
+              {
+                title: "Intelligence Layer",
+                items: ["ForgeNumerics frames", "DeepSeek R1 teachers", "Multi-model support", "Local inference"]
+              },
+              {
+                title: "Storage & Security",
+                items: ["PostgreSQL audit logs", "HMAC signatures", "Docker deployment", "Zero cloud dependencies"]
+              }
+            ].map((column, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                viewport={{ once: true }}
+                className="border border-white/10 p-6 rounded-lg bg-white/[0.02]"
+              >
+                <h3 className="text-lg font-bold mb-4 text-cyan-400">{column.title}</h3>
+                <ul className="space-y-2">
+                  {column.items.map((item, i) => (
+                    <li key={i} className="text-sm text-gray-400 flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Vault Integration Demo */}
+      <section id="vault" className="relative z-10 max-w-7xl mx-auto px-6 py-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-4xl font-bold mb-4">Agent Vault Integration</h2>
+          <p className="text-gray-500 text-lg">
+            5-tier memory architecture. Hybrid search. Real-time frame integrity verification.
+          </p>
+        </motion.div>
+        <VaultIntegrationDemo />
+      </section>
+
+      {/* 
       {/* Footer */}
-      <footer className="py-12 text-center text-gray-600 text-sm font-mono border-t border-white/5 mt-20">
-        <p>ARCTIC_CODEX // ASSET_ID: AC-85M // PROPERTY_OF_HOLDER</p>
-      </footer>
     </main>
   );
 }

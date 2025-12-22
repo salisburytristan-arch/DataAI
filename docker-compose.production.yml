@@ -1,0 +1,165 @@
+version: '3.8'
+
+# Production Docker Compose Configuration
+# Usage: docker-compose -f docker-compose.production.yml up -d
+
+services:
+  # FastAPI Backend Service
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: arcticcodex-backend
+    restart: always
+    ports:
+      - "8000:8000"
+    
+    environment:
+      # Supabase Configuration (REQUIRED)
+      SUPABASE_URL: ${SUPABASE_URL}
+      SUPABASE_KEY: ${SUPABASE_KEY}
+      SUPABASE_SERVICE_KEY: ${SUPABASE_SERVICE_KEY}
+      DATABASE_URL: ${DATABASE_URL}
+      
+      # JWT Configuration
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRATION: ${JWT_EXPIRATION:-86400}
+      
+      # LLM API Keys
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      
+      # Tool Configuration
+      TOOL_DEFAULT_MODE: ${TOOL_DEFAULT_MODE:-auto}
+      TOOL_MAX_FILE_SIZE_MB: ${TOOL_MAX_FILE_SIZE_MB:-100}
+      TOOL_TIMEOUT_SECONDS: ${TOOL_TIMEOUT_SECONDS:-300}
+      
+      # Vault Configuration
+      VAULT_PATH: /app/vault
+      VAULT_EVIDENCE_LIMIT: ${VAULT_EVIDENCE_LIMIT:-5000}
+      VAULT_RETRIEVAL_STRATEGY: ${VAULT_RETRIEVAL_STRATEGY:-semantic}
+      
+      # Audit Configuration
+      AUDIT_RETENTION_DAYS: ${AUDIT_RETENTION_DAYS:-90}
+      AUDIT_VERIFY_CHAIN: ${AUDIT_VERIFY_CHAIN:-true}
+      
+      # Cost Tracking
+      OPENAI_INPUT_COST: ${OPENAI_INPUT_COST:-0.0005}
+      OPENAI_OUTPUT_COST: ${OPENAI_OUTPUT_COST:-0.0015}
+      ANTHROPIC_INPUT_COST: ${ANTHROPIC_INPUT_COST:-0.0008}
+      ANTHROPIC_OUTPUT_COST: ${ANTHROPIC_OUTPUT_COST:-0.0024}
+      
+      # Rate Limiting
+      API_RATE_LIMIT_RPM: ${API_RATE_LIMIT_RPM:-100}
+      LLM_RATE_LIMIT_RPM: ${LLM_RATE_LIMIT_RPM:-90}
+      
+      # Environment
+      ENVIRONMENT: production
+      LOG_LEVEL: info
+    
+    volumes:
+      - vault_data:/app/vault
+    
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    
+    depends_on:
+      - startup-validator
+    
+    networks:
+      - arcticcodex
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Next.js Frontend Service
+  frontend:
+    build:
+      context: ./arctic-site
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: http://backend:8000
+    container_name: arcticcodex-frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    
+    environment:
+      NEXT_PUBLIC_API_URL: http://backend:8000
+    
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    
+    depends_on:
+      backend:
+        condition: service_healthy
+    
+    networks:
+      - arcticcodex
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Startup Validator - checks Supabase connectivity
+  startup-validator:
+    image: curlimages/curl:latest
+    container_name: arcticcodex-validator
+    entrypoint: >
+      sh -c '
+        echo "Validating Supabase connectivity..."
+        max_attempts=60
+        attempt=0
+        while [ $attempt -lt $max_attempts ]; do
+          response=$(curl -f -s -o /dev/null -w "%{http_code}" \
+            "${SUPABASE_URL}/rest/v1/" \
+            -H "apikey: ${SUPABASE_KEY}" 2>/dev/null || echo "000")
+          
+          if [ "$response" = "200" ] || [ "$response" = "401" ]; then
+            echo "✓ Supabase is ready (HTTP $response)"
+            exit 0
+          fi
+          
+          attempt=$((attempt + 1))
+          echo "  Attempt $attempt/60 - waiting for Supabase..."
+          sleep 1
+        done
+        echo "✗ Supabase startup validation failed"
+        exit 1
+      '
+    
+    environment:
+      SUPABASE_URL: ${SUPABASE_URL}
+      SUPABASE_KEY: ${SUPABASE_KEY}
+    
+    networks:
+      - arcticcodex
+
+volumes:
+  vault_data:
+    driver: local
+
+networks:
+  arcticcodex:
+    driver: bridge
+
+# Instructions:
+# 1. Copy .env.example to .env and fill in all required values
+# 2. Run: docker-compose -f docker-compose.production.yml up -d
+# 3. Check logs: docker-compose logs -f backend
+# 4. Seed org: docker-compose exec backend python seed.py
+# 5. Access Studio: http://localhost:3000
+# 6. Access API docs: http://localhost:8000/docs

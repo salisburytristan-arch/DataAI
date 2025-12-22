@@ -1,0 +1,3 @@
+"""
+ArcticCodex FastAPI application.
+"""
