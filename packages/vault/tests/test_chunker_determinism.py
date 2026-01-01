@@ -7,7 +7,7 @@ vault_src = Path(__file__).parent.parent
 if str(vault_src) not in sys.path:
     sys.path.insert(0, str(vault_src))
 
-from src.ingest.chunker import chunk_by_size
+from packages.vault.src.ingest.chunker import chunk_by_size
 
 
 def test_chunk_by_size_is_deterministic_and_respects_overlap():

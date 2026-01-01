@@ -8,7 +8,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-white/10 bg-black/50 mt-20">
+    <footer className="border-t border-black/10 bg-white mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         
         {/* Main Footer Content */}
@@ -16,24 +16,26 @@ export default function Footer() {
           
           {/* Brand */}
           <div>
-            <h3 className="text-sm font-mono font-bold text-white mb-4">ARCTICCODEX</h3>
-            <p className="text-xs text-gray-400 mb-4">
-              Enterprise AI with trinary logic and forensic audit trails.
+            <h3 className="text-sm font-mono font-bold text-slate-900 mb-4">ARCTICCODEX</h3>
+            <p className="text-xs text-gray-600 mb-4">
+              Live AI chat with forensic audit trails and trinary reasoning.
             </p>
             <div className="text-xs text-gray-500 font-mono">
-              v1.0 • Production Ready
+              Live • 310 tests verified
             </div>
           </div>
 
           {/* Product */}
           <div>
-            <h4 className="text-xs font-mono font-bold text-white uppercase tracking-wider mb-4">Product</h4>
+            <h4 className="text-xs font-mono font-bold text-slate-900 uppercase tracking-wider mb-4">Product</h4>
             <ul className="space-y-2 text-xs">
-              <li><Link href="#top" className="text-gray-400 hover:text-white transition">Overview</Link></li>
-              <li><Link href="#specs" className="text-gray-400 hover:text-white transition">Features</Link></li>
-              <li><Link href="/use-cases" className="text-gray-400 hover:text-white transition">Use Cases</Link></li>
-              <li><Link href="/pricing" className="text-gray-400 hover:text-white transition">Pricing</Link></li>
-              <li><Link href="/console" className="text-gray-400 hover:text-white transition">Console</Link></li>
+              <li><Link href="/demo" className="text-gray-700 hover:text-gray-900 transition">Try Chat</Link></li>
+              <li><Link href="/chat" className="text-gray-700 hover:text-gray-900 transition">Chat (Full)</Link></li>
+              <li><Link href="#top" className="text-gray-700 hover:text-gray-900 transition">Overview</Link></li>
+              <li><Link href="#specs" className="text-gray-700 hover:text-gray-900 transition">Features</Link></li>
+              <li><Link href="/use-cases" className="text-gray-700 hover:text-gray-900 transition">Use Cases</Link></li>
+              <li><Link href="/pricing" className="text-gray-700 hover:text-gray-900 transition">Pricing</Link></li>
+              <li><Link href="/console" className="text-gray-700 hover:text-gray-900 transition">Console</Link></li>
             </ul>
           </div>
 
@@ -44,7 +46,7 @@ export default function Footer() {
               <li><Link href="/docs" className="text-gray-400 hover:text-white transition">Documentation</Link></li>
               <li><Link href="/docs/quickstart" className="text-gray-400 hover:text-white transition">Quickstart</Link></li>
               <li><Link href="/docs/api" className="text-gray-400 hover:text-white transition">API Reference</Link></li>
-              <li><a href="https://github.com/salisburytristan-arch/ArcticCodex" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition">GitHub</a></li>
+              <li><a href="mailto:acrticasters@gmail.com?subject=ArcticCodex%20Access%20Request" className="text-gray-400 hover:text-white transition">Request Access</a></li>
             </ul>
           </div>
 

@@ -37,9 +37,10 @@ RUN pip install --no-error --upgrade \
 # Copy application code
 COPY packages ./packages
 COPY ForgeNumerics_Language ./ForgeNumerics_Language
+COPY start_fly_server.py ./start_fly_server.py
 
-# Create persistent mount points
-RUN mkdir -p /app/vault /app/models /app/cache && \
+# Create persistent mount points (consolidated into /app/data for Fly.io single volume)
+RUN mkdir -p /app/data/vault /app/data/models /app/cache && \
     chmod -R 755 /app
 
 EXPOSE 8000
@@ -48,9 +49,5 @@ EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=10s --retries=3 --start-period=40s \
     CMD curl -f http://localhost:8000/api/health || exit 1
 
-# Run Studio Server
-CMD ["python", "-m", "packages.studio.src.studio_server_fly", \
-     "--host", "0.0.0.0", \
-     "--port", "8000", \
-     "--vault", "/app/vault", \
-     "--embeddings", "on"]
+# Run Studio Server via startup wrapper with error handling
+CMD ["python", "start_fly_server.py"]

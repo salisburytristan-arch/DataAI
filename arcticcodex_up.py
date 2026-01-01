@@ -139,6 +139,8 @@ class PlatformLauncher:
         print("\n  💡 Next steps:")
         print("     • Run: uvicorn packages.core.src.api:app --port 8000")
         print("     • Run: cd arctic-site && npm run dev")
+        print("     • Optional: LLM server → python packages/core/src/llm_server.py (port 8001)")
+        print("       Set: AC_LLM_ENDPOINT=http://localhost:8001 and AC_GGUF_MODEL=path/to/model.gguf")
         print("     • Or use Docker: docker-compose up")
         print()
         

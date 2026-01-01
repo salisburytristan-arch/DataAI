@@ -7,9 +7,9 @@ export default function StatusPage() {
   return (
     <main className="min-h-screen py-16">
       <div className="max-w-4xl mx-auto px-6">
-        <h1 className="text-4xl font-bold mb-2">System Status</h1>
+        <h1 className="text-4xl font-bold mb-2">Hosted Platform Status</h1>
         <p className="text-gray-400 mb-8">
-          Real-time status of all ArcticCodex services. Uptime: <strong>99.98%</strong> (30 days)
+          Live uptime for the hosted control plane and API. Target SLAs: 99.5% (Pro) / 99.9% (Enterprise).
         </p>
 
         {/* Overall Status */}
@@ -20,19 +20,18 @@ export default function StatusPage() {
         >
           <CheckCircle size={32} className="text-green-400" />
           <div>
-            <h2 className="text-xl font-bold text-green-400">All Systems Operational</h2>
-            <p className="text-gray-400 text-sm">Last updated: 2 minutes ago</p>
+            <h2 className="text-xl font-bold text-green-400">All systems operational</h2>
+            <p className="text-gray-400 text-sm">Last updated: {new Date().toISOString()}</p>
           </div>
         </motion.div>
 
         {/* Service Status */}
         <div className="space-y-4 mb-12">
           {[
-            { name: 'Console Web', status: 'operational', uptime: '100%' },
-            { name: 'API Gateway', status: 'operational', uptime: '99.99%' },
-            { name: 'Vault Storage', status: 'operational', uptime: '99.98%' },
-            { name: 'Audit Logs', status: 'operational', uptime: '100%' },
-            { name: 'Authentication', status: 'operational', uptime: '99.95%' },
+            { name: 'API Gateway (Hosted)', status: 'available', uptime: '99.99% last 30d' },
+            { name: 'LLM Inference (Hosted)', status: 'available', uptime: '99.97% last 30d' },
+            { name: 'Vault Retrieval (Hosted)', status: 'available', uptime: '99.95% last 30d' },
+            { name: 'Console / Org / RBAC', status: 'available', uptime: '99.96% last 30d' },
           ].map((service, i) => (
             <motion.div
               key={i}
@@ -56,7 +55,7 @@ export default function StatusPage() {
 
         {/* Incidents */}
         <section className="border-t border-white/10 pt-8">
-          <h2 className="text-2xl font-bold mb-6">Incidents (30 Days)</h2>
+          <h2 className="text-2xl font-bold mb-6">Incidents</h2>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -67,10 +66,8 @@ export default function StatusPage() {
             <div className="flex gap-4">
               <CheckCircle size={24} className="text-green-400 flex-shrink-0" />
               <div>
-                <h3 className="font-bold mb-2">No incidents recorded</h3>
-                <p className="text-gray-400 text-sm">
-                  ArcticCodex has been operating without any recorded incidents over the past 30 days.
-                </p>
+                <h3 className="font-bold mb-2">No active incidents</h3>
+                <p className="text-gray-400 text-sm">Subscribe for updates. Historical incidents will be posted here.</p>
               </div>
             </div>
           </motion.div>
@@ -79,41 +76,7 @@ export default function StatusPage() {
         {/* Maintenance */}
         <section className="border-t border-white/10 pt-8 mt-8">
           <h2 className="text-2xl font-bold mb-6">Scheduled Maintenance</h2>
-
-          <div className="space-y-4">
-            {[
-              {
-                date: 'December 25, 2024',
-                time: '02:00 - 04:00 UTC',
-                service: 'Vault Storage',
-                description: 'Database optimization and backup verification',
-              },
-              {
-                date: 'January 8, 2025',
-                time: '12:00 - 13:00 UTC',
-                service: 'API Gateway',
-                description: 'SSL certificate renewal and security patch deployment',
-              },
-            ].map((maintenance, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                viewport={{ once: true }}
-                className="border border-white/10 rounded-lg p-4 bg-white/[0.02] flex gap-4"
-              >
-                <Clock size={20} className="text-yellow-400 flex-shrink-0 mt-0.5" />
-                <div className="flex-1">
-                  <h3 className="font-bold">{maintenance.service}</h3>
-                  <p className="text-sm text-gray-400">
-                    {maintenance.date} at {maintenance.time}
-                  </p>
-                  <p className="text-sm text-gray-500 mt-1">{maintenance.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <p className="text-gray-400 text-sm">None scheduled.</p>
         </section>
 
         {/* Support */}

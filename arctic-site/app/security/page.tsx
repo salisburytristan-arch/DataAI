@@ -17,7 +17,7 @@ export default function SecurityPage() {
           >
             <h1 className="text-5xl font-bold mb-4">Security & Compliance</h1>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              Enterprise-grade security, cryptographic integrity, and regulatory compliance.
+              Hosted, audit-ready platform with cryptographic integrity. Transparent compliance status with verifiable receipts.
             </p>
           </motion.div>
         </div>
@@ -28,10 +28,10 @@ export default function SecurityPage() {
         <h2 className="text-2xl font-bold mb-8 text-center">Certifications & Standards</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
-            { label: 'HIPAA Ready', icon: '🏥' },
-            { label: 'SOC 2 Type II', icon: '✓' },
-            { label: 'GDPR Compliant', icon: '🔒' },
-            { label: 'Encryption (AES-256)', icon: '🔐' },
+            { label: 'SOC 2 (in progress)', icon: '⧗' },
+            { label: 'HIPAA BAA (available on request)', icon: '🏥' },
+            { label: 'GDPR-aligned (DPA available)', icon: '🔒' },
+            { label: 'Encryption (AES-256 / TLS 1.3)', icon: '🔐' },
           ].map((cert, i) => (
             <motion.div
               key={i}
@@ -88,9 +88,9 @@ export default function SecurityPage() {
               title: 'Operational Security',
               icon: AlertCircle,
               points: [
-                'Zero cloud dependencies (local-first)',
-                'Air-gappable deployment',
-                'Network segmentation support',
+                'Hosted with private tenancy; on-prem optional for Enterprise',
+                'Network segmentation and VPC peering',
+                'Immutable audit logging with exportable receipts',
                 'Vulnerability disclosure program',
               ],
             },
@@ -174,24 +174,24 @@ export default function SecurityPage() {
         <div className="space-y-6">
           {[
             {
-              reg: 'HIPAA',
+              reg: 'SOC 2',
               details:
-                'Business Associate Agreement (BAA) available. PHI encryption, audit logging, access controls.',
+                'Type II audit in progress; mapped controls for security/availability. Reports shared under NDA.',
             },
             {
-              reg: 'SOC 2 Type II',
+              reg: 'HIPAA',
               details:
-                'Annual audit. Controls covering security, availability, processing integrity, confidentiality.',
+                'BAA available for Enterprise. PHI encryption, access controls, audit logging. Hosted in HIPAA-aligned regions.',
             },
             {
               reg: 'GDPR',
               details:
-                'Data processing agreements. Right to deletion. Data portability. Privacy by design.',
+                'DPA available. EU/US data residency options. Data subject rights honored (access, erasure, portability).',
             },
             {
               reg: 'CCPA',
               details:
-                'Consumer privacy rights. Opt-out mechanisms. Transparent data usage. Third-party disclosure.',
+                'Consumer rights respected; opt-out mechanisms; subprocessors listed in Trust Center.',
             },
           ].map((item, i) => (
             <motion.div
@@ -212,23 +212,24 @@ export default function SecurityPage() {
       {/* Reporting */}
       <section className="max-w-7xl mx-auto px-6 py-16 border-t border-white/10">
         <div className="bg-white/[0.02] border border-white/10 rounded-lg p-8 text-center">
-          <h2 className="text-2xl font-bold mb-4">Security Incident Reporting</h2>
+          <h2 className="text-2xl font-bold mb-4">Trust Center</h2>
           <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
-            Found a security vulnerability? Please email{' '}
-            <a
-              href="mailto:security@arcticcodex.com"
-              className="text-cyan-400 hover:underline"
-            >
-              security@arcticcodex.com
-            </a>{' '}
-            with details. We respond within 24 hours.
+            Review our security posture, subprocessors, data flow, and disclosure process. Evidence shared under NDA for Enterprise.
           </p>
-          <a
-            href="/security/vulnerability-disclosure"
-            className="inline-block px-6 py-2 border border-white/20 hover:border-cyan-400 text-white rounded-lg transition"
-          >
-            Vulnerability Disclosure Policy
-          </a>
+          <div className="flex gap-3 justify-center flex-wrap">
+            <a
+              href="/security/trust-center"
+              className="inline-block px-6 py-2 border border-white/20 hover:border-cyan-400 text-white rounded-lg transition"
+            >
+              View Trust Center
+            </a>
+            <a
+              href="/security/vulnerability-disclosure"
+              className="inline-block px-6 py-2 border border-white/20 hover:border-cyan-400 text-white rounded-lg transition"
+            >
+              Vulnerability Disclosure Policy
+            </a>
+          </div>
         </div>
       </section>
 

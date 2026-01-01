@@ -28,8 +28,8 @@ export default function DocsPage() {
         <div className="grid md:grid-cols-2 gap-8">
           {[
             {
-              title: 'Quickstart Guide',
-              desc: 'Get up and running in 10 minutes with Docker or pip installation.',
+              title: 'Hosted Quickstart',
+              desc: 'Call the hosted API with an API key and see audit receipts.',
               icon: Zap,
               href: '/docs/quickstart',
             },
@@ -41,7 +41,7 @@ export default function DocsPage() {
             },
             {
               title: 'Architecture',
-              desc: 'Deep dive into the ForgeNumerics language and memory architecture.',
+              desc: 'How the hosted control plane, vault, and audit pipeline fit together.',
               icon: BookOpen,
               href: '/docs/architecture',
             },
@@ -74,24 +74,24 @@ export default function DocsPage() {
       {/* Getting Started */}
       <section className="border-t border-white/10 bg-white/[0.01] py-16">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-8">Getting Started</h2>
+          <h2 className="text-3xl font-bold mb-8">Getting Started (Hosted)</h2>
 
           <div className="space-y-8">
             {[
               {
                 step: '1',
-                title: 'Install',
-                code: 'pip install arcticcodex',
+                title: 'Get an API key',
+                code: 'Sign in to Console → API Keys → Create key',
               },
               {
                 step: '2',
-                title: 'Initialize',
-                code: 'arctic init --name my-vault',
+                title: 'Call hosted chat',
+                code: 'curl -X POST https://api.arcticcodex.com/v1/chat \\\n  -H "Authorization: Bearer <API_KEY>" \\\n  -H "Content-Type: application/json" \\\n  -d "{\\"messages\\":[{\\"role\\":\\"user\\",\\"content\\":\\"Hello\\"}]}"',
               },
               {
                 step: '3',
-                title: 'Connect',
-                code: 'arctic console --api https://api.arcticcodex.com',
+                title: 'Verify audit receipt',
+                code: 'Response includes: audit.event_id, audit.hash, audit.timestamp, audit.export_url',
               },
             ].map((item, i) => (
               <motion.div
@@ -121,25 +121,25 @@ export default function DocsPage() {
 
       {/* FAQ */}
       <section className="max-w-4xl mx-auto px-6 py-16">
-        <h2 className="text-3xl font-bold mb-8">Frequently Asked Questions</h2>
+          <h2 className="text-3xl font-bold mb-8">Frequently Asked Questions</h2>
 
         <div className="space-y-4">
           {[
             {
-              q: 'What Python versions are supported?',
-              a: 'ArcticCodex requires Python 3.10 or newer. We test against 3.10, 3.11, and 3.12.',
+              q: 'Is this hosted or self-hosted?',
+              a: 'Primary offering is hosted with private tenancy. Enterprise can add self-hosted deployments.',
             },
             {
-              q: 'Can I run this offline?',
-              a: 'Yes. ArcticCodex is local-first and can run entirely offline. Optional cloud sync available.',
+              q: 'How do you handle auth?',
+              a: 'API keys per org, role-based policies, and optional SSO/SAML on Enterprise.',
             },
             {
-              q: 'What databases are supported?',
-              a: 'PostgreSQL (recommended for production), SQLite (development), MySQL 8.0+.',
+              q: 'Do responses include proof?',
+              a: 'Yes. Each response returns an audit receipt with event_id, hash, timestamp, and export URL.',
             },
             {
               q: 'Is there a free tier?',
-              a: 'Yes. Community edition is free for up to 10GB vault storage and 1,000 monthly API calls.',
+              a: 'Sandbox is free with limited hosted tokens. Hosted Pro adds higher quotas and SLA.',
             },
           ].map((item, i) => (
             <motion.details
@@ -162,9 +162,9 @@ export default function DocsPage() {
       {/* CTA */}
       <section className="border-t border-white/10 py-16">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-2xl font-bold mb-4">Ready to Deploy?</h2>
+          <h2 className="text-2xl font-bold mb-4">Ready to call the hosted API?</h2>
           <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
-            Join 100+ companies using ArcticCodex for audit-ready intelligence.
+            Get an API key, hit the hosted endpoint, and download an audit receipt for every response.
           </p>
           <div className="flex gap-4 justify-center">
             <Link

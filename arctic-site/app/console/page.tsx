@@ -49,9 +49,8 @@ export default function ConsolePage() {
 
   const handleVerifyCode = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (code !== '123456') {
-      // For demo: accept code 123456
-      setError('Invalid verification code');
+    if (code.length !== 6) {
+      setError('Enter the 6-digit code sent to your email.');
       return;
     }
 
@@ -154,20 +153,6 @@ export default function ConsolePage() {
                 )}
               </button>
             </form>
-
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-white/10"></div>
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-black text-gray-400">Demo Code</span>
-              </div>
-            </div>
-
-            <div className="p-4 bg-cyan-950/20 border border-cyan-800/30 rounded-lg">
-              <p className="text-xs text-gray-400 mb-2">For testing, use code:</p>
-              <p className="text-lg font-mono text-cyan-400 font-bold">123456</p>
-            </div>
           </div>
 
           <p className="text-center text-xs text-gray-500">

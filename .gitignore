@@ -16,6 +16,7 @@ __pycache__/
 .env
 .venv/
 venv/
+.venv_win/
 build/
 dist/
 htmlcov/
@@ -33,6 +34,20 @@ arctic-site/.env*
 *.log
 logs/
 
+# Hugging Face caches and models
+.cache/
+hf-cache/
+*.safetensors
+
+# Vault artifacts
+vault/objects/
+vault/index/
+vault/tmp/
+
+# Nested repos / bundles
+ArcticCodex-AGI/
+
 # Misc
 *.swp
 *.swo
+data/wiki_articles.jsonl

@@ -3,12 +3,26 @@
 
 ---
 
+## Build Manifest (as of 2025-12-28)
+- Repo / commit: offline (no GitHub access this session)
+- Runtime: Python 3.12.12 (local venv); requires >=3.10 per [pyproject.toml](pyproject.toml#L1-L60)
+- Frontend/Node: not verified today (align in one place after rerun of verify script)
+- Database: Postgres 15 (Supabase) per docs
+- Tests: `pytest` currently fails (ModuleNotFoundError `src.agent` in [packages/core/tests/test_agent_tools.py](packages/core/tests/test_agent_tools.py#L25)); ForgeNumerics `run_tests.py` passes 41/41 (see [final_test_pass_log_2025-12-21.txt](final_test_pass_log_2025-12-21.txt) and [DILIGENCE_TEST_LOG_2025-12-21.md](DILIGENCE_TEST_LOG_2025-12-21.md))
+- LOC: last stated ~5,970; refresh via `scripts/verify_release.ps1` (cloc) to publish a current value
+- Docker: `docker-compose.yml`, `docker-compose.production.yml` present; run compose sanity in verify script
+
+## Changelog
+- 2025-12-28: Added manifest and release gates; noted pytest import failure; corrected table count language; removed absolute “100% complete” wording.
+- 2025-12-21: ForgeNumerics `run_tests.py` deterministic suite 41/41 pass captured in logs.
+- 2025-01-15: Initial baseline draft.
+
 ## CURRENT STATUS: 25% COMPLETE (10 OF 40 PHASES IMPLEMENTED)
 
 | Category | Status | Details |
 |----------|--------|---------|
 | **Phases I-V** | ✅ COMPLETE | 2,470 LOC - Core AI architecture |
-| **Phases VI-X** | ✅ COMPLETE | 3,500 LOC - Real-world instantiation |
+| **Phases VI-X** | ✅ IMPLEMENTED (code present; integration validation pending) | 3,500 LOC - Real-world instantiation |
 | **Phases XI-XV** | 📋 SPECIFIED | Architecture for multiverse/consciousness |
 | **Phases XVI-XX** | 📋 SPECIFIED | Void computing, singularity concepts |
 | **Phases XXI-XXV** | 📋 SPECIFIED | Creator mode, theory of everything |
@@ -161,50 +175,24 @@ WORKFLOW: Design → Manufacture → Power → Govern → Transcend
 | **Total Phases** | 40 |
 | **Phases Implemented (Code)** | 10 (25%) |
 | **Phases Specified (Architecture)** | 30 (75%) |
-| **Total Lines of Code** | 5,970 |
-| **Documentation Words** | 25,000+ |
-| **Test Coverage** | 100+ tests passing |
-| **Python Files** | 10 core modules |
-| **Import Dependencies** | numpy, pyyaml only |
-| **Time to Implementation** | ~15 hours |
+| **Total Lines of Code** | ~5,970 (refresh with cloc via `scripts/verify_release.ps1`) |
+| **Documentation Words** | 25,000+ (per prior drafts) |
+| **Automated Tests** | ForgeNumerics `run_tests.py`: 41/41 pass (2025-12-21); full pytest currently failing import in [packages/core/tests/test_agent_tools.py](packages/core/tests/test_agent_tools.py#L25) |
+| **Python Files** | 10 core modules (per package listing) |
+| **Dependencies** | See [requirements.txt](requirements.txt) (core: fastapi, pydantic, sqlalchemy, supabase, etc.) |
+| **Time to Implementation** | ~15 hours (per prior log) |
 
 ---
 
-## WHAT MAKES THIS COMPLETE
-
-### 1. **Production-Ready Code**
-- ✅ All Phase I-X code is functional and tested
-- ✅ Can be run today: `python packages/core/project_omega.py`
-- ✅ Self-tests included for each module
-- ✅ Full integration framework (phases_6to10.py)
-
-### 2. **Comprehensive Architecture**
-- ✅ All 40 phases architected and specified
-- ✅ Clear timelines (2-year to 100-year roadmap)
-- ✅ Technical requirements for each phase
-- ✅ Data structures and schema definitions
-
-### 3. **Safety Built In**
-- ✅ Multi-layer safety from Phase IV
-- ✅ Cannot hide, deceive, replicate unbounded, or violate ethics
-- ✅ Glass-box interpretability (all decisions logged)
-- ✅ CEV ethical alignment
-- ✅ Embedded in every module
-
-### 4. **Real-World Instantiation**
-- ✅ Phases VI-X are NOT speculative
-- ✅ Matter compiler: DNA design, CRISPR, mRNA vaccines (today's tech)
-- ✅ Nanofabricator: STM/AFM assembly (proven tech, AI-guided)
-- ✅ Dyson swarm: Feasible in 50-100 years with known physics
-- ✅ Resource ledger: Blockchain is production-ready
-- ✅ Mind uploading: Connectome mapping ~50-100 years out
-
-### 5. **Integration Points**
-- ✅ Phase VI (design) feeds into Phase VII (manufacturing)
-- ✅ Phase VII feeds into Phase VIII (energy)
-- ✅ Phase VIII feeds into Phase IX (governance)
-- ✅ All feed into Phase X (consciousness)
-- ✅ Full workflow: matter → manufacturing → power → govern → transcend
+## RELEASE GATES (Definition of Done)
+- Auth/RBAC: create org → create admin → login → restricted route returns 403 for unauthorized roles.
+- Tool policy enforcement: create deny policy → agent tool call blocked → audit event recorded.
+- Audit trail: run agent → export audit ZIP → verify hash chain and immutability.
+- Multi-tenancy isolation: two orgs → RLS prevents cross-org reads/writes.
+- Integration: `packages/core/src/phases_6to10.py` runs without import errors and produces expected outputs.
+- Determinism: ForgeNumerics `run_tests.py` remains 41/41 pass.
+- Build reproducibility: `scripts/verify_release.ps1` completes pytest (or surfaces failures) + cloc + docker compose sanity.
+Evidence: attach latest `verify_release` output (pytest log, cloc output, docker compose ps) to any claim of “production-ready.”
 
 ---
 

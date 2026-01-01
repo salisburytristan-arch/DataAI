@@ -22,8 +22,8 @@ builtin_tools_module = importlib.util.module_from_spec(spec2)
 spec2.loader.exec_module(builtin_tools_module)
 
 # Import agent components
-from src.agent import Agent
-from src.llm.llama_client import MockLLM
+from packages.core.src.agent import Agent
+from packages.core.src.llm.llama_client import MockLLM
 
 
 class TestToolDetection(unittest.TestCase):

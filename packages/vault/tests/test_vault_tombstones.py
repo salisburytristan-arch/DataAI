@@ -7,8 +7,8 @@ vault_src = Path(__file__).parent.parent
 if str(vault_src) not in sys.path:
     sys.path.insert(0, str(vault_src))
 
-from src.vault import Vault
-from src.types import RecordType
+from packages.vault.src.vault import Vault
+from packages.vault.src.types import RecordType
 
 
 def test_forget_cascades_doc_and_chunks_and_persists():

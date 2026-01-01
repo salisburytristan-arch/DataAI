@@ -1,410 +1,199 @@
-// ArcticCodex Studio - Frontend Application
+// ArcticCodex Studio - Enhanced Chat Frontend
 
-class StudioApp {
+class ChatApp {
     constructor() {
-        this.apiBase = '';
-        this.convoId = null;
-        this.currentTab = 'documents';
+        this.convoId = `conv-${Date.now()}`;
         this.messages = [];
-        this.vault = {
-            documents: [],
-            facts: [],
-            memory: []
-        };
-        
+        this.isLoading = false;
         this.init();
     }
     
     async init() {
-        // Get server info
-        await this.checkServerStatus();
         this.setupEventListeners();
-        await this.loadVaultData();
-        this.renderWelcome();
+        await this.checkHealth();
+        this.renderUI();
     }
     
-    async checkServerStatus() {
+    async checkHealth() {
         try {
-            const response = await fetch('/api/health');
-            const data = await response.json();
-            this.convoId = data.conversation_id || 'session-' + Date.now();
-            this.updateServerStatus(true);
-        } catch (error) {
-            console.error('Server not available:', error);
-            this.updateServerStatus(false);
-        }
-    }
-    
-    updateServerStatus(online) {
-        const status = document.querySelector('.server-status');
-        if (online) {
-            status.classList.remove('disconnected');
-            status.textContent = 'Server Connected';
-        } else {
-            status.classList.add('disconnected');
-            status.textContent = 'Server Disconnected';
+            const res = await fetch('/api/health');
+            const data = await res.json();
+            console.log('Server healthy:', data);
+        } catch (e) {
+            console.error('Server unavailable:', e);
         }
     }
     
     setupEventListeners() {
-        // Tab buttons
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => this.switchTab(e.target.dataset.tab));
-        });
+        const sendBtn = document.getElementById('send-btn');
+        const input = document.getElementById('message-input');
         
-        // Chat
-        document.getElementById('send-btn').addEventListener('click', () => this.sendMessage());
-        document.getElementById('message-input').addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
+        sendBtn?.addEventListener('click', () => this.sendMessage());
+        input?.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey && !this.isLoading) {
                 e.preventDefault();
                 this.sendMessage();
             }
         });
-        
-        // Search
-        document.getElementById('search-btn').addEventListener('click', () => this.performSearch());
-        document.getElementById('search-input').addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                this.performSearch();
-            }
-        });
-        
-        // Vault explorer search
-        document.getElementById('vault-search').addEventListener('input', (e) => {
-            this.filterVaultItems(e.target.value);
-        });
-        
-        // Modals
-        document.querySelectorAll('.close-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.target.closest('.modal').classList.add('hidden');
-            });
-        });
-        
-        // Close modal on background click
-        document.querySelectorAll('.modal').forEach(modal => {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.add('hidden');
-                }
-            });
-        });
-    }
-    
-    async loadVaultData() {
-        try {
-            // Load documents
-            const docsRes = await fetch('/api/vault/docs');
-            this.vault.documents = await docsRes.json();
-            
-            // Load facts
-            const factsRes = await fetch(`/api/vault/facts?convo_id=${this.convoId}`);
-            this.vault.facts = await factsRes.json();
-            
-            // Load memory queue
-            const memRes = await fetch('/api/memory');
-            this.vault.memory = await memRes.json();
-            
-            this.renderVault();
-        } catch (error) {
-            console.error('Failed to load vault data:', error);
-        }
-    }
-    
-    switchTab(tab) {
-        this.currentTab = tab;
-        
-        // Update buttons
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.tab === tab);
-        });
-        
-        // Update tabs
-        document.querySelectorAll('.explorer-tab').forEach(el => {
-            el.classList.toggle('active', el.dataset.tab === tab);
-        });
-    }
-    
-    renderVault() {
-        // Documents
-        const docList = document.getElementById('doc-list');
-        if (this.vault.documents.length === 0) {
-            docList.innerHTML = '<div class="empty-state">No documents loaded</div>';
-        } else {
-            docList.innerHTML = this.vault.documents.map(doc => `
-                <div class="list-item document" onclick="app.showDocumentDetail('${doc.id}')">
-                    <strong>${doc.title || doc.filename}</strong>
-                    <div style="font-size: 12px; color: #5f6368;">
-                        ${doc.chunk_count || 0} chunks · ${(doc.size || 0)} bytes
-                    </div>
-                </div>
-            `).join('');
-        }
-        
-        // Facts
-        const factList = document.getElementById('fact-list');
-        if (this.vault.facts.length === 0) {
-            factList.innerHTML = '<div class="empty-state">No facts extracted yet</div>';
-        } else {
-            factList.innerHTML = this.vault.facts.map(fact => `
-                <div class="list-item fact" onclick="app.showFactDetail('${fact.id}')">
-                    <div><strong>${fact.subject}</strong> → ${fact.predicate}</div>
-                    <div style="color: #5f6368;">${fact.object}</div>
-                </div>
-            `).join('');
-        }
-        
-        // Memory queue
-        const memList = document.getElementById('memory-list');
-        if (this.vault.memory.length === 0) {
-            memList.innerHTML = '<div class="empty-state">No pending approvals</div>';
-        } else {
-            memList.innerHTML = this.vault.memory.map(item => `
-                <div class="list-item">
-                    <div><strong>${item.subject}</strong> → ${item.predicate}</div>
-                    <div style="font-size: 12px; color: #5f6368; margin-top: 4px;">
-                        ${item.object}
-                    </div>
-                    <div style="margin-top: 8px; display: flex; gap: 8px;">
-                        <button class="btn-secondary" style="flex: 1; padding: 4px; font-size: 12px;" 
-                                onclick="app.approveFact('${item.id}')">Approve</button>
-                        <button class="btn-secondary" style="flex: 1; padding: 4px; font-size: 12px; color: #ea4335;"
-                                onclick="app.rejectFact('${item.id}')">Reject</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-    }
-    
-    filterVaultItems(query) {
-        const items = document.querySelectorAll('.list-item');
-        const lowerQuery = query.toLowerCase();
-        
-        items.forEach(item => {
-            const text = item.textContent.toLowerCase();
-            item.style.display = text.includes(lowerQuery) ? 'block' : 'none';
-        });
-    }
-    
-    renderWelcome() {
-        const messagesDiv = document.getElementById('chat-messages');
-        messagesDiv.innerHTML = `
-            <div class="welcome-message">
-                <h2>Welcome to ArcticCodex Studio</h2>
-                <p>Start a conversation to begin exploring your knowledge base.</p>
-                <p style="margin-top: 16px; font-size: 13px; color: #5f6368;">
-                    Messages will be enriched with citations from your vault.
-                </p>
-            </div>
-        `;
     }
     
     async sendMessage() {
         const input = document.getElementById('message-input');
-        const message = input.value.trim();
+        const msg = input.value.trim();
         
-        if (!message) return;
+        if (!msg || this.isLoading) return;
+        
+        this.isLoading = true;
+        
+        // Add user message
+        this.addMessage({
+            role: 'user',
+            content: msg,
+            timestamp: new Date().toISOString()
+        });
         
         input.value = '';
         
-        // Add user message to chat
-        await this.addMessageToChat(message, 'user');
-        
-        // Show loading state
-        const messagesDiv = document.getElementById('chat-messages');
-        const loadingEl = document.createElement('div');
-        loadingEl.className = 'message assistant';
-        loadingEl.textContent = 'Thinking...';
-        messagesDiv.appendChild(loadingEl);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-        
         try {
-            // Send to server
-            const response = await fetch('/api/chat', {
+            // Stream response
+            const response = await fetch('/api/chat/stream', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    message: message,
-                    conversation_id: this.convoId
+                    message: msg,
+                    convo_id: this.convoId
                 })
             });
             
-            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
             
-            if (response.ok) {
-                // Remove loading message
-                loadingEl.remove();
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+            let fullText = '';
+            let citations = [];
+            
+            const container = document.getElementById('chat-messages');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'message assistant-message';
+            container.appendChild(msgDiv);
+            
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+            msgDiv.appendChild(contentDiv);
+            
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
                 
-                // Add assistant response
-                await this.addMessageToChat(data.response, 'assistant', data.citations || []);
+                const chunk = decoder.decode(value);
+                const lines = chunk.split('\n').filter(l => l);
                 
-                // Update vault if new facts extracted
-                if (data.new_facts) {
-                    await this.loadVaultData();
+                for (const line of lines) {
+                    try {
+                        const event = JSON.parse(line);
+                        if (event.type === 'delta') {
+                            fullText += event.token + ' ';
+                            contentDiv.textContent = fullText;
+                        } else if (event.type === 'done') {
+                            citations = event.citations || [];
+                        }
+                    } catch (e) {
+                        console.error('Parse error:', e);
+                    }
                 }
-            } else {
-                loadingEl.textContent = 'Error: ' + (data.error || 'Failed to get response');
             }
+            
+            // Add citations if any
+            if (citations.length > 0) {
+                const citDiv = document.createElement('div');
+                citDiv.className = 'citations';
+                citations.forEach(cit => {
+                    const link = document.createElement('a');
+                    link.href = '#';
+                    link.textContent = `[${cit.title}]`;
+                    link.onclick = (e) => {
+                        e.preventDefault();
+                        this.showCitation(cit);
+                    };
+                    citDiv.appendChild(link);
+                });
+                msgDiv.appendChild(citDiv);
+            }
+            
+            // Scroll to bottom
+            container.scrollTop = container.scrollHeight;
+            
         } catch (error) {
-            loadingEl.textContent = 'Error: Connection failed';
-            console.error('Chat error:', error);
-        }
-    }
-    
-    async addMessageToChat(text, role, citations = []) {
-        const messagesDiv = document.getElementById('chat-messages');
-        
-        // Remove welcome message on first real message
-        const welcome = messagesDiv.querySelector('.welcome-message');
-        if (welcome) welcome.remove();
-        
-        const msgEl = document.createElement('div');
-        msgEl.className = `message ${role}`;
-        msgEl.textContent = text;
-        
-        if (citations.length > 0) {
-            const citDiv = document.createElement('div');
-            citDiv.className = 'message-citations';
-            citDiv.innerHTML = '<strong>Citations:</strong> ' + 
-                citations.map((cite, i) => `
-                    <span class="citation-link" onclick="app.showCitationDetail('${cite.id}')">
-                        [${i + 1}] ${cite.title || 'Source'}
-                    </span>
-                `).join(' ');
-            msgEl.appendChild(citDiv);
-        }
-        
-        messagesDiv.appendChild(msgEl);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-        
-        // Store in messages array
-        this.messages.push({ role, text, citations });
-    }
-    
-    async performSearch() {
-        const input = document.getElementById('search-input');
-        const query = input.value.trim();
-        
-        if (!query) return;
-        
-        const resultsDiv = document.getElementById('search-results');
-        resultsDiv.innerHTML = '<div style="color: #5f6368;">Searching...</div>';
-        
-        try {
-            const response = await fetch('/api/search', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ query: query })
+            this.addMessage({
+                role: 'assistant',
+                content: `Error: ${error.message}`,
+                timestamp: new Date().toISOString()
             });
-            
-            const data = await response.json();
-            
-            if (response.ok && data.results) {
-                resultsDiv.innerHTML = data.results.map((result, i) => `
-                    <div class="result-item">
-                        <strong>${result.title || 'Result ' + (i + 1)}</strong>
-                        <div style="margin-top: 4px;">${result.content.substring(0, 100)}...</div>
-                        <div class="result-score">Relevance: ${(result.score * 100).toFixed(0)}%</div>
-                    </div>
-                `).join('');
-            } else {
-                resultsDiv.innerHTML = '<div style="color: #ea4335;">Search failed</div>';
-            }
-        } catch (error) {
-            resultsDiv.innerHTML = '<div style="color: #ea4335;">Search error</div>';
-            console.error('Search error:', error);
+        } finally {
+            this.isLoading = false;
         }
     }
     
-    showDocumentDetail(docId) {
-        const doc = this.vault.documents.find(d => d.id === docId);
-        if (!doc) return;
-        
-        const modal = document.getElementById('document-modal');
-        const content = document.getElementById('document-detail');
-        content.innerHTML = `
-            <h3>${doc.title || doc.filename}</h3>
-            <div style="margin-top: 16px; color: #5f6368;">
-                <p><strong>Size:</strong> ${doc.size || 'Unknown'} bytes</p>
-                <p><strong>Chunks:</strong> ${doc.chunk_count || 0}</p>
-                <p><strong>ID:</strong> ${doc.id}</p>
-                ${doc.metadata ? `<p><strong>Metadata:</strong> ${JSON.stringify(doc.metadata)}</p>` : ''}
+    addMessage(msg) {
+        this.messages.push(msg);
+        const container = document.getElementById('chat-messages');
+        const div = document.createElement('div');
+        div.className = `message ${msg.role}-message`;
+        div.innerHTML = `<div class="message-content">${this.escape(msg.content)}</div>`;
+        container.appendChild(div);
+        container.scrollTop = container.scrollHeight;
+    }
+    
+    showCitation(cit) {
+        alert(`${cit.title}\n\n${cit.text.substring(0, 500)}...`);
+    }
+    
+    escape(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+    
+    renderUI() {
+        document.body.innerHTML = `
+        <div class="studio-container">
+            <header class="header">
+                <h1>⧈ ArcticCodex Conversational</h1>
+                <span class="convo-id">Session: ${this.convoId.substring(0, 12)}...</span>
+            </header>
+            <div class="chat-wrapper">
+                <div id="chat-messages" class="chat-messages"></div>
+                <div class="input-area">
+                    <textarea id="message-input" placeholder="Ask anything..." rows="3"></textarea>
+                    <button id="send-btn">Send (Ctrl+Enter)</button>
+                </div>
             </div>
+        </div>
+        <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; }
+            .studio-container { display: flex; flex-direction: column; height: 100vh; }
+            header { background: #1a1a1a; color: white; padding: 1rem; display: flex; justify-content: space-between; align-items: center; }
+            header h1 { font-size: 1.5rem; }
+            .convo-id { font-size: 0.9rem; opacity: 0.7; }
+            .chat-wrapper { display: flex; flex-direction: column; flex: 1; }
+            .chat-messages { flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 1rem; }
+            .message { padding: 1rem; border-radius: 8px; max-width: 80%; }
+            .user-message { background: #0066cc; color: white; align-self: flex-end; }
+            .assistant-message { background: #e0e0e0; color: #333; align-self: flex-start; }
+            .citations { margin-top: 0.5rem; font-size: 0.9rem; }
+            .citations a { color: #0066cc; margin-right: 0.5rem; text-decoration: none; }
+            .input-area { padding: 1rem; border-top: 1px solid #ddd; display: flex; gap: 0.5rem; }
+            textarea { flex: 1; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; }
+            button { padding: 0.75rem 1.5rem; background: #0066cc; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+            button:hover { background: #0052a3; }
+        </style>
         `;
-        modal.classList.remove('hidden');
-    }
-    
-    showFactDetail(factId) {
-        const fact = this.vault.facts.find(f => f.id === factId);
-        if (!fact) return;
-        
-        const modal = document.getElementById('document-modal');
-        const content = document.getElementById('document-detail');
-        content.innerHTML = `
-            <h3>Fact Detail</h3>
-            <div style="margin-top: 16px; font-family: monospace; background-color: #f8f9fa; padding: 12px; border-radius: 8px;">
-                <div><strong>Subject:</strong> ${fact.subject}</div>
-                <div><strong>Predicate:</strong> ${fact.predicate}</div>
-                <div><strong>Object:</strong> ${fact.object}</div>
-            </div>
-            <div style="margin-top: 16px; color: #5f6368;">
-                <p><strong>ID:</strong> ${fact.id}</p>
-                <p><strong>Confidence:</strong> ${(fact.confidence || 0.95).toFixed(2)}</p>
-            </div>
-        `;
-        modal.classList.remove('hidden');
-    }
-    
-    showCitationDetail(citationId) {
-        const modal = document.getElementById('document-modal');
-        const content = document.getElementById('document-detail');
-        content.innerHTML = `
-            <h3>Citation Source</h3>
-            <div style="margin-top: 16px; color: #5f6368;">
-                <p>Source ID: ${citationId}</p>
-                <p>This citation was retrieved from your vault.</p>
-            </div>
-        `;
-        modal.classList.remove('hidden');
-    }
-    
-    async approveFact(factId) {
-        try {
-            const response = await fetch('/api/memory/approve', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ fact_id: factId })
-            });
-            
-            if (response.ok) {
-                // Reload vault
-                await this.loadVaultData();
-            }
-        } catch (error) {
-            console.error('Approval error:', error);
-        }
-    }
-    
-    async rejectFact(factId) {
-        try {
-            const response = await fetch('/api/memory/reject', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ fact_id: factId })
-            });
-            
-            if (response.ok) {
-                // Reload vault
-                await this.loadVaultData();
-            }
-        } catch (error) {
-            console.error('Rejection error:', error);
-        }
+        this.setupEventListeners();
     }
 }
 
-// Initialize app when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    window.app = new StudioApp();
-});
+// Initialize on load
+window.addEventListener('load', () => new ChatApp());

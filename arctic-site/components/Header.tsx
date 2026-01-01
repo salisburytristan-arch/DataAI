@@ -30,10 +30,9 @@ export default function Header() {
   }, []);
 
   const navItems = [
+    { label: 'Try Chat', href: '/demo', id: 'demo', highlight: true },
     { label: 'Product', href: '#top', id: 'top' },
     { label: 'How It Works', href: '#specs', id: 'specs' },
-    { label: 'Features', href: '#teacher', id: 'teacher' },
-    { label: 'Use Cases', href: '/use-cases', id: 'use-cases' },
     { label: 'Docs', href: '/docs', id: 'docs' },
     { label: 'Security', href: '/security', id: 'security' },
     { label: 'Pricing', href: '/pricing', id: 'pricing' },
@@ -42,16 +41,16 @@ export default function Header() {
   const isActive = (id: string) => activeSection === id;
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-black/95 backdrop-blur-lg border-b border-white/10">
+    <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-saturate-150 border-b border-black/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 shrink-0 group">
-            <div className="text-sm font-mono font-bold text-white group-hover:text-cyan-400 transition">
+            <div className="text-sm font-mono font-bold text-slate-900 group-hover:text-cyan-600 transition">
               ARCTIC<span className="text-cyan-400">CODEX</span>
             </div>
-            <span className="hidden sm:inline text-xs text-gray-500 border border-gray-700 px-2 py-1 rounded group-hover:border-cyan-400 transition">
+            <span className="hidden sm:inline text-xs text-gray-600 border border-gray-300 px-2 py-1 rounded group-hover:border-cyan-400 transition">
               FORGE NUMERICS
             </span>
           </Link>
@@ -64,14 +63,16 @@ export default function Header() {
                 href={item.href}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`text-sm font-mono transition-colors relative py-2 px-2 ${
-                  isActive(item.id)
-                    ? 'text-cyan-400'
-                    : 'text-gray-400 hover:text-white'
+                  item.highlight
+                    ? 'text-cyan-600 font-bold'
+                    : isActive(item.id)
+                    ? 'text-cyan-600'
+                    : 'text-gray-700 hover:text-gray-900'
                 }`}
               >
                 {item.label}
                 {isActive(item.id) && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-400"></div>
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-600"></div>
                 )}
               </a>
             ))}
@@ -79,15 +80,15 @@ export default function Header() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-3">
-            <a
-              href="mailto:acrticasters@gmail.com?subject=Request%20Demo"
-              className="px-4 py-2 rounded text-sm font-mono text-white border border-white/20 hover:border-cyan-400 hover:bg-cyan-400/10 transition-all"
+            <Link
+              href="/demo"
+              className="px-4 py-2 rounded text-sm font-mono font-bold bg-cyan-500 text-white hover:bg-cyan-600 transition-all shadow-sm"
             >
-              Request Demo
-            </a>
+              Try Chat
+            </Link>
             <Link
               href="/console"
-              className="px-4 py-2 rounded text-sm font-mono font-bold bg-cyan-500 text-black hover:bg-cyan-400 transition-all"
+              className="px-4 py-2 rounded text-sm font-mono text-slate-900 border border-gray-300 hover:border-cyan-400 hover:bg-cyan-50 transition-all"
             >
               Console
             </Link>

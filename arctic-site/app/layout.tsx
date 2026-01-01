@@ -26,11 +26,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased light-theme`}>
+        {/* Animated bubble background */}
+        <div className="bubble-bg" aria-hidden="true">
+          <span className="bubble" />
+          <span className="bubble" />
+          <span className="bubble" />
+          <span className="bubble" />
+          <span className="bubble" />
+          <span className="bubble" />
+        </div>
         <Header />
-        {children}
+        <div className="relative z-10">
+          {children}
+        </div>
         <Footer />
       </body>
     </html>

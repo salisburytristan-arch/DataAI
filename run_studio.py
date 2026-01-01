@@ -58,6 +58,65 @@ def run_studio_fly():
         print("[!] Fly CLI not found. Install from: https://fly.io/docs/hands-on/install-flyctl/")
         return 1
     
+    # Check if app exists
+    print("[*] Checking if Fly app exists...")
+    result = subprocess.run(
+        ["fly", "status"],
+        cwd=str(repo_root),
+        capture_output=True,
+        text=True
+    )
+    
+    if result.returncode != 0:
+        print("[!] App does not exist. Creating it now...")
+        print("\n[*] Run these commands to set up Fly app:\n")
+        print("1. Create the app:")
+        print("   fly apps create arcticcodex-studio --org personal\n")
+        print("2. Create persistent volumes:")
+        print("   fly volumes create vault_data --size 10 --region iad")
+        print("   fly volumes create models_data --size 20 --region iad\n")
+        print("3. Deploy:")
+        print("   fly deploy --dockerfile Dockerfile.fly-prod\n")
+        print("Or run these commands automatically? (y/n): ", end="")
+        
+        try:
+            response = input().lower().strip()
+        except (EOFError, KeyboardInterrupt):
+            response = "n"
+        
+        if response == "y":
+            # Create app
+            print("\n[*] Creating app...")
+            result = subprocess.run(
+                ["fly", "apps", "create", "arcticcodex-studio"],
+                cwd=str(repo_root)
+            )
+            if result.returncode != 0:
+                print("[!] Failed to create app")
+                return 1
+            
+            # Create volumes
+            print("\n[*] Creating vault_data volume...")
+            result = subprocess.run(
+                ["fly", "volumes", "create", "vault_data", "--size", "10", "--region", "iad"],
+                cwd=str(repo_root)
+            )
+            if result.returncode != 0:
+                print("[!] Failed to create vault_data volume")
+                return 1
+            
+            print("\n[*] Creating models_data volume...")
+            result = subprocess.run(
+                ["fly", "volumes", "create", "models_data", "--size", "20", "--region", "iad"],
+                cwd=str(repo_root)
+            )
+            if result.returncode != 0:
+                print("[!] Failed to create models_data volume")
+                return 1
+        else:
+            print("\n[*] Please run the commands above manually, then try 'python run_studio.py fly' again.")
+            return 1
+    
     # Deploy
     cmd = [
         "fly",
@@ -65,7 +124,7 @@ def run_studio_fly():
         "--dockerfile", "Dockerfile.fly-prod"
     ]
     
-    print(f"[*] Running: {' '.join(cmd)}\n")
+    print(f"\n[*] Running: {' '.join(cmd)}\n")
     result = subprocess.run(cmd, cwd=str(repo_root))
     
     if result.returncode == 0:
@@ -74,6 +133,7 @@ def run_studio_fly():
         print("[*] View at: fly open")
     else:
         print("[!] Deployment failed")
+        print("[*] Check logs with: fly logs")
     
     return result.returncode
 

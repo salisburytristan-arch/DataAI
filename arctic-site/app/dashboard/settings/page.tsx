@@ -15,6 +15,8 @@ interface ModelPolicy {
   max_daily_cost: number | null;
 }
 
+type NewModelPolicy = Omit<ModelPolicy, 'id'>;
+
 interface OrgSettings {
   display_name: string;
   settings: Record<string, any>;
@@ -33,7 +35,7 @@ export default function SettingsPage() {
     display_name: '',
   });
 
-  const [newModel, setNewModel] = useState({
+  const [newModel, setNewModel] = useState<NewModelPolicy>({
     provider: 'openai',
     model_name: 'gpt-4',
     max_rpm: 60,

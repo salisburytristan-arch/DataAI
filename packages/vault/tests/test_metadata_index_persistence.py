@@ -8,8 +8,8 @@ vault_src = Path(__file__).parent.parent
 if str(vault_src) not in sys.path:
     sys.path.insert(0, str(vault_src))
 
-from src.storage.metadataIndex import MetadataIndex
-from src.types import DocRecord, ChunkRecord, TombstoneRecord, RecordType
+from packages.vault.src.storage.metadataIndex import MetadataIndex
+from packages.vault.src.types import DocRecord, ChunkRecord, TombstoneRecord, RecordType
 
 
 def test_metadata_index_persists_and_restores_tombstones():

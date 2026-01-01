@@ -16,7 +16,7 @@ export default function QuickstartPage() {
             </Link>
             <h1 className="text-4xl font-bold mb-4">Quickstart Guide</h1>
             <p className="text-gray-400 text-lg">
-              Get ArcticCodex running in 10 minutes. From installation to your first vault query.
+              Call the hosted ArcticCodex API in minutes. Hosted-first; local is optional for Enterprise.
             </p>
           </motion.div>
         </div>
@@ -29,131 +29,97 @@ export default function QuickstartPage() {
           <ul className="space-y-2 text-gray-400">
             <li className="flex gap-2">
               <CheckCircle size={18} className="text-green-400 mt-0.5 flex-shrink-0" />
-              Python 3.10 or newer
+              API key from Console
             </li>
             <li className="flex gap-2">
               <CheckCircle size={18} className="text-green-400 mt-0.5 flex-shrink-0" />
-              pip or conda package manager
+              HTTPS client (curl, Postman, or SDK)
             </li>
             <li className="flex gap-2">
               <CheckCircle size={18} className="text-green-400 mt-0.5 flex-shrink-0" />
-              PostgreSQL 12+ (or SQLite for development)
-            </li>
-            <li className="flex gap-2">
-              <CheckCircle size={18} className="text-green-400 mt-0.5 flex-shrink-0" />
-              4GB RAM minimum (8GB recommended)
+              For local optional use: Python 3.10+ and uvicorn
             </li>
           </ul>
         </div>
 
-        {/* Step 1: Installation */}
+        {/* Step 1: Get an API key */}
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-8 rounded-full bg-cyan-600/30 border border-cyan-500/50 flex items-center justify-center text-cyan-400 font-bold">
               1
             </div>
-            <h3 className="text-xl font-bold">Install ArcticCodex</h3>
+            <h3 className="text-xl font-bold">Create an API key</h3>
           </div>
-
-          <p className="text-gray-400 mb-4">Install via pip (recommended for most users):</p>
-          <code className="block px-4 py-3 bg-black/50 border border-white/10 rounded text-cyan-400 text-sm font-mono mb-4">
-            pip install arcticcodex
-          </code>
-
-          <p className="text-gray-400 mb-2">Or install from source:</p>
-          <code className="block px-4 py-3 bg-black/50 border border-white/10 rounded text-cyan-400 text-sm font-mono">
-            git clone https://github.com/salisburytristan-arch/ArcticCodex.git
-            <br />
-            cd ArcticCodex
-            <br />
-            pip install -e .
-          </code>
+          <p className="text-gray-400 mb-2">In Console → API Keys → New key. Keep it secret; scoped to your org.</p>
         </div>
 
-        {/* Step 2: Initialize */}
+        {/* Step 2: Call hosted chat */}
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-8 rounded-full bg-cyan-600/30 border border-cyan-500/50 flex items-center justify-center text-cyan-400 font-bold">
               2
             </div>
-            <h3 className="text-xl font-bold">Create Your Vault</h3>
+            <h3 className="text-xl font-bold">Send your first request</h3>
           </div>
 
-          <p className="text-gray-400 mb-4">Initialize a new vault (knowledge base):</p>
-          <code className="block px-4 py-3 bg-black/50 border border-white/10 rounded text-cyan-400 text-sm font-mono mb-4">
-            arctic init --name my-vault --storage sqlite
-          </code>
-
-          <p className="text-gray-400 mb-4">For production, use PostgreSQL:</p>
-          <code className="block px-4 py-3 bg-black/50 border border-white/10 rounded text-cyan-400 text-sm font-mono">
-            arctic init --name my-vault --storage postgresql --db-url
-            postgresql://user:pass@localhost/arctic
-          </code>
+          <pre className="px-4 py-3 bg-black/50 border border-white/10 rounded text-cyan-400 text-sm font-mono mb-4 whitespace-pre-wrap">
+{`curl -X POST https://api.arcticcodex.com/v1/chat/completions \
+  -H "Authorization: Bearer $ACX_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "ac-hosted-pro",
+    "messages": [{"role": "user", "content": "What is ArcticCodex?"}],
+    "temperature": 0.3
+  }'`}
+          </pre>
+          <p className="text-gray-500 text-sm">Response includes <span className="font-mono text-cyan-300">audit</span> with event_id, hash, timestamp, export_url, and citations.</p>
         </div>
 
-        {/* Step 3: Add Data */}
+        {/* Step 3: Retrieve audit receipt */}
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-8 rounded-full bg-cyan-600/30 border border-cyan-500/50 flex items-center justify-center text-cyan-400 font-bold">
               3
             </div>
-            <h3 className="text-xl font-bold">Add Knowledge to Vault</h3>
+            <h3 className="text-xl font-bold">Download the audit receipt</h3>
           </div>
-
-          <p className="text-gray-400 mb-4">Store your first frame (knowledge unit):</p>
-          <code className="block px-4 py-3 bg-black/50 border border-white/10 rounded text-cyan-400 text-sm font-mono mb-4">
-            arctic store --vault my-vault --text "Python is a high-level programming language" --tags
-            programming,python
-          </code>
-
-          <p className="text-gray-400 mb-4">Or import from a file:</p>
-          <code className="block px-4 py-3 bg-black/50 border border-white/10 rounded text-cyan-400 text-sm font-mono">
-            arctic import --vault my-vault --file documents/knowledge.txt
-          </code>
+          <pre className="px-4 py-3 bg-black/50 border border-white/10 rounded text-cyan-400 text-sm font-mono mb-4 whitespace-pre-wrap">
+{`curl -X GET https://api.arcticcodex.com/v1/audit/receipts/ev_abc123 \
+  -H "Authorization: Bearer $ACX_API_KEY"`}
+          </pre>
         </div>
 
-        {/* Step 4: Query */}
+        {/* Optional: Ingest and search */}
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-8 rounded-full bg-cyan-600/30 border border-cyan-500/50 flex items-center justify-center text-cyan-400 font-bold">
               4
             </div>
-            <h3 className="text-xl font-bold">Query Your Vault</h3>
+            <h3 className="text-xl font-bold">Search your hosted vault</h3>
           </div>
-
-          <p className="text-gray-400 mb-4">Search your vault:</p>
-          <code className="block px-4 py-3 bg-black/50 border border-white/10 rounded text-cyan-400 text-sm font-mono mb-4">
-            arctic search --vault my-vault --query "What is Python?"
-          </code>
-
-          <p className="text-gray-400 mb-4">Expected output:</p>
-          <pre className="px-4 py-3 bg-black/50 border border-white/10 rounded text-green-400 text-sm font-mono">
-            {`Frame ID: 0x1A2B3C4D
-Content: Python is a high-level programming language
-Confidence: 0.95
-HMAC: ✓ Verified
-Tags: programming, python`}
+          <pre className="px-4 py-3 bg-black/50 border border-white/10 rounded text-cyan-400 text-sm font-mono mb-4 whitespace-pre-wrap">
+{`curl -X POST https://api.arcticcodex.com/v1/vault/search \
+  -H "Authorization: Bearer $ACX_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"query": "audit", "limit": 5}'`}
           </pre>
         </div>
 
-        {/* Step 5: API Server */}
+        {/* Optional local (Enterprise) */}
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-8 rounded-full bg-cyan-600/30 border border-cyan-500/50 flex items-center justify-center text-cyan-400 font-bold">
               5
             </div>
-            <h3 className="text-xl font-bold">Start API Server (Optional)</h3>
+            <h3 className="text-xl font-bold">Optional: Local runtime (Enterprise)</h3>
           </div>
-
-          <p className="text-gray-400 mb-4">Launch the REST API server:</p>
-          <code className="block px-4 py-3 bg-black/50 border border-white/10 rounded text-cyan-400 text-sm font-mono mb-4">
-            arctic serve --vault my-vault --port 8000
-          </code>
-
-          <p className="text-gray-400 mb-4">Test the API:</p>
-          <code className="block px-4 py-3 bg-black/50 border border-white/10 rounded text-cyan-400 text-sm font-mono">
-            curl http://localhost:8000/health
-          </code>
+          <p className="text-gray-400 mb-2">For regulated on-prem: run the API locally with your own models.</p>
+          <pre className="px-4 py-3 bg-black/50 border border-white/10 rounded text-cyan-400 text-sm font-mono mb-4 whitespace-pre-wrap">
+{`python -m venv .venv
+source .venv/bin/activate  # or .\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+uvicorn packages.core.src.api:app --port 8000`}
+          </pre>
         </div>
 
         {/* Next Steps */}
@@ -192,7 +158,7 @@ Tags: programming, python`}
             </Link>
 
             <a
-              href="mailto:acrticasters@gmail.com"
+              href="mailto:support@arcticcodex.com"
               className="border border-white/10 rounded-lg p-6 hover:border-cyan-400/50 transition-all"
             >
               <h4 className="font-bold mb-2 text-cyan-400">Get Help</h4>
@@ -212,20 +178,20 @@ Tags: programming, python`}
           <div className="space-y-4">
             {[
               {
-                q: 'ImportError: No module named arcticcodex',
-                a: 'Make sure you activated your virtual environment: source .venv/bin/activate',
+                q: '401 Unauthorized',
+                a: 'Ensure Authorization header is set: Bearer <API_KEY>. Rotate the key if compromised.',
               },
               {
-                q: 'Permission denied when running arctic commands',
-                a: 'You may need to use sudo or adjust file permissions: chmod +x ~/.local/bin/arctic',
+                q: '429 Too Many Requests',
+                a: 'Sandbox has 50k token/month and burst limits. Upgrade or contact support for Enterprise limits.',
               },
               {
-                q: 'PostgreSQL connection refused',
-                a: 'Check that PostgreSQL is running: sudo systemctl status postgresql',
+                q: 'Need EU data residency',
+                a: 'Enterprise can request EU-hosted tenancy; contact support.',
               },
               {
-                q: 'HMAC verification failed',
-                a: 'Frame may be corrupted. Use arctic verify --vault my-vault to scan all frames.',
+                q: 'Missing audit receipt fields',
+                a: 'All hosted responses include audit. If absent, contact support with request ID.',
               },
             ].map((item, i) => (
               <details

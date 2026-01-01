@@ -7,7 +7,7 @@ vault_src = Path(__file__).parent.parent
 if str(vault_src) not in sys.path:
     sys.path.insert(0, str(vault_src))
 
-from src.storage.objectStore import ObjectStore
+from packages.vault.src.storage.objectStore import ObjectStore
 
 
 def test_object_store_stats_and_list():

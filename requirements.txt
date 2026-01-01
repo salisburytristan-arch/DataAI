@@ -16,7 +16,7 @@ supabase==2.3.5
 
 # Real Distributed Agent Swarm (not simulation)
 celery[redis]==5.3.4
-redis==5.0.1
+redis==4.6.0
 kombu==5.3.4
 
 # Cloud GPU Providers (multi-cloud support)

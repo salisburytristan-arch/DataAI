@@ -5,78 +5,97 @@ export default function TermsPage() {
     <main className="min-h-screen py-16">
       <div className="max-w-4xl mx-auto px-6">
         <h1 className="text-4xl font-bold mb-8">Terms of Service</h1>
-        <p className="text-gray-400 mb-8">Last updated: December 2024</p>
+        <p className="text-gray-400 mb-8">Last updated: December 2025</p>
 
         <div className="prose prose-invert max-w-none space-y-6 text-gray-400">
           <section>
-            <h2 className="text-2xl font-bold text-white mb-3">1. Agreement to Terms</h2>
+            <h2 className="text-2xl font-bold text-white mb-3">1. Scope</h2>
             <p>
-              By accessing and using ArcticCodex, you accept and agree to be bound by the terms and
-              provision of this agreement.
+              These Terms govern your access to and use of the ArcticCodex hosted platform, APIs, console, and related services.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-3">2. Use License</h2>
+            <h2 className="text-2xl font-bold text-white mb-3">2. Accounts & Access</h2>
             <p>
-              Permission is granted to temporarily download one copy of the materials (information or
-              software) on ArcticCodex for personal, non-commercial transitory viewing only.
+              You must maintain accurate account information. API keys are confidential and must not be shared outside your organization. You are responsible for activity under your account and keys.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-3">3. Disclaimer</h2>
+            <h2 className="text-2xl font-bold text-white mb-3">3. Acceptable Use</h2>
             <p>
-              The materials on ArcticCodex are provided on an 'as is' basis. We make no warranties,
-              expressed or implied, and hereby disclaim and negate all other warranties including,
-              without limitation, implied warranties or conditions of merchantability, fitness for a
-              particular purpose, or non-infringement of intellectual property or other violation of
-              rights.
+              Do not misuse the service (no illegal content, malware, denial-of-service, credential stuffing, model abuse, or attempts to access other tenants). We may throttle or suspend for abuse.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-3">4. Limitations</h2>
+            <h2 className="text-2xl font-bold text-white mb-3">4. Customer Data</h2>
             <p>
-              In no event shall ArcticCodex or its suppliers be liable for any damages (including,
-              without limitation, damages for loss of data or profit, or due to business interruption)
-              arising out of the use or inability to use ArcticCodex.
+              You retain all rights to Customer Data. We do not train hosted models on your data by default. We process Customer Data solely to provide the services, subject to the Privacy Policy and any DPA/BAA executed.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-3">5. Accuracy of Materials</h2>
+            <h2 className="text-2xl font-bold text-white mb-3">5. Service Levels</h2>
             <p>
-              The materials appearing on ArcticCodex could include technical, typographical, or
-              photographic errors. We do not warrant that any of the materials on ArcticCodex are
-              accurate, complete, or current.
+              Hosted Pro targets 99.5% uptime; Enterprise targets 99.9%+. SLA credits (if applicable) are your exclusive remedy for SLA breaches. Status is published on the Status page.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-3">6. Modifications</h2>
+            <h2 className="text-2xl font-bold text-white mb-3">6. Security</h2>
             <p>
-              We may revise these Terms of Service at any time without notice. By using this website,
-              you are agreeing to be bound by the then current version of these terms of service.
+              We implement encryption in transit (TLS 1.3) and at rest (AES-256), role-based access controls, and audit receipts for API responses. You must keep credentials secure and configure least-privilege roles.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-3">7. Governing Law</h2>
+            <h2 className="text-2xl font-bold text-white mb-3">7. Fees & Payment</h2>
             <p>
-              These terms and conditions are governed by and construed in accordance with the laws of
-              the United States, and you irrevocably submit to the exclusive jurisdiction of the courts
-              located in this location.
+              Paid tiers are billed as stated on the Pricing page or order form. Overages and taxes may apply. Late payments may result in suspension.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-3">8. Contact</h2>
+            <h2 className="text-2xl font-bold text-white mb-3">8. Confidentiality</h2>
             <p>
-              If you have any questions about these Terms, please contact us at{' '}
-              <a href="mailto:legal@arcticcodex.com" className="text-cyan-400 hover:underline">
-                legal@arcticcodex.com
-              </a>
+              Non-public information disclosed by either party must be protected with reasonable care and used only for fulfilling these Terms.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-3">9. Warranties & Disclaimers</h2>
+            <p>
+              Services are provided “as is.” We disclaim all implied warranties to the maximum extent permitted by law.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-3">10. Limitation of Liability</h2>
+            <p>
+              To the fullest extent permitted, our aggregate liability is limited to fees paid in the prior three (3) months. We are not liable for indirect, incidental, or consequential damages.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-3">11. Termination</h2>
+            <p>
+              You may terminate by stopping use and closing your account. We may terminate or suspend for breach, abuse, or non-payment. Upon termination, you may request deletion of Customer Data subject to legal retention.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-3">12. Governing Law</h2>
+            <p>
+              These Terms are governed by the laws of Delaware, USA, without regard to conflict of laws. Venue is the state or federal courts in Delaware.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-3">13. Contact</h2>
+            <p>
+              Legal notices: <a href="mailto:legal@arcticcodex.com" className="text-cyan-400 hover:underline">legal@arcticcodex.com</a>. Security: <a href="mailto:security@arcticcodex.com" className="text-cyan-400 hover:underline">security@arcticcodex.com</a>.
             </p>
           </section>
         </div>

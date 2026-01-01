@@ -15,7 +15,7 @@ export default function APIReferencePage() {
             </Link>
             <h1 className="text-4xl font-bold mb-4">API Reference</h1>
             <p className="text-gray-400 text-lg">
-              Complete REST API documentation for ArcticCodex. All endpoints, parameters, and examples.
+              Hosted API for ArcticCodex. OpenAI-compatible chat completions plus vault search and audit receipts.
             </p>
           </motion.div>
         </div>
@@ -25,210 +25,99 @@ export default function APIReferencePage() {
       <section className="max-w-4xl mx-auto px-6 py-12">
         <div className="border border-white/10 rounded-lg p-6 bg-white/[0.02] mb-8">
           <h3 className="text-sm font-bold text-gray-400 mb-2">Base URL</h3>
-          <code className="text-cyan-400 font-mono">https://api.arcticcodex.com/v1</code>
-          <p className="text-xs text-gray-500 mt-2">
-            Or use localhost for self-hosted: http://localhost:8000/v1
-          </p>
+          <code className="text-cyan-400 font-mono">https://api.arcticcodex.com</code>
+          <p className="text-xs text-gray-500 mt-2">All requests require HTTPS and a Bearer API key.</p>
         </div>
 
         {/* Authentication */}
         <h2 className="text-2xl font-bold mb-4">Authentication</h2>
-        <p className="text-gray-400 mb-4">
-          All API requests require an API key in the Authorization header:
-        </p>
-        <code className="block px-4 py-3 bg-black/50 border border-white/10 rounded text-cyan-400 text-sm font-mono mb-8">
-          Authorization: Bearer YOUR_API_KEY
-        </code>
+        <p className="text-gray-400 mb-8">Send <span className="font-mono text-cyan-400">Authorization: Bearer &lt;API_KEY&gt;</span> for every request. Keys are scoped to orgs; rotate in Console.</p>
 
         {/* Endpoints */}
         <h2 className="text-2xl font-bold mb-6">Endpoints</h2>
 
-        {/* Health Check */}
+        {/* Chat Completions (OpenAI-compatible) */}
         <div className="mb-8 border border-white/10 rounded-lg p-6 bg-white/[0.02]">
           <div className="flex items-center gap-2 mb-4">
-            <span className="px-2 py-1 rounded bg-green-900/30 text-green-400 text-xs font-mono">
-              GET
-            </span>
-            <code className="text-cyan-400 font-mono">/health</code>
+            <span className="px-2 py-1 rounded bg-blue-900/30 text-blue-400 text-xs font-mono">POST</span>
+            <code className="text-cyan-400 font-mono">/v1/chat/completions</code>
           </div>
-          <p className="text-gray-400 mb-4">Check API server health status.</p>
-          <details className="text-sm">
-            <summary className="cursor-pointer text-cyan-400 hover:text-cyan-300 mb-2">
-              Example Response
-            </summary>
-            <pre className="px-4 py-3 bg-black/50 border border-white/10 rounded text-green-400 font-mono text-xs overflow-x-auto">
-              {JSON.stringify(
-                {
-                  status: 'healthy',
-                  version: '1.0.0',
-                  uptime: 3600,
-                },
-                null,
-                2
-              )}
-            </pre>
-          </details>
-        </div>
-
-        {/* Store Frame */}
-        <div className="mb-8 border border-white/10 rounded-lg p-6 bg-white/[0.02]">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="px-2 py-1 rounded bg-blue-900/30 text-blue-400 text-xs font-mono">
-              POST
-            </span>
-            <code className="text-cyan-400 font-mono">/vault/:vault_id/frames</code>
-          </div>
-          <p className="text-gray-400 mb-4">Store a new frame in the vault.</p>
-
+          <p className="text-gray-400 mb-4">Drop-in compatible with OpenAI chat completions; returns audit receipts and citations.</p>
           <details className="text-sm mb-4">
-            <summary className="cursor-pointer text-cyan-400 hover:text-cyan-300 mb-2">
-              Request Body
-            </summary>
+            <summary className="cursor-pointer text-cyan-400 hover:text-cyan-300 mb-2">Request Body</summary>
             <pre className="px-4 py-3 bg-black/50 border border-white/10 rounded text-cyan-400 font-mono text-xs overflow-x-auto">
-              {JSON.stringify(
-                {
-                  content: 'Your knowledge text here',
-                  tags: ['tag1', 'tag2'],
-                  metadata: {
-                    source: 'user_input',
-                    timestamp: '2024-12-21T12:00:00Z',
-                  },
-                },
-                null,
-                2
-              )}
+{JSON.stringify({
+  model: 'ac-hosted-pro',
+  messages: [{ role: 'user', content: 'What is ArcticCodex?' }],
+  temperature: 0.3,
+  max_tokens: 800
+}, null, 2)}
             </pre>
           </details>
-
           <details className="text-sm">
-            <summary className="cursor-pointer text-cyan-400 hover:text-cyan-300 mb-2">
-              Example Response
-            </summary>
+            <summary className="cursor-pointer text-cyan-400 hover:text-cyan-300 mb-2">Example Response</summary>
             <pre className="px-4 py-3 bg-black/50 border border-white/10 rounded text-green-400 font-mono text-xs overflow-x-auto">
-              {JSON.stringify(
-                {
-                  frame_id: '0x1A2B3C4D',
-                  hmac: 'a1b2c3d4...',
-                  status: 'stored',
-                  created_at: '2024-12-21T12:00:00Z',
-                },
-                null,
-                2
-              )}
+{JSON.stringify({
+  id: 'chatcmpl-123',
+  object: 'chat.completion',
+  created: 1735600000,
+  model: 'ac-hosted-pro',
+  choices: [{ message: { role: 'assistant', content: 'ArcticCodex is an audit-ready hosted LLM platform.' }, finish_reason: 'stop' }],
+  audit: {
+    event_id: 'ev_abc123',
+    hash: 'sha256:... ',
+    timestamp: '2025-12-30T00:00:00Z',
+    export_url: 'https://api.arcticcodex.com/v1/audit/receipts/ev_abc123',
+    citations: [{ doc: 'vault://doc/123', offset: 0 }]
+  }
+}, null, 2)}
             </pre>
           </details>
         </div>
 
-        {/* Search */}
+        {/* Vault Search */}
         <div className="mb-8 border border-white/10 rounded-lg p-6 bg-white/[0.02]">
           <div className="flex items-center gap-2 mb-4">
-            <span className="px-2 py-1 rounded bg-blue-900/30 text-blue-400 text-xs font-mono">
-              POST
-            </span>
-            <code className="text-cyan-400 font-mono">/vault/:vault_id/search</code>
+            <span className="px-2 py-1 rounded bg-blue-900/30 text-blue-400 text-xs font-mono">POST</span>
+            <code className="text-cyan-400 font-mono">/v1/vault/search</code>
           </div>
-          <p className="text-gray-400 mb-4">Search frames in the vault.</p>
-
+          <p className="text-gray-400 mb-4">Hybrid search over your hosted vault with citations.</p>
           <details className="text-sm mb-4">
-            <summary className="cursor-pointer text-cyan-400 hover:text-cyan-300 mb-2">
-              Request Body
-            </summary>
+            <summary className="cursor-pointer text-cyan-400 hover:text-cyan-300 mb-2">Request Body</summary>
             <pre className="px-4 py-3 bg-black/50 border border-white/10 rounded text-cyan-400 font-mono text-xs overflow-x-auto">
-              {JSON.stringify(
-                {
-                  query: 'What is Python?',
-                  limit: 10,
-                  threshold: 0.7,
-                },
-                null,
-                2
-              )}
+{JSON.stringify({ query: 'audit logging', limit: 5 }, null, 2)}
             </pre>
           </details>
-
           <details className="text-sm">
-            <summary className="cursor-pointer text-cyan-400 hover:text-cyan-300 mb-2">
-              Example Response
-            </summary>
+            <summary className="cursor-pointer text-cyan-400 hover:text-cyan-300 mb-2">Example Response</summary>
             <pre className="px-4 py-3 bg-black/50 border border-white/10 rounded text-green-400 font-mono text-xs overflow-x-auto">
-              {JSON.stringify(
-                {
-                  results: [
-                    {
-                      frame_id: '0x1A2B3C4D',
-                      content: 'Python is a high-level programming language',
-                      score: 0.95,
-                      hmac_verified: true,
-                    },
-                  ],
-                  total: 1,
-                },
-                null,
-                2
-              )}
+{JSON.stringify({
+  results: [
+    { chunk_id: 'ch_1', score: 0.82, snippet: 'Every response is signed and logged...', citation: { doc: 'vault://doc/123', offset: 0 } }
+  ]
+}, null, 2)}
             </pre>
           </details>
         </div>
 
-        {/* Verify Frame */}
+        {/* Audit Receipts */}
         <div className="mb-8 border border-white/10 rounded-lg p-6 bg-white/[0.02]">
           <div className="flex items-center gap-2 mb-4">
-            <span className="px-2 py-1 rounded bg-green-900/30 text-green-400 text-xs font-mono">
-              GET
-            </span>
-            <code className="text-cyan-400 font-mono">/vault/:vault_id/frames/:frame_id/verify</code>
+            <span className="px-2 py-1 rounded bg-green-900/30 text-green-400 text-xs font-mono">GET</span>
+            <code className="text-cyan-400 font-mono">/v1/audit/receipts/:event_id</code>
           </div>
-          <p className="text-gray-400 mb-4">Verify frame integrity with HMAC.</p>
-
+          <p className="text-gray-400 mb-4">Download the signed audit receipt for a prior response.</p>
           <details className="text-sm">
-            <summary className="cursor-pointer text-cyan-400 hover:text-cyan-300 mb-2">
-              Example Response
-            </summary>
+            <summary className="cursor-pointer text-cyan-400 hover:text-cyan-300 mb-2">Example Response</summary>
             <pre className="px-4 py-3 bg-black/50 border border-white/10 rounded text-green-400 font-mono text-xs overflow-x-auto">
-              {JSON.stringify(
-                {
-                  frame_id: '0x1A2B3C4D',
-                  verified: true,
-                  hmac_match: true,
-                  checked_at: '2024-12-21T12:00:00Z',
-                },
-                null,
-                2
-              )}
-            </pre>
-          </details>
-        </div>
-
-        {/* Audit Log */}
-        <div className="mb-8 border border-white/10 rounded-lg p-6 bg-white/[0.02]">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="px-2 py-1 rounded bg-green-900/30 text-green-400 text-xs font-mono">
-              GET
-            </span>
-            <code className="text-cyan-400 font-mono">/vault/:vault_id/audit</code>
-          </div>
-          <p className="text-gray-400 mb-4">Retrieve audit log entries.</p>
-
-          <details className="text-sm">
-            <summary className="cursor-pointer text-cyan-400 hover:text-cyan-300 mb-2">
-              Example Response
-            </summary>
-            <pre className="px-4 py-3 bg-black/50 border border-white/10 rounded text-green-400 font-mono text-xs overflow-x-auto">
-              {JSON.stringify(
-                {
-                  entries: [
-                    {
-                      timestamp: '2024-12-21T12:00:00Z',
-                      action: 'frame_stored',
-                      user_id: 'user_123',
-                      frame_id: '0x1A2B3C4D',
-                    },
-                  ],
-                  total: 1,
-                },
-                null,
-                2
-              )}
+{JSON.stringify({
+  event_id: 'ev_abc123',
+  hash: 'sha256:...',
+  timestamp: '2025-12-30T00:00:00Z',
+  signer: 'ac-hosted',
+  citations: [{ doc: 'vault://doc/123', offset: 0 }],
+  signature: 'hex...'
+}, null, 2)}
             </pre>
           </details>
         </div>
@@ -238,19 +127,8 @@ export default function APIReferencePage() {
       <section className="border-t border-white/10 bg-white/[0.01] py-12">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-2xl font-bold mb-6">Rate Limits</h2>
-
           <div className="border border-white/10 rounded-lg p-6 bg-white/[0.02]">
-            <ul className="space-y-2 text-gray-400">
-              <li>
-                <strong className="text-white">Community:</strong> 1,000 requests/month
-              </li>
-              <li>
-                <strong className="text-white">Professional:</strong> Unlimited
-              </li>
-              <li>
-                <strong className="text-white">Enterprise:</strong> Unlimited with dedicated infrastructure
-              </li>
-            </ul>
+            <p className="text-gray-400 text-sm">Sandbox: 50k tokens/month, bursts limited. Hosted Pro: 2M tokens/month included; fair-use burst protection applies. Enterprise: contracted per-tenant limits.</p>
           </div>
         </div>
       </section>
@@ -282,14 +160,14 @@ export default function APIReferencePage() {
       {/* SDKs */}
       <section className="border-t border-white/10 py-12">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-2xl font-bold mb-6">Official SDKs</h2>
+          <h2 className="text-2xl font-bold mb-6">SDKs</h2>
 
           <div className="grid md:grid-cols-2 gap-6">
             {[
-              { lang: 'Python', status: 'Available', link: '#' },
-              { lang: 'JavaScript/TypeScript', status: 'Available', link: '#' },
-              { lang: 'Go', status: 'Coming Soon', link: '#' },
-              { lang: 'Rust', status: 'Coming Soon', link: '#' },
+              { lang: 'Python', status: 'Local examples only', link: '#' },
+              { lang: 'JavaScript/TypeScript', status: 'Local examples only', link: '#' },
+              { lang: 'Go', status: 'Planned', link: '#' },
+              { lang: 'Rust', status: 'Planned', link: '#' },
             ].map((sdk, i) => (
               <div
                 key={i}

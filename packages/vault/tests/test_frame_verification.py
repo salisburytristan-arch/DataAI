@@ -9,15 +9,15 @@ vault_src = Path(__file__).parent.parent
 if str(vault_src) not in sys.path:
     sys.path.insert(0, str(vault_src))
 
-from src.vault import Vault
-from src.types import SummaryRecord, FactRecord
+from packages.vault.src.vault import Vault
+from packages.vault.src.types import SummaryRecord, FactRecord
 
 # Also need core package  
 core_src = Path(__file__).resolve().parents[2] / "core" / "src"
 if str(core_src.parent) not in sys.path:
     sys.path.insert(0, str(core_src.parent))
-from src.fn_bridge import to_fn_summary, to_fn_fact
-from src.frame_verifier import FrameVerifier
+from packages.core.src.fn_bridge import to_fn_summary, to_fn_fact
+from packages.core.src.frame_verifier import FrameVerifier
 
 
 class TestVaultFrameVerification(unittest.TestCase):

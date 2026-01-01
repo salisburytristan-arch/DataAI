@@ -44,8 +44,8 @@ class FlyStudioServer:
     
     def __init__(
         self,
-        vault_path: str = "/app/vault",
-        models_dir: str = "/app/models",
+        vault_path: str = "/app/data/vault",
+        models_dir: str = "/app/data/models",
         port: int = 8000,
         host: str = "0.0.0.0",
         embeddings: bool = True,
@@ -120,7 +120,8 @@ class FlyStudioServer:
                         self._respond_json({
                             "status": "healthy",
                             "timestamp": datetime.now().isoformat(),
-                            "vault_chunks": len(list(server_instance.vault.objects.glob("chunks/*"))),
+                            "server": "arcticcodex-studio-fly",
+                            "vault_path": server_instance.vault_path,
                         })
                     
                     elif path == "/api/vault/stats":
@@ -146,6 +147,16 @@ class FlyStudioServer:
                     self._respond_json({"error": str(e)}, 500)
                 
                 self.log_message = lambda *args: None  # Suppress logs
+            
+            def do_OPTIONS(self):
+                """Handle CORS preflight requests."""
+                self.send_response(200)
+                self.send_header("Access-Control-Allow-Origin", "*")
+                self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+                self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization")
+                self.send_header("Access-Control-Max-Age", "3600")
+                self.end_headers()
+                self.log_message = lambda *args: None
             
             def do_POST(self):
                 """Handle POST requests."""
@@ -364,8 +375,8 @@ def main():
     parser = argparse.ArgumentParser(description="ArcticCodex Studio Server for Fly.io")
     parser.add_argument("--host", default="0.0.0.0", help="Host to bind to")
     parser.add_argument("--port", type=int, default=8000, help="Port to listen on")
-    parser.add_argument("--vault", default="/app/vault", help="Vault directory path")
-    parser.add_argument("--models-dir", default="/app/models", help="Models directory path")
+    parser.add_argument("--vault", default="/app/data/vault", help="Vault directory path")
+    parser.add_argument("--models-dir", default="/app/data/models", help="Models directory path")
     parser.add_argument("--embeddings", choices=["on", "off"], default="on", help="Enable embeddings")
     parser.add_argument("--embedding-model", default="sentence-transformers/all-MiniLM-L6-v2")
     

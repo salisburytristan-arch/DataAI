@@ -8,7 +8,7 @@ vault_src = Path(__file__).parent.parent
 if str(vault_src) not in sys.path:
     sys.path.insert(0, str(vault_src))
 
-from src.vault import Vault
+from packages.vault.src.vault import Vault
 
 
 def test_chunk_hash_matches_content_sha256():

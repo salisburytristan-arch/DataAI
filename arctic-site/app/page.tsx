@@ -39,13 +39,10 @@ export default function Home() {
   }, []);
 
   return (
-    <main id="top" className="min-h-screen relative font-sans selection:bg-cyan-500/30">
-      {/* Background Grid */}
-      <div className="absolute inset-0 bg-grid z-0 pointer-events-none" />
-      <div className="scanlines fixed inset-0 z-50 pointer-events-none opacity-20"></div>
+    <main id="top" className="min-h-screen relative font-sans">
 
       {/* Hero Section */}
-      <section className="relative z-10 flex flex-col lg:flex-row items-center justify-between max-w-7xl mx-auto px-6 pt-20 pb-32 gap-12">
+      <section className="relative z-10 flex flex-col lg:flex-row items-center justify-between max-w-7xl mx-auto px-6 pt-20 pb-32 gap-12 panel">
         
         {/* Left: Value Prop */}
         <div className="flex-1 space-y-8">
@@ -53,35 +50,32 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }} 
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/30 border border-cyan-800/50 text-cyan-400 text-xs font-mono tracking-widest uppercase"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-700 text-xs font-mono tracking-widest uppercase"
           >
             <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-            Enterprise AI Platform | Live
+            Hosted • Audit-Ready
           </motion.div>
           
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1]"
+            className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] text-slate-900"
           >
-            Audit-Ready <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 text-glow">
-              Intelligence.
-            </span>
+            Audit-ready AI
+            <br />
+            for regulated teams.
           </motion.h1>
           
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg text-gray-400 max-w-lg leading-relaxed"
+            className="text-lg text-gray-700 max-w-lg leading-relaxed"
           >
-            Enterprise AI with <strong className="text-white">forensic audit trails</strong> and cryptographic integrity. 
-            Handle uncertainty with <strong className="text-cyan-400">Φ-state reasoning</strong>. 
-            HIPAA/SOC2-ready. Multi-teacher verification. Zero hallucination compliance.
+            Hosted LLM platform with <strong className="text-cyan-600">cryptographic evidence trails</strong> and <strong className="text-cyan-600">uncertainty-aware answers</strong>. Every response ships with a verifiable receipt. Built for healthcare, finance, legal, and defense teams that need proof, not promises.
             <br/><br/>
-            <strong className="text-white">AI you can trust in regulated industries.</strong>
+            <strong className="text-white">See the hosted demo and an audit log sample.</strong>
           </motion.p>
 
           <motion.div 
@@ -90,14 +84,14 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="flex flex-wrap gap-4 pt-4"
           >
-            <Link href="/console" className="bg-cyan-500 hover:bg-cyan-400 text-black font-bold px-8 py-4 rounded-sm transition-all duration-300 flex items-center gap-2 hover:shadow-lg hover:shadow-cyan-500/30">
-              <Terminal size={18} /> Try Now
+            <Link href="/chat" className="bg-cyan-600 hover:bg-cyan-700 text-white font-bold px-8 py-4 rounded-md transition-all duration-300 flex items-center gap-2 shadow-sm">
+              <Terminal size={18} /> Hosted Chat Demo
             </Link>
-            <a href="mailto:acrticasters@gmail.com?subject=ArcticCodex Demo Request" className="px-8 py-4 border border-white/10 hover:border-white/30 text-white/70 hover:text-white transition-all duration-300 font-mono text-sm flex items-center gap-2">
-              <Lock size={18} /> Schedule Demo
-            </a>
-            <a href="/docs" className="px-8 py-4 border border-white/10 hover:border-white/30 text-white/70 hover:text-white transition-all duration-300 font-mono text-sm">
-              Read Docs
+            <Link href="/docs" className="px-8 py-4 border border-gray-300 hover:border-cyan-400 text-slate-900 hover:text-slate-900 transition-all duration-300 font-mono text-sm flex items-center gap-2 rounded-md bg-white">
+              <Lock size={18} /> View Docs
+            </Link>
+            <a href="mailto:acrticasters@gmail.com?subject=ArcticCodex%20Access" className="px-8 py-4 border border-gray-300 hover:border-cyan-400 text-slate-900 hover:text-slate-900 transition-all duration-300 font-mono text-sm rounded-md bg-white">
+              Request Access
             </a>
           </motion.div>
         </div>
@@ -109,31 +103,31 @@ export default function Home() {
           transition={{ delay: 0.3, duration: 0.8 }}
           className="flex-1 w-full max-w-lg"
         >
-          <div className="rounded-lg overflow-hidden border border-gray-800 bg-[#0a0a0a] shadow-2xl shadow-cyan-900/20">
+          <div className="rounded-lg overflow-hidden border border-gray-200 bg-white shadow-xl">
             <div className="bg-[#111] px-4 py-2 border-b border-gray-800 flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
-              <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-              <div className="w-3 h-3 rounded-full bg-green-500/50"></div>
-              <div className="text-xs text-gray-600 font-mono ml-2">root@arctic-node:~</div>
+              <div className="w-3 h-3 rounded-full bg-red-400/70"></div>
+              <div className="w-3 h-3 rounded-full bg-yellow-400/70"></div>
+              <div className="w-3 h-3 rounded-full bg-green-400/70"></div>
+              <div className="text-xs text-gray-500 font-mono ml-2">root@arctic-node:~</div>
             </div>
-            <div className="p-6 font-mono text-sm h-[320px] overflow-y-auto flex flex-col justify-end bg-[#050505]">
+            <div className="p-6 font-mono text-sm h-[320px] overflow-y-auto flex flex-col justify-end bg-slate-50">
               {terminalLines.map((line, i) => (
                 <div key={i} className={`mb-1 whitespace-pre-wrap break-words ${
-                  line.includes("ALERT") || line.includes("MISMATCH") ? "text-red-500 font-bold" :
-                  line.includes("OK") || line.includes("PRESERVED") ? "text-green-400" :
-                  line.includes("WARN") ? "text-yellow-400" : "text-gray-400"
+                  line.includes("ALERT") || line.includes("MISMATCH") ? "text-red-600 font-bold" :
+                  line.includes("OK") || line.includes("PRESERVED") ? "text-green-600" :
+                  line.includes("WARN") ? "text-yellow-600" : "text-gray-600"
                 }`}>
                   {line}
                 </div>
               ))}
               {terminalLines.length < 12 && (
-                <div className="w-2 h-5 bg-cyan-500 animate-pulse mt-1"></div>
+                <div className="w-2 h-5 bg-cyan-600 animate-pulse mt-1"></div>
               )}
             </div>
           </div>
-          <div className="flex justify-between mt-4 px-2 text-xs text-gray-600 font-mono">
+          <div className="flex justify-between mt-4 px-2 text-xs text-gray-500 font-mono">
              <div>SHA-256: VERIFIED</div>
-             <div className="text-cyan-500">LATENCY: 12ms</div>
+             <div className="text-cyan-700">LATENCY: 12ms</div>
           </div>
         </motion.div>
       </section>
@@ -141,8 +135,8 @@ export default function Home() {
       {/* Metrics Strip */}
       <section className="border-y border-white/5 bg-white/[0.02]">
         <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[
-            { label: "Unit Tests", val: "79", icon: CheckCircle },
+          {[ 
+            { label: "Unit Tests", val: "310", icon: CheckCircle },
             { label: "Logic States", val: "⊙⊗Φ", icon: Zap },
             { label: "Architecture", val: "Tier-0", icon: Cpu },
             { label: "Teachers", val: "Multi", icon: GitBranch }
@@ -317,7 +311,7 @@ export default function Home() {
         >
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-2">Complete System Architecture</h2>
-            <p className="text-gray-500 text-lg">79 passing tests. Production-ready. Local-first.</p>
+            <p className="text-gray-500 text-lg">Hosted platform. 310 passing tests. Audit receipts on every call.</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
@@ -332,7 +326,7 @@ export default function Home() {
               },
               {
                 title: "Storage & Security",
-                items: ["PostgreSQL audit logs", "HMAC signatures", "Docker deployment", "Zero cloud dependencies"]
+                items: ["PostgreSQL audit logs", "HMAC signatures", "Docker deployment", "Hosted with private tenancy"]
               }
             ].map((column, idx) => (
               <motion.div
