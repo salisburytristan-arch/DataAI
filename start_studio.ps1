@@ -1,9 +1,9 @@
 # ArcticCodex Studio - Windows Startup Script
 # Run this to start the full conversational chat system
 
-Write-Host "╔══════════════════════════════════════════════════════╗" -ForegroundColor Cyan
-Write-Host "║       ArcticCodex Studio - Full Chat System         ║" -ForegroundColor Cyan
-Write-Host "╚══════════════════════════════════════════════════════╝" -ForegroundColor Cyan
+Write-Host "======================================================" -ForegroundColor Cyan
+Write-Host "     ArcticCodex Studio - Full Chat System           " -ForegroundColor Cyan
+Write-Host "======================================================" -ForegroundColor Cyan
 Write-Host ""
 
 # Check if venv is activated
@@ -34,7 +34,7 @@ $chunks = @(Get-ChildItem -Path "vault" -ErrorAction SilentlyContinue).Count
 if ($chunks -eq 0) {
     Write-Host ""
     Write-Host "[!] Vault is empty. Seed it with documents?" -ForegroundColor Yellow
-    $response = Read-Host "[?] Seed vault now? (y/n)"
+    $response = Read-Host "[?] Seed vault now? Enter y or n"
     if ($response -eq "y") {
         Write-Host "[*] Seeding vault from documents..." -ForegroundColor Green
         python run_studio.py seed --vault ./vault
@@ -44,15 +44,15 @@ if ($chunks -eq 0) {
 
 # Start Studio Server
 Write-Host ""
-Write-Host "[✓] Starting ArcticCodex Studio Server..." -ForegroundColor Green
+Write-Host "[OK] Starting ArcticCodex Studio Server..." -ForegroundColor Green
 Write-Host "[*] Vault: $(Resolve-Path vault)" -ForegroundColor Cyan
-Write-Host "[*] Chat: http://localhost:8000" -ForegroundColor Cyan
+Write-Host "[*] Chat: http://localhost:8080" -ForegroundColor Cyan
 Write-Host "[*] Press Ctrl+C to stop" -ForegroundColor Cyan
 Write-Host ""
 
 python -m packages.studio.src.studio_server_fly `
     --host 0.0.0.0 `
-    --port 8000 `
+    --port 8080 `
     --vault ./vault `
     --embeddings on
 
