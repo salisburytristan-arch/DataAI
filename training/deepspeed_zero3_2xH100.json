@@ -1,0 +1,15 @@
+{
+  "train_batch_size": 256,
+  "train_micro_batch_size_per_gpu": 4,
+  "gradient_accumulation_steps": 32,
+  "bf16": { "enabled": true },
+  "zero_optimization": {
+    "stage": 3,
+    "overlap_comm": true,
+    "reduce_scatter": true,
+    "contiguous_gradients": true
+  },
+  "gradient_clipping": 1.0,
+  "steps_per_print": 50,
+  "wall_clock_breakdown": false
+}

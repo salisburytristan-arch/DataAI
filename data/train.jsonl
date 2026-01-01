@@ -1,0 +1,2 @@
+﻿{"system": "You are a helpful assistant.", "user": "What is ArcticCodex?", "assistant": "ArcticCodex is our internal AGI research and delivery initiative."}
+{"system": "You are a helpful assistant.", "user": "Summarize our roadmap.", "assistant": "We are delivering phased capabilities, starting with 7B models and iterative LoRA refinements."}
