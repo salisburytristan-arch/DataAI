@@ -1,0 +1,816 @@
+domain,tier,trust_score,category,license_class,ingest_mode
+abs.gov.au,tier0_government,99,government,unknown,html
+alabama.gov,tier0_government,99,government,public domain or crown copyright,html
+alaska.gov,tier0_government,99,government,public domain or crown copyright,html
+archives.gov,tier0_government,99,government,public domain or crown copyright,html
+arizona.gov,tier0_government,99,government,public domain or crown copyright,html
+arkansas.gov,tier0_government,99,government,public domain or crown copyright,html
+bea.gov,tier0_government,99,government,public domain or crown copyright,html
+bls.gov,tier0_government,99,government,public domain or crown copyright,html
+california.gov,tier0_government,99,government,public domain or crown copyright,html
+cancer.gov,tier0_government,99,government,public domain or crown copyright,html
+cbs.nl,tier0_government,99,government,unknown,html
+cdc.gov,tier0_government,99,government,public domain or crown copyright,html
+census.gov,tier0_government,99,government_science,public domain (US gov),api
+cia.gov,tier0_government,99,government,public domain or crown copyright,html
+cms.gov,tier0_government,99,government,public domain or crown copyright,html
+colorado.gov,tier0_government,99,government,public domain or crown copyright,html
+congress.gov,tier0_government,99,government,public domain or crown copyright,html
+connecticut.gov,tier0_government,99,government,public domain or crown copyright,html
+consumerfinance.gov,tier0_government,99,government,public domain or crown copyright,html
+copernicus.eu,tier0_government,99,government_science,public domain (US gov),api
+copyright.gov,tier0_government,99,government,public domain or crown copyright,html
+data.alabama.gov,tier0_government,99,government,public domain or crown copyright,html
+data.alaska.gov,tier0_government,99,government,public domain or crown copyright,html
+data.archives.gov,tier0_government,99,government,public domain or crown copyright,html
+data.arizona.gov,tier0_government,99,government,public domain or crown copyright,html
+data.arkansas.gov,tier0_government,99,government,public domain or crown copyright,html
+data.california.gov,tier0_government,99,government,public domain or crown copyright,html
+data.cancer.gov,tier0_government,99,government,public domain or crown copyright,html
+data.cdc.gov,tier0_government,99,government,public domain or crown copyright,html
+data.census.gov,tier0_government,99,government_science,public domain (US gov),api
+data.cia.gov,tier0_government,99,government,public domain or crown copyright,html
+data.cms.gov,tier0_government,99,government,public domain or crown copyright,html
+data.colorado.gov,tier0_government,99,government,public domain or crown copyright,html
+data.congress.gov,tier0_government,99,government,public domain or crown copyright,html
+data.connecticut.gov,tier0_government,99,government,public domain or crown copyright,html
+data.consumerfinance.gov,tier0_government,99,government,public domain or crown copyright,html
+data.copyright.gov,tier0_government,99,government,public domain or crown copyright,html
+data.data.gov,tier0_government,99,government_science,public domain (US gov),api
+data.data.gov.uk,tier0_government,99,government_science,public domain (US gov),api
+data.defense.gov,tier0_government,99,government,public domain or crown copyright,html
+data.delaware.gov,tier0_government,99,government,public domain or crown copyright,html
+data.dhs.gov,tier0_government,99,government,public domain or crown copyright,html
+data.dot.gov,tier0_government,99,government,public domain or crown copyright,html
+data.energy.gov,tier0_government,99,government,public domain or crown copyright,html
+data.epa.gov,tier0_government,99,government,public domain or crown copyright,html
+data.esa.int,tier0_government,99,government,unknown,html
+data.europa.eu,tier0_government,99,government,public domain or crown copyright,html
+data.faa.gov,tier0_government,99,government,public domain or crown copyright,html
+data.fbi.gov,tier0_government,99,government,public domain or crown copyright,html
+data.fda.gov,tier0_government,99,government,public domain or crown copyright,html
+data.florida.gov,tier0_government,99,government,public domain or crown copyright,html
+data.ftc.gov,tier0_government,99,government,public domain or crown copyright,html
+data.gao.gov,tier0_government,99,government,public domain or crown copyright,html
+data.georgia.gov,tier0_government,99,government,public domain or crown copyright,html
+data.gov,tier0_government,99,government_science,public domain (US gov),api
+data.gov.uk,tier0_government,99,government_science,public domain (US gov),api
+data.gpo.gov,tier0_government,99,government,public domain or crown copyright,html
+data.grants.gov,tier0_government,99,government,public domain or crown copyright,html
+data.hawaii.gov,tier0_government,99,government,public domain or crown copyright,html
+data.hhs.gov,tier0_government,99,government,public domain or crown copyright,html
+data.idaho.gov,tier0_government,99,government,public domain or crown copyright,html
+data.illinois.gov,tier0_government,99,government,public domain or crown copyright,html
+data.indiana.gov,tier0_government,99,government,public domain or crown copyright,html
+data.iowa.gov,tier0_government,99,government,public domain or crown copyright,html
+data.irs.gov,tier0_government,99,government,public domain or crown copyright,html
+data.itu.int,tier0_government,99,government,unknown,html
+data.justice.gov,tier0_government,99,government,public domain or crown copyright,html
+data.kansas.gov,tier0_government,99,government,public domain or crown copyright,html
+data.kentucky.gov,tier0_government,99,government,public domain or crown copyright,html
+data.loc.gov,tier0_government,99,government,public domain or crown copyright,html
+data.louisiana.gov,tier0_government,99,government,public domain or crown copyright,html
+data.maine.gov,tier0_government,99,government,public domain or crown copyright,html
+data.maryland.gov,tier0_government,99,government,public domain or crown copyright,html
+data.mass.gov,tier0_government,99,government,public domain or crown copyright,html
+data.medicaid.gov,tier0_government,99,government,public domain or crown copyright,html
+data.medlineplus.gov,tier0_government,99,government,public domain or crown copyright,html
+data.michigan.gov,tier0_government,99,government,public domain or crown copyright,html
+data.minnesota.gov,tier0_government,99,government,public domain or crown copyright,html
+data.mississippi.gov,tier0_government,99,government,public domain or crown copyright,html
+data.missouri.gov,tier0_government,99,government,public domain or crown copyright,html
+data.montana.gov,tier0_government,99,government,public domain or crown copyright,html
+data.nasa.gov,tier0_government,99,government,public domain or crown copyright,html
+data.nc.gov,tier0_government,99,government,public domain or crown copyright,html
+data.nd.gov,tier0_government,99,government,public domain or crown copyright,html
+data.nebraska.gov,tier0_government,99,government,public domain or crown copyright,html
+data.nevada.gov,tier0_government,99,government,public domain or crown copyright,html
+data.nh.gov,tier0_government,99,government,public domain or crown copyright,html
+data.nih.gov,tier0_government,99,government,public domain or crown copyright,html
+data.nj.gov,tier0_government,99,government,public domain or crown copyright,html
+data.nm.gov,tier0_government,99,government,public domain or crown copyright,html
+data.noaa.gov,tier0_government,99,government_science,public domain (US gov),api
+data.nrc.gov,tier0_government,99,government,public domain or crown copyright,html
+data.nsf.gov,tier0_government,99,government,public domain or crown copyright,html
+data.ny.gov,tier0_government,99,government,public domain or crown copyright,html
+data.ohio.gov,tier0_government,99,government,public domain or crown copyright,html
+data.oklahoma.gov,tier0_government,99,government,public domain or crown copyright,html
+data.ons.gov.uk,tier0_government,99,government,public domain or crown copyright,html
+data.oregon.gov,tier0_government,99,government,public domain or crown copyright,html
+data.pa.gov,tier0_government,99,government,public domain or crown copyright,html
+data.regulations.gov,tier0_government,99,government,public domain or crown copyright,html
+data.ri.gov,tier0_government,99,government,public domain or crown copyright,html
+data.sc.gov,tier0_government,99,government,public domain or crown copyright,html
+data.sd.gov,tier0_government,99,government,public domain or crown copyright,html
+data.sec.gov,tier0_government,99,government,public domain or crown copyright,html
+data.smithsonian.gov,tier0_government,99,government,public domain or crown copyright,html
+data.ssa.gov,tier0_government,99,government,public domain or crown copyright,html
+data.state.gov,tier0_government,99,government,public domain or crown copyright,html
+data.supremecourt.gov,tier0_government,99,government,public domain or crown copyright,html
+data.texas.gov,tier0_government,99,government,public domain or crown copyright,html
+data.tn.gov,tier0_government,99,government,public domain or crown copyright,html
+data.treasury.gov,tier0_government,99,government,public domain or crown copyright,html
+data.un.org,tier0_government,99,government,unknown,html
+data.usa.gov,tier0_government,99,government,public domain or crown copyright,html
+data.usgs.gov,tier0_government,99,government_science,public domain (US gov),api
+data.uspto.gov,tier0_government,99,government,public domain or crown copyright,html
+data.utah.gov,tier0_government,99,government,public domain or crown copyright,html
+data.va.gov,tier0_government,99,government,public domain or crown copyright,html
+data.virginia.gov,tier0_government,99,government,public domain or crown copyright,html
+data.vt.gov,tier0_government,99,government,public domain or crown copyright,html
+data.wa.gov,tier0_government,99,government,public domain or crown copyright,html
+data.weather.gov,tier0_government,99,government,public domain or crown copyright,html
+data.whitehouse.gov,tier0_government,99,government,public domain or crown copyright,html
+data.who.int,tier0_government,99,government,unknown,html
+data.wi.gov,tier0_government,99,government,public domain or crown copyright,html
+data.wv.gov,tier0_government,99,government,public domain or crown copyright,html
+data.wy.gov,tier0_government,99,government,public domain or crown copyright,html
+defense.gov,tier0_government,99,government,public domain or crown copyright,html
+delaware.gov,tier0_government,99,government,public domain or crown copyright,html
+destatis.de,tier0_government,99,government,unknown,html
+developer.gc.ca,tier0_government,99,government,public domain or crown copyright,html
+developer.gov.uk,tier0_government,99,government,public domain or crown copyright,html
+dhs.gov,tier0_government,99,government,public domain or crown copyright,html
+docs.gc.ca,tier0_government,99,government,public domain or crown copyright,html
+docs.gov.uk,tier0_government,99,government,public domain or crown copyright,html
+dot.gov,tier0_government,99,government,public domain or crown copyright,html
+earthdata.nasa.gov,tier0_government,99,government_science,public domain (US gov),api
+energy.gov,tier0_government,99,government,public domain or crown copyright,html
+epa.gov,tier0_government,99,government,public domain or crown copyright,html
+esa.int,tier0_government,99,government,unknown,html
+faa.gov,tier0_government,99,government,public domain or crown copyright,html
+fao.org,tier0_government,99,government,unknown,html
+fbi.gov,tier0_government,99,government,public domain or crown copyright,html
+fda.gov,tier0_government,99,government,public domain or crown copyright,html
+fedstats.gov,tier0_government,99,government,public domain or crown copyright,html
+florida.gov,tier0_government,99,government,public domain or crown copyright,html
+ftc.gov,tier0_government,99,government,public domain or crown copyright,html
+gao.gov,tier0_government,99,government,public domain or crown copyright,html
+georgia.gov,tier0_government,99,government,public domain or crown copyright,html
+gpo.gov,tier0_government,99,government,public domain or crown copyright,html
+grants.gov,tier0_government,99,government,public domain or crown copyright,html
+hawaii.gov,tier0_government,99,government,public domain or crown copyright,html
+hhs.gov,tier0_government,99,government,public domain or crown copyright,html
+idaho.gov,tier0_government,99,government,public domain or crown copyright,html
+iea.org,tier0_government,99,government,unknown,html
+illinois.gov,tier0_government,99,government,public domain or crown copyright,html
+ilo.org,tier0_government,99,government,unknown,html
+indiana.gov,tier0_government,99,government,public domain or crown copyright,html
+ine.es,tier0_government,99,government,unknown,html
+insee.fr,tier0_government,99,government,unknown,html
+iowa.gov,tier0_government,99,government,public domain or crown copyright,html
+irs.gov,tier0_government,99,government,public domain or crown copyright,html
+istat.it,tier0_government,99,government,unknown,html
+itu.int,tier0_government,99,government,unknown,html
+justice.gov,tier0_government,99,government,public domain or crown copyright,html
+kansas.gov,tier0_government,99,government,public domain or crown copyright,html
+kentucky.gov,tier0_government,99,government,public domain or crown copyright,html
+laws-lois.justice.gc.ca,tier0_government,99,government,public domain or crown copyright,html
+legislation.gov.uk,tier0_government,99,government,public domain or crown copyright,html
+loc.gov,tier0_government,99,government,public domain or crown copyright,html
+louisiana.gov,tier0_government,99,government,public domain or crown copyright,html
+maine.gov,tier0_government,99,government,public domain or crown copyright,html
+maryland.gov,tier0_government,99,government,public domain or crown copyright,html
+mass.gov,tier0_government,99,government,public domain or crown copyright,html
+medicaid.gov,tier0_government,99,government,public domain or crown copyright,html
+medlineplus.gov,tier0_government,99,government,public domain or crown copyright,html
+michigan.gov,tier0_government,99,government,public domain or crown copyright,html
+minnesota.gov,tier0_government,99,government,public domain or crown copyright,html
+mississippi.gov,tier0_government,99,government,public domain or crown copyright,html
+missouri.gov,tier0_government,99,government,public domain or crown copyright,html
+montana.gov,tier0_government,99,government,public domain or crown copyright,html
+nasa.gov,tier0_government,99,government,public domain or crown copyright,html
+nc.gov,tier0_government,99,government,public domain or crown copyright,html
+nd.gov,tier0_government,99,government,public domain or crown copyright,html
+nebraska.gov,tier0_government,99,government,public domain or crown copyright,html
+nevada.gov,tier0_government,99,government,public domain or crown copyright,html
+nh.gov,tier0_government,99,government,public domain or crown copyright,html
+nih.gov,tier0_government,99,government,public domain or crown copyright,html
+nj.gov,tier0_government,99,government,public domain or crown copyright,html
+nm.gov,tier0_government,99,government,public domain or crown copyright,html
+noaa.gov,tier0_government,99,government_science,public domain (US gov),api
+nrc.gov,tier0_government,99,government,public domain or crown copyright,html
+nsf.gov,tier0_government,99,government,public domain or crown copyright,html
+ntrs.nasa.gov,tier0_government,99,government_science,public domain (US gov),api
+ny.gov,tier0_government,99,government,public domain or crown copyright,html
+ohio.gov,tier0_government,99,government,public domain or crown copyright,html
+oklahoma.gov,tier0_government,99,government,public domain or crown copyright,html
+ons.gov.uk,tier0_government,99,government,public domain or crown copyright,html
+open.canada.ca,tier0_government,99,government,unknown,html
+oregon.gov,tier0_government,99,government,public domain or crown copyright,html
+pa.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.alabama.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.alaska.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.archives.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.arizona.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.arkansas.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.california.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.cancer.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.cdc.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.census.gov,tier0_government,99,government_science,public domain (US gov),api
+pubs.cia.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.cms.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.colorado.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.congress.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.connecticut.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.consumerfinance.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.copyright.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.data.gov,tier0_government,99,government_science,public domain (US gov),api
+pubs.data.gov.uk,tier0_government,99,government_science,public domain (US gov),api
+pubs.defense.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.delaware.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.dhs.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.dot.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.energy.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.epa.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.esa.int,tier0_government,99,government,unknown,html
+pubs.europa.eu,tier0_government,99,government,public domain or crown copyright,html
+pubs.faa.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.fbi.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.fda.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.florida.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.ftc.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.gao.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.georgia.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.gpo.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.grants.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.hawaii.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.hhs.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.idaho.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.illinois.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.indiana.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.iowa.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.irs.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.itu.int,tier0_government,99,government,unknown,html
+pubs.justice.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.kansas.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.kentucky.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.loc.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.louisiana.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.maine.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.maryland.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.mass.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.medicaid.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.medlineplus.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.michigan.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.minnesota.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.mississippi.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.missouri.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.montana.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.nasa.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.nc.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.nd.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.nebraska.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.nevada.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.nh.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.nih.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.nj.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.nm.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.noaa.gov,tier0_government,99,government_science,public domain (US gov),api
+pubs.nrc.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.nsf.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.ny.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.ohio.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.oklahoma.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.ons.gov.uk,tier0_government,99,government,public domain or crown copyright,html
+pubs.oregon.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.pa.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.regulations.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.ri.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.sc.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.sd.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.sec.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.smithsonian.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.ssa.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.state.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.supremecourt.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.texas.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.tn.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.treasury.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.usa.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.usgs.gov,tier0_government,99,government_science,public domain (US gov),api
+pubs.uspto.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.utah.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.va.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.virginia.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.vt.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.wa.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.weather.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.whitehouse.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.who.int,tier0_government,99,government,unknown,html
+pubs.wi.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.wv.gov,tier0_government,99,government,public domain or crown copyright,html
+pubs.wy.gov,tier0_government,99,government,public domain or crown copyright,html
+regulations.gov,tier0_government,99,government,public domain or crown copyright,html
+ri.gov,tier0_government,99,government,public domain or crown copyright,html
+sc.gov,tier0_government,99,government,public domain or crown copyright,html
+scb.se,tier0_government,99,government,unknown,html
+sd.gov,tier0_government,99,government,public domain or crown copyright,html
+sec.gov,tier0_government,99,government,public domain or crown copyright,html
+smithsonian.gov,tier0_government,99,government,public domain or crown copyright,html
+ssa.gov,tier0_government,99,government,public domain or crown copyright,html
+statcan.gc.ca,tier0_government,99,government,public domain or crown copyright,html
+state.gov,tier0_government,99,government,public domain or crown copyright,html
+stats.govt.nz,tier0_government,99,government,unknown,html
+supremecourt.gov,tier0_government,99,government,public domain or crown copyright,html
+texas.gov,tier0_government,99,government,public domain or crown copyright,html
+tn.gov,tier0_government,99,government,public domain or crown copyright,html
+treasury.gov,tier0_government,99,government,public domain or crown copyright,html
+usa.gov,tier0_government,99,government,public domain or crown copyright,html
+usgs.gov,tier0_government,99,government_science,public domain (US gov),api
+uspto.gov,tier0_government,99,government,public domain or crown copyright,html
+utah.gov,tier0_government,99,government,public domain or crown copyright,html
+va.gov,tier0_government,99,government,public domain or crown copyright,html
+virginia.gov,tier0_government,99,government,public domain or crown copyright,html
+vt.gov,tier0_government,99,government,public domain or crown copyright,html
+wa.gov,tier0_government,99,government,public domain or crown copyright,html
+weather.gov,tier0_government,99,government,public domain or crown copyright,html
+whitehouse.gov,tier0_government,99,government,public domain or crown copyright,html
+who.int,tier0_government,99,government,unknown,html
+wi.gov,tier0_government,99,government,public domain or crown copyright,html
+wv.gov,tier0_government,99,government,public domain or crown copyright,html
+wy.gov,tier0_government,99,government,public domain or crown copyright,html
+adelaide.edu.au,tier1_academic,95,university,varies (check per resource),html
+anu.edu.au,tier1_academic,95,university,varies (check per resource),html
+arxiv.org,tier1_academic,92,preprint_repository,CC BY or CC0,api
+auckland.ac.nz,tier1_academic,95,university,unknown,html
+berkeley.edu,tier1_academic,95,university,varies (check per resource),html
+biorxiv.org,tier1_academic,92,preprint_repository,CC BY or CC0,api
+brandeis.edu,tier1_academic,95,university,varies (check per resource),html
+bristol.ac.uk,tier1_academic,95,university,unknown,html
+britannica.com,tier1_academic,94,knowledge_graph,CC BY-SA or CC0,bulk_dump
+brookings.edu,tier1_academic,95,university,varies (check per resource),html
+brown.edu,tier1_academic,95,university,varies (check per resource),html
+bu.edu,tier1_academic,95,university,varies (check per resource),html
+buffalo.edu,tier1_academic,95,university,varies (check per resource),html
+caltech.edu,tier1_academic,95,university,varies (check per resource),html
+cam.ac.uk,tier1_academic,95,university,varies (check per resource),html
+carleton.ca,tier1_academic,95,university,unknown,html
+cds.cern.ch,tier1_academic,92,research_repository,mixed (check per item),api
+chicago.edu,tier1_academic,95,university,varies (check per resource),html
+clinicaltrials.gov,tier1_academic,94,medical_repository,varies by article,api
+cmu.edu,tier1_academic,95,university,varies (check per resource),html
+columbia.edu,tier1_academic,95,university,varies (check per resource),html
+concordia.ca,tier1_academic,95,university,unknown,html
+core.ac.uk,tier1_academic,92,research_repository,mixed (check per item),api
+cornell.edu,tier1_academic,95,university,varies (check per resource),html
+crossref.org,tier1_academic,94,scholarly_infrastructure,CC0 or API terms,api
+cs.open.edu,tier1_academic,95,university,varies (check per resource),html
+cuhk.edu.hk,tier1_academic,95,university,varies (check per resource),html
+dal.ca,tier1_academic,95,university,unknown,html
+dartmouth.edu,tier1_academic,95,university,varies (check per resource),html
+data.britannica.com,tier1_academic,94,knowledge_graph,CC BY-SA or CC0,bulk_dump
+data.clinicaltrials.gov,tier1_academic,94,medical_repository,varies by article,api
+datacite.org,tier1_academic,94,scholarly_infrastructure,CC0 or API terms,api
+dataverse.org,tier1_academic,92,research_repository,mixed (check per item),api
+developer.arxiv.org,tier1_academic,92,preprint_repository,CC BY or CC0,api
+developer.crossref.org,tier1_academic,94,scholarly_infrastructure,CC0 or API terms,api
+developer.openalex.org,tier1_academic,94,scholarly_infrastructure,CC0 or API terms,api
+docs.arxiv.org,tier1_academic,92,preprint_repository,CC BY or CC0,api
+docs.crossref.org,tier1_academic,94,scholarly_infrastructure,CC0 or API terms,api
+docs.openalex.org,tier1_academic,94,scholarly_infrastructure,CC0 or API terms,api
+doi.org,tier1_academic,94,scholarly_infrastructure,CC0 or API terms,api
+dryad.org,tier1_academic,92,research_repository,mixed (check per item),api
+duke.edu,tier1_academic,95,university,varies (check per resource),html
+dumps.wikimedia.org,tier1_academic,94,knowledge_graph,CC BY-SA or CC0,bulk_dump
+ed.ac.uk,tier1_academic,95,university,unknown,html
+elifesciences.org,tier1_academic,92,open_access_publisher,CC BY,api
+emory.edu,tier1_academic,95,university,varies (check per resource),html
+ethz.ch,tier1_academic,95,university,varies (check per resource),html
+figshare.com,tier1_academic,92,research_repository,mixed (check per item),api
+fsu.edu,tier1_academic,95,university,varies (check per resource),html
+fudan.edu.cn,tier1_academic,95,university,varies (check per resource),html
+gatech.edu,tier1_academic,95,university,varies (check per resource),html
+harvard.edu,tier1_academic,95,university,varies (check per resource),html
+iep.utm.edu,tier1_academic,95,university,varies (check per resource),html
+iisc.ac.in,tier1_academic,95,university,unknown,html
+iitb.ac.in,tier1_academic,95,university,unknown,html
+iitd.ac.in,tier1_academic,95,university,unknown,html
+iitk.ac.in,tier1_academic,95,university,unknown,html
+illinois.edu,tier1_academic,95,university,varies (check per resource),html
+imperial.ac.uk,tier1_academic,95,university,unknown,html
+inspirehep.net,tier1_academic,92,research_repository,mixed (check per item),api
+iu.edu,tier1_academic,95,university,varies (check per resource),html
+jhu.edu,tier1_academic,95,university,varies (check per resource),html
+kcl.ac.uk,tier1_academic,95,university,unknown,html
+keio.ac.jp,tier1_academic,95,university,unknown,html
+kyoto-u.ac.jp,tier1_academic,95,university,unknown,html
+leeds.ac.uk,tier1_academic,95,university,unknown,html
+library.berkeley.edu,tier1_academic,95,university,varies (check per resource),html
+library.brookings.edu,tier1_academic,95,university,varies (check per resource),html
+library.brown.edu,tier1_academic,95,university,varies (check per resource),html
+library.caltech.edu,tier1_academic,95,university,varies (check per resource),html
+library.cmu.edu,tier1_academic,95,university,varies (check per resource),html
+library.columbia.edu,tier1_academic,95,university,varies (check per resource),html
+library.cornell.edu,tier1_academic,95,university,varies (check per resource),html
+library.dartmouth.edu,tier1_academic,95,university,varies (check per resource),html
+library.duke.edu,tier1_academic,95,university,varies (check per resource),html
+library.harvard.edu,tier1_academic,95,university,varies (check per resource),html
+library.illinois.edu,tier1_academic,95,university,varies (check per resource),html
+library.mit.edu,tier1_academic,95,university,varies (check per resource),html
+library.northwestern.edu,tier1_academic,95,university,varies (check per resource),html
+library.open.edu,tier1_academic,95,university,varies (check per resource),html
+library.princeton.edu,tier1_academic,95,university,varies (check per resource),html
+library.si.edu,tier1_academic,95,university,varies (check per resource),html
+library.stanford.edu,tier1_academic,95,university,varies (check per resource),html
+library.uchicago.edu,tier1_academic,95,university,varies (check per resource),html
+library.umich.edu,tier1_academic,95,university,varies (check per resource),html
+library.upenn.edu,tier1_academic,95,university,varies (check per resource),html
+library.wisc.edu,tier1_academic,95,university,varies (check per resource),html
+library.yale.edu,tier1_academic,95,university,varies (check per resource),html
+lse.ac.uk,tier1_academic,95,university,unknown,html
+manchester.ac.uk,tier1_academic,95,university,unknown,html
+mcgill.ca,tier1_academic,95,university,unknown,html
+medrxiv.org,tier1_academic,92,preprint_repository,CC BY or CC0,api
+minnesota.edu,tier1_academic,95,university,varies (check per resource),html
+mit.edu,tier1_academic,95,university,varies (check per resource),html
+monash.edu,tier1_academic,95,university,varies (check per resource),html
+mq.edu.au,tier1_academic,95,university,varies (check per resource),html
+msu.edu,tier1_academic,95,university,varies (check per resource),html
+nagoya-u.ac.jp,tier1_academic,95,university,unknown,html
+ncsu.edu,tier1_academic,95,university,varies (check per resource),html
+neu.edu,tier1_academic,95,university,varies (check per resource),html
+northwestern.edu,tier1_academic,95,university,varies (check per resource),html
+nottingham.ac.uk,tier1_academic,95,university,unknown,html
+ntu.edu.sg,tier1_academic,95,university,varies (check per resource),html
+numdam.org,tier1_academic,93,mathematics_repository,varies,html
+nus.edu.sg,tier1_academic,95,university,varies (check per resource),html
+nyu.edu,tier1_academic,95,university,varies (check per resource),html
+ocw.camins.upc.edu,tier1_academic,95,open_courseware,CC BY-NC-SA typical,html
+ocw.jhsph.edu,tier1_academic,95,open_courseware,CC BY-NC-SA typical,html
+ocw.kuleuven.be,tier1_academic,95,open_courseware,CC BY-NC-SA typical,html
+ocw.mit.edu,tier1_academic,95,open_courseware,CC BY-NC-SA typical,html
+ocw.tudelft.nl,tier1_academic,95,open_courseware,CC BY-NC-SA typical,html
+ocw.u-tokyo.ac.jp,tier1_academic,95,open_courseware,CC BY-NC-SA typical,html
+ocw.uci.edu,tier1_academic,95,open_courseware,CC BY-NC-SA typical,html
+oeis.org,tier1_academic,93,mathematics_repository,varies,html
+oli.cmu.edu,tier1_academic,95,open_courseware,CC BY-NC-SA typical,html
+open.edu,tier1_academic,95,open_courseware,CC BY-NC-SA typical,html
+open.uci.edu,tier1_academic,95,university,varies (check per resource),html
+open.umich.edu,tier1_academic,95,open_courseware,CC BY-NC-SA typical,html
+openalex.org,tier1_academic,94,scholarly_infrastructure,CC0 or API terms,api
+openlearn.open.edu,tier1_academic,95,university,varies (check per resource),html
+openstreetmap.org,tier1_academic,94,knowledge_graph,CC BY-SA or CC0,bulk_dump
+orcid.org,tier1_academic,94,scholarly_infrastructure,CC0 or API terms,api
+osaka-u.ac.jp,tier1_academic,95,university,unknown,html
+osf.io,tier1_academic,92,research_repository,mixed (check per item),api
+osu.edu,tier1_academic,95,university,varies (check per resource),html
+otago.ac.nz,tier1_academic,95,university,unknown,html
+ox.ac.uk,tier1_academic,95,university,varies (check per resource),html
+oyc.yale.edu,tier1_academic,95,open_courseware,CC BY-NC-SA typical,html
+pku.edu.cn,tier1_academic,95,university,varies (check per resource),html
+plos.org,tier1_academic,92,open_access_publisher,CC BY,api
+princeton.edu,tier1_academic,95,university,varies (check per resource),html
+psu.edu,tier1_academic,95,university,varies (check per resource),html
+pubmed.ncbi.nlm.nih.gov,tier1_academic,94,medical_repository,varies by article,api
+pubs.clinicaltrials.gov,tier1_academic,94,medical_repository,varies by article,api
+purdue.edu,tier1_academic,95,university,varies (check per resource),html
+queensu.ca,tier1_academic,95,university,unknown,html
+qut.edu.au,tier1_academic,95,university,varies (check per resource),html
+research.britannica.com,tier1_academic,94,knowledge_graph,CC BY-SA or CC0,bulk_dump
+rice.edu,tier1_academic,95,university,varies (check per resource),html
+rmit.edu.au,tier1_academic,95,university,varies (check per resource),html
+rutgers.edu,tier1_academic,95,university,varies (check per resource),html
+see.stanford.edu,tier1_academic,95,open_courseware,CC BY-NC-SA typical,html
+sfu.ca,tier1_academic,95,university,unknown,html
+sheffield.ac.uk,tier1_academic,95,university,unknown,html
+si.edu,tier1_academic,95,university,varies (check per resource),html
+sjtu.edu.cn,tier1_academic,95,university,varies (check per resource),html
+southampton.ac.uk,tier1_academic,95,university,unknown,html
+stanford.edu,tier1_academic,95,university,varies (check per resource),html
+stonybrook.edu,tier1_academic,95,university,varies (check per resource),html
+sydney.edu.au,tier1_academic,95,university,varies (check per resource),html
+tamu.edu,tier1_academic,95,university,varies (check per resource),html
+tohoku.ac.jp,tier1_academic,95,university,unknown,html
+tsinghua.edu.cn,tier1_academic,95,university,varies (check per resource),html
+tudelft.nl,tier1_academic,95,university,varies (check per resource),html
+tufts.edu,tier1_academic,95,university,varies (check per resource),html
+u-tokyo.ac.jp,tier1_academic,95,university,varies (check per resource),html
+ualberta.ca,tier1_academic,95,university,unknown,html
+ubc.ca,tier1_academic,95,university,unknown,html
+ucalgary.ca,tier1_academic,95,university,unknown,html
+ucdavis.edu,tier1_academic,95,university,varies (check per resource),html
+uchicago.edu,tier1_academic,95,university,varies (check per resource),html
+uci.edu,tier1_academic,95,university,varies (check per resource),html
+ucl.ac.uk,tier1_academic,95,university,unknown,html
+ucla.edu,tier1_academic,95,university,varies (check per resource),html
+ucsb.edu,tier1_academic,95,university,varies (check per resource),html
+ucsd.edu,tier1_academic,95,university,varies (check per resource),html
+ufl.edu,tier1_academic,95,university,varies (check per resource),html
+umanitoba.ca,tier1_academic,95,university,unknown,html
+umich.edu,tier1_academic,95,university,varies (check per resource),html
+unc.edu,tier1_academic,95,university,varies (check per resource),html
+unimelb.edu.au,tier1_academic,95,university,varies (check per resource),html
+unsw.edu.au,tier1_academic,95,university,varies (check per resource),html
+uoft.ca,tier1_academic,95,university,unknown,html
+uottawa.ca,tier1_academic,95,university,unknown,html
+upenn.edu,tier1_academic,95,university,varies (check per resource),html
+uq.edu.au,tier1_academic,95,university,varies (check per resource),html
+ustc.edu.cn,tier1_academic,95,university,varies (check per resource),html
+utexas.edu,tier1_academic,95,university,varies (check per resource),html
+uts.edu.au,tier1_academic,95,university,varies (check per resource),html
+uvic.ca,tier1_academic,95,university,unknown,html
+uwa.edu.au,tier1_academic,95,university,varies (check per resource),html
+uwaterloo.ca,tier1_academic,95,university,unknown,html
+uwo.ca,tier1_academic,95,university,unknown,html
+vanderbilt.edu,tier1_academic,95,university,varies (check per resource),html
+vt.edu,tier1_academic,95,university,varies (check per resource),html
+waikato.ac.nz,tier1_academic,95,university,unknown,html
+warwick.ac.uk,tier1_academic,95,university,unknown,html
+washington.edu,tier1_academic,95,university,varies (check per resource),html
+webcast.berkeley.edu,tier1_academic,95,open_courseware,CC BY-NC-SA typical,html
+wikidata.org,tier1_academic,94,knowledge_graph,CC BY-SA or CC0,bulk_dump
+wikipedia.org,tier1_academic,94,knowledge_graph,CC BY-SA or CC0,bulk_dump
+wisc.edu,tier1_academic,95,university,varies (check per resource),html
+yale.edu,tier1_academic,95,university,varies (check per resource),html
+yorku.ca,tier1_academic,95,university,unknown,html
+zbmath.org,tier1_academic,93,mathematics_repository,varies,html
+zenodo.org,tier1_academic,92,research_repository,mixed (check per item),api
+zju.edu.cn,tier1_academic,95,university,varies (check per resource),html
+cencenelec.eu,tier2_standards,98,standards,unknown,html
+data.cencenelec.eu,tier2_standards,98,standards,unknown,html
+data.nist.gov,tier2_standards,96,standards_body,public or restricted,html
+developer.ieee.org,tier2_standards,96,standards_body,public or restricted,html
+developer.ietf.org,tier2_standards,96,standards_body,public or restricted,html
+developer.iso.org,tier2_standards,96,standards_body,public or restricted,html
+developer.rfc-editor.org,tier2_standards,96,standards_body,public or restricted,html
+developer.w3.org,tier2_standards,96,standards_body,public or restricted,html
+docs.ieee.org,tier2_standards,96,standards_body,public or restricted,html
+docs.ietf.org,tier2_standards,96,standards_body,public or restricted,html
+docs.iso.org,tier2_standards,96,standards_body,public or restricted,html
+docs.rfc-editor.org,tier2_standards,96,standards_body,public or restricted,html
+docs.w3.org,tier2_standards,96,standards_body,public or restricted,html
+europa.eu,tier2_standards,98,research_reference,unknown,html
+ieee.org,tier2_standards,96,standards_body,public or restricted,html
+ietf.org,tier2_standards,96,standards_body,public or restricted,html
+iso.org,tier2_standards,96,standards_body,public or restricted,html
+nist.gov,tier2_standards,96,standards_body,public or restricted,html
+psl.eu,tier2_standards,98,research_reference,unknown,html
+pubs.cencenelec.eu,tier2_standards,98,standards,unknown,html
+pubs.nist.gov,tier2_standards,96,standards_body,public or restricted,html
+rfc-editor.org,tier2_standards,96,standards_body,public or restricted,html
+w3.org,tier2_standards,96,standards_body,public or restricted,html
+aalto.fi,tier3_practical,90,research_reference,unknown,html
+acm.org,tier3_practical,90,standards,unknown,html
+alberta.ca,tier3_practical,90,research_reference,unknown,html
+ansi.org,tier3_practical,90,standards,unknown,html
+anthropic.com,tier3_practical,90,official_docs,unknown,html
+apache.org,tier3_practical,90,official_docs,unknown,html
+azure.microsoft.com,tier3_practical,90,official_docs,unknown,html
+bc.ca,tier3_practical,90,research_reference,unknown,html
+bmj.com,tier3_practical,90,research_reference,unknown,html
+brilliant.org,tier3_practical,90,research_reference,unknown,html
+bsigroup.com,tier3_practical,90,standards,unknown,html
+canada.ca,tier3_practical,90,research_reference,unknown,html
+cato.org,tier3_practical,90,reference_data,unknown,html
+cdcfoundation.org,tier3_practical,90,official_docs,unknown,html
+cell.com,tier3_practical,90,research_reference,unknown,html
+cern.ch,tier3_practical,90,research_reference,unknown,html
+chalmers.se,tier3_practical,90,research_reference,unknown,html
+clevelandclinic.org,tier3_practical,90,medical_institution,proprietary or restricted,manual_only
+codata.org,tier3_practical,90,standards,unknown,html
+cos.io,tier3_practical,90,standards,unknown,html
+coursera.org,tier3_practical,90,research_reference,unknown,html
+data.world,tier3_practical,90,reference_data,unknown,html
+deepseek.com,tier3_practical,90,official_docs,unknown,html
+deno.com,tier3_practical,90,official_docs,unknown,html
+developer.acm.org,tier3_practical,90,standards,unknown,html
+developer.alberta.ca,tier3_practical,90,research_reference,unknown,html
+developer.ansi.org,tier3_practical,90,standards,unknown,html
+developer.apple.com,tier3_practical,90,official_docs,unknown,html
+developer.bc.ca,tier3_practical,90,research_reference,unknown,html
+developer.bmj.com,tier3_practical,90,research_reference,unknown,html
+developer.brilliant.org,tier3_practical,90,research_reference,unknown,html
+developer.bsigroup.com,tier3_practical,90,standards,unknown,html
+developer.canada.ca,tier3_practical,90,research_reference,unknown,html
+developer.cato.org,tier3_practical,90,reference_data,unknown,html
+developer.cdcfoundation.org,tier3_practical,90,official_docs,unknown,html
+developer.cell.com,tier3_practical,90,research_reference,unknown,html
+developer.cern.ch,tier3_practical,90,research_reference,unknown,html
+developer.codata.org,tier3_practical,90,standards,unknown,html
+developer.cos.io,tier3_practical,90,standards,unknown,html
+developer.coursera.org,tier3_practical,90,research_reference,unknown,html
+developer.data.world,tier3_practical,90,reference_data,unknown,html
+developer.edx.org,tier3_practical,90,research_reference,unknown,html
+developer.etsi.org,tier3_practical,90,standards,unknown,html
+developer.fairsharing.org,tier3_practical,90,standards,unknown,html
+developer.healthline.com,tier3_practical,90,medical,unknown,html
+developer.iana.org,tier3_practical,90,standards,unknown,html
+developer.icann.org,tier3_practical,90,standards,unknown,html
+developer.iec.ch,tier3_practical,90,standards,unknown,html
+developer.imf.org,tier3_practical,90,research_reference,unknown,html
+developer.kaggle.com,tier3_practical,90,reference_data,unknown,html
+developer.khanacademy.org,tier3_practical,90,research_reference,unknown,html
+developer.manitoba.ca,tier3_practical,90,research_reference,unknown,html
+developer.mozilla.org,tier3_practical,90,official_docs,unknown,html
+developer.nature.com,tier3_practical,90,research_reference,unknown,html
+developer.nejm.org,tier3_practical,90,research_reference,unknown,html
+developer.newfoundlandlabrador.com,tier3_practical,90,research_reference,unknown,html
+developer.nhs.uk,tier3_practical,90,medical,unknown,html
+developer.novascotia.ca,tier3_practical,90,research_reference,unknown,html
+developer.nwt.ca,tier3_practical,90,research_reference,unknown,html
+developer.oecd.org,tier3_practical,90,research_reference,unknown,html
+developer.ontario.ca,tier3_practical,90,research_reference,unknown,html
+developer.opengroup.org,tier3_practical,90,standards,unknown,html
+developer.owasp.org,tier3_practical,90,standards,unknown,html
+developer.parliament.uk,tier3_practical,90,research_reference,unknown,html
+developer.pewresearch.org,tier3_practical,90,reference_data,unknown,html
+developer.pnas.org,tier3_practical,90,research_reference,unknown,html
+developer.princeedwardisland.ca,tier3_practical,90,research_reference,unknown,html
+developer.quebec.ca,tier3_practical,90,research_reference,unknown,html
+developer.rand.org,tier3_practical,90,reference_data,unknown,html
+developer.saskatchewan.ca,tier3_practical,90,research_reference,unknown,html
+developer.science.org,tier3_practical,90,research_reference,unknown,html
+developer.semanticscholar.org,tier3_practical,90,research_reference,unknown,html
+developer.statsmodels.org,tier3_practical,90,reference_data,unknown,html
+developer.thelancet.com,tier3_practical,90,research_reference,unknown,html
+developer.ukri.org,tier3_practical,90,research_reference,unknown,html
+developer.un.org,tier3_practical,90,research_reference,unknown,html
+developer.unesco.org,tier3_practical,90,research_reference,unknown,html
+developer.unicef.org,tier3_practical,90,research_reference,unknown,html
+developer.unodc.org,tier3_practical,90,research_reference,unknown,html
+developer.worldbank.org,tier3_practical,90,research_reference,unknown,html
+developer.wto.org,tier3_practical,90,research_reference,unknown,html
+developer.yukon.ca,tier3_practical,90,research_reference,unknown,html
+docker.com,tier3_practical,90,official_docs,unknown,html
+docs.acm.org,tier3_practical,90,standards,unknown,html
+docs.alberta.ca,tier3_practical,90,research_reference,unknown,html
+docs.ansi.org,tier3_practical,90,standards,unknown,html
+docs.aws.amazon.com,tier3_practical,90,official_docs,unknown,html
+docs.bc.ca,tier3_practical,90,research_reference,unknown,html
+docs.bmj.com,tier3_practical,90,research_reference,unknown,html
+docs.brilliant.org,tier3_practical,90,research_reference,unknown,html
+docs.bsigroup.com,tier3_practical,90,standards,unknown,html
+docs.canada.ca,tier3_practical,90,research_reference,unknown,html
+docs.cato.org,tier3_practical,90,reference_data,unknown,html
+docs.cdcfoundation.org,tier3_practical,90,official_docs,unknown,html
+docs.cell.com,tier3_practical,90,research_reference,unknown,html
+docs.cern.ch,tier3_practical,90,research_reference,unknown,html
+docs.codata.org,tier3_practical,90,standards,unknown,html
+docs.cos.io,tier3_practical,90,standards,unknown,html
+docs.coursera.org,tier3_practical,90,research_reference,unknown,html
+docs.data.world,tier3_practical,90,reference_data,unknown,html
+docs.docker.com,tier3_practical,90,official_docs,unknown,html
+docs.edx.org,tier3_practical,90,research_reference,unknown,html
+docs.etsi.org,tier3_practical,90,standards,unknown,html
+docs.fairsharing.org,tier3_practical,90,standards,unknown,html
+docs.healthline.com,tier3_practical,90,medical,unknown,html
+docs.iana.org,tier3_practical,90,standards,unknown,html
+docs.icann.org,tier3_practical,90,standards,unknown,html
+docs.iec.ch,tier3_practical,90,standards,unknown,html
+docs.imf.org,tier3_practical,90,research_reference,unknown,html
+docs.kaggle.com,tier3_practical,90,reference_data,unknown,html
+docs.khanacademy.org,tier3_practical,90,research_reference,unknown,html
+docs.manitoba.ca,tier3_practical,90,research_reference,unknown,html
+docs.nature.com,tier3_practical,90,research_reference,unknown,html
+docs.nejm.org,tier3_practical,90,research_reference,unknown,html
+docs.newfoundlandlabrador.com,tier3_practical,90,research_reference,unknown,html
+docs.nhs.uk,tier3_practical,90,medical,unknown,html
+docs.novascotia.ca,tier3_practical,90,research_reference,unknown,html
+docs.nwt.ca,tier3_practical,90,research_reference,unknown,html
+docs.oecd.org,tier3_practical,90,research_reference,unknown,html
+docs.ontario.ca,tier3_practical,90,research_reference,unknown,html
+docs.opengroup.org,tier3_practical,90,standards,unknown,html
+docs.owasp.org,tier3_practical,90,standards,unknown,html
+docs.parliament.uk,tier3_practical,90,research_reference,unknown,html
+docs.pewresearch.org,tier3_practical,90,reference_data,unknown,html
+docs.pnas.org,tier3_practical,90,research_reference,unknown,html
+docs.princeedwardisland.ca,tier3_practical,90,research_reference,unknown,html
+docs.python.org,tier3_practical,90,official_docs,unknown,html
+docs.quebec.ca,tier3_practical,90,research_reference,unknown,html
+docs.rand.org,tier3_practical,90,reference_data,unknown,html
+docs.saskatchewan.ca,tier3_practical,90,research_reference,unknown,html
+docs.science.org,tier3_practical,90,research_reference,unknown,html
+docs.semanticscholar.org,tier3_practical,90,research_reference,unknown,html
+docs.statsmodels.org,tier3_practical,90,reference_data,unknown,html
+docs.thelancet.com,tier3_practical,90,research_reference,unknown,html
+docs.ukri.org,tier3_practical,90,research_reference,unknown,html
+docs.un.org,tier3_practical,90,research_reference,unknown,html
+docs.unesco.org,tier3_practical,90,research_reference,unknown,html
+docs.unicef.org,tier3_practical,90,research_reference,unknown,html
+docs.unodc.org,tier3_practical,90,research_reference,unknown,html
+docs.worldbank.org,tier3_practical,90,research_reference,unknown,html
+docs.wto.org,tier3_practical,90,research_reference,unknown,html
+docs.yukon.ca,tier3_practical,90,research_reference,unknown,html
+dot.state.tx.us,tier3_practical,90,research_reference,unknown,html
+edx.org,tier3_practical,90,research_reference,unknown,html
+epfl.ch,tier3_practical,90,research_reference,unknown,html
+etsi.org,tier3_practical,90,standards,unknown,html
+fairsharing.org,tier3_practical,90,standards,unknown,html
+gc.ca,tier3_practical,90,research_reference,unknown,html
+git-scm.com,tier3_practical,90,official_docs,unknown,html
+github.com,tier3_practical,90,official_docs,unknown,html
+gnu.org,tier3_practical,90,official_docs,unknown,html
+go.dev,tier3_practical,90,official_docs,unknown,html
+gov.nu.ca,tier3_practical,90,research_reference,unknown,html
+gov.uk,tier3_practical,90,research_reference,unknown,html
+healthline.com,tier3_practical,90,medical,unknown,html
+helsinki.fi,tier3_practical,90,research_reference,unknown,html
+hku.hk,tier3_practical,90,research_reference,unknown,html
+hopkinsmedicine.org,tier3_practical,90,medical_institution,proprietary or restricted,manual_only
+iana.org,tier3_practical,90,standards,unknown,html
+icann.org,tier3_practical,90,standards,unknown,html
+iec.ch,tier3_practical,90,standards,unknown,html
+imf.org,tier3_practical,90,research_reference,unknown,html
+java.com,tier3_practical,90,official_docs,unknown,html
+kaggle.com,tier3_practical,90,reference_data,unknown,html
+kaist.ac.kr,tier3_practical,90,research_reference,unknown,html
+kernel.org,tier3_practical,90,official_docs,unknown,html
+khanacademy.org,tier3_practical,90,research_reference,unknown,html
+kth.se,tier3_practical,90,research_reference,unknown,html
+ku.dk,tier3_practical,90,research_reference,unknown,html
+kubernetes.io,tier3_practical,90,official_docs,unknown,html
+kuleuven.be,tier3_practical,90,research_reference,unknown,html
+linuxfoundation.org,tier3_practical,90,official_docs,unknown,html
+lmu.de,tier3_practical,90,research_reference,unknown,html
+manitoba.ca,tier3_practical,90,research_reference,unknown,html
+mariadb.org,tier3_practical,90,official_docs,unknown,html
+mayoclinic.org,tier3_practical,90,medical_institution,proprietary or restricted,manual_only
+mysql.com,tier3_practical,90,official_docs,unknown,html
+nature.com,tier3_practical,90,research_reference,unknown,html
+nejm.org,tier3_practical,90,research_reference,unknown,html
+newfoundlandlabrador.com,tier3_practical,90,research_reference,unknown,html
+nginx.org,tier3_practical,90,official_docs,unknown,html
+nhs.uk,tier3_practical,90,medical,unknown,html
+nodejs.org,tier3_practical,90,official_docs,unknown,html
+novascotia.ca,tier3_practical,90,research_reference,unknown,html
+numpy.org,tier3_practical,90,official_docs,unknown,html
+nwt.ca,tier3_practical,90,research_reference,unknown,html
+oecd.org,tier3_practical,90,research_reference,unknown,html
+ontario.ca,tier3_practical,90,research_reference,unknown,html
+openai.com,tier3_practical,90,official_docs,unknown,html
+opengroup.org,tier3_practical,90,standards,unknown,html
+openjdk.org,tier3_practical,90,official_docs,unknown,html
+owasp.org,tier3_practical,90,standards,unknown,html
+pandas.pydata.org,tier3_practical,90,official_docs,unknown,html
+parliament.uk,tier3_practical,90,research_reference,unknown,html
+pewresearch.org,tier3_practical,90,reference_data,unknown,html
+pnas.org,tier3_practical,90,research_reference,unknown,html
+polimi.it,tier3_practical,90,research_reference,unknown,html
+postech.ac.kr,tier3_practical,90,research_reference,unknown,html
+postgresql.org,tier3_practical,90,official_docs,unknown,html
+princeedwardisland.ca,tier3_practical,90,research_reference,unknown,html
+pypi.org,tier3_practical,90,official_docs,unknown,html
+python.org,tier3_practical,90,official_docs,unknown,html
+pytorch.org,tier3_practical,90,official_docs,unknown,html
+quebec.ca,tier3_practical,90,research_reference,unknown,html
+rand.org,tier3_practical,90,reference_data,unknown,html
+react.dev,tier3_practical,90,official_docs,unknown,html
+redis.io,tier3_practical,90,official_docs,unknown,html
+research.clevelandclinic.org,tier3_practical,90,medical_institution,proprietary or restricted,manual_only
+research.hopkinsmedicine.org,tier3_practical,90,medical_institution,proprietary or restricted,manual_only
+research.mayoclinic.org,tier3_practical,90,medical_institution,proprietary or restricted,manual_only
+rust-lang.org,tier3_practical,90,official_docs,unknown,html
+rwth-aachen.de,tier3_practical,90,research_reference,unknown,html
+saskatchewan.ca,tier3_practical,90,research_reference,unknown,html
+scholar.google.com,tier3_practical,90,research_reference,unknown,html
+science.org,tier3_practical,90,research_reference,unknown,html
+scipy.org,tier3_practical,90,official_docs,unknown,html
+semanticscholar.org,tier3_practical,90,research_reference,unknown,html
+snu.ac.kr,tier3_practical,90,research_reference,unknown,html
+sorbonne-universite.fr,tier3_practical,90,research_reference,unknown,html
+stackexchange.com,tier3_practical,90,research_reference,unknown,html
+stackoverflow.com,tier3_practical,90,research_reference,unknown,html
+statsmodels.org,tier3_practical,90,reference_data,unknown,html
+tensorflow.org,tier3_practical,90,official_docs,unknown,html
+thelancet.com,tier3_practical,90,research_reference,unknown,html
+tum.de,tier3_practical,90,research_reference,unknown,html
+tuwien.at,tier3_practical,90,research_reference,unknown,html
+uclouvain.be,tier3_practical,90,research_reference,unknown,html
+ugent.be,tier3_practical,90,research_reference,unknown,html
+uio.no,tier3_practical,90,research_reference,unknown,html
+ukri.org,tier3_practical,90,research_reference,unknown,html
+un.org,tier3_practical,90,research_reference,unknown,html
+unesco.org,tier3_practical,90,research_reference,unknown,html
+uni-freiburg.de,tier3_practical,90,research_reference,unknown,html
+uni-heidelberg.de,tier3_practical,90,research_reference,unknown,html
+unibe.ch,tier3_practical,90,research_reference,unknown,html
+unibo.it,tier3_practical,90,research_reference,unknown,html
+unicef.org,tier3_practical,90,research_reference,unknown,html
+univie.ac.at,tier3_practical,90,research_reference,unknown,html
+unodc.org,tier3_practical,90,research_reference,unknown,html
+ust.hk,tier3_practical,90,research_reference,unknown,html
+uu.se,tier3_practical,90,research_reference,unknown,html
+uzh.ch,tier3_practical,90,research_reference,unknown,html
+w3schools.com,tier3_practical,90,official_docs,unknown,html
+waseda.jp,tier3_practical,90,research_reference,unknown,html
+worldbank.org,tier3_practical,90,research_reference,unknown,html
+wto.org,tier3_practical,90,research_reference,unknown,html
+yukon.ca,tier3_practical,90,research_reference,unknown,html
+data.gapminder.org,reference,91,reference_data,unknown,html
+data.nber.org,reference,91,reference_data,unknown,html
+data.ourworldindata.org,reference,91,reference_data,unknown,html
+data.wolfram.com,reference,91,reference_data,unknown,html
+fred.stlouisfed.org,reference,91,reference_data,unknown,html
+gapminder.org,reference,91,reference_data,unknown,html
+nber.org,reference,91,reference_data,unknown,html
+ourworldindata.org,reference,91,reference_data,unknown,html
+research.gapminder.org,reference,91,reference_data,unknown,html
+research.nber.org,reference,91,reference_data,unknown,html
+research.ourworldindata.org,reference,91,reference_data,unknown,html
+research.wolfram.com,reference,91,reference_data,unknown,html
+wolfram.com,reference,91,reference_data,unknown,html
+kidshealth.org,medical,93,medical,unknown,html
+massgeneral.org,medical,93,medical,unknown,html
+research.kidshealth.org,medical,93,medical,unknown,html
+research.massgeneral.org,medical,93,medical,unknown,html
