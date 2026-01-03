@@ -44,6 +44,23 @@ vault/objects/
 vault/index/
 vault/tmp/
 
+# Large data files (prepare locally, upload via SCP)
+data_for_ai/
+crawl_output_*/
+finetune_data/
+clean_data/
+models/
+*.tar.gz
+out_dictionary_*/
+KnowledgeTXT/
+
+# Training outputs (generated on remote GPU)
+arcticcodex_*/
+checkpoint-*/
+*.pth
+runs/
+wandb/
+
 # Nested repos / bundles
 ArcticCodex-AGI/
 
